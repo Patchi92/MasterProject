@@ -23,10 +23,15 @@ public class PlayerMovement : MonoBehaviour {
     JumpCheck inAirCheck;
 
 
+    // Animation
+    Animator playerCamera;
+
+
 
     private void Awake()
     {
         rBody = this.GetComponent<Rigidbody>();
+        playerCamera = transform.FindChild("Player Camera").GetComponent<Animator>();
         inAirCheck = transform.FindChild("GroundCheck").GetComponent<JumpCheck>();
         
     }
@@ -45,6 +50,9 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.W))
         {
+
+            playerCamera.SetBool("isWalking", true);
+
             if (speedAccel < 0)
             {
                 speedAccel = speedAccel * -1;
@@ -53,15 +61,20 @@ public class PlayerMovement : MonoBehaviour {
             frontVel = frontSpeed + speedAccel;
             if (frontVel < speedCap)
             {
+                playerCamera.speed += 0.001f;
                 speedAccel += increaseAccel;
             }
 
             
         }
 
+        
+
 
         if (Input.GetKey(KeyCode.S))
         {
+            playerCamera.speed = 1;
+            playerCamera.SetBool("isWalking", true);
             frontVel = -frontSpeed;
 
         }
@@ -69,7 +82,9 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.D))
         {
-            if(speedAccel < 0)
+            playerCamera.SetBool("isWalking", true);
+
+            if (speedAccel < 0)
             {
                 speedAccel = speedAccel * -1;
             }
@@ -77,6 +92,7 @@ public class PlayerMovement : MonoBehaviour {
             sideVel = sideSpeed + speedAccel;
             if (sideVel < speedCap)
             {
+                playerCamera.speed += 0.001f;
                 speedAccel += increaseAccel;
             }
         }
@@ -84,6 +100,8 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A))
         {
+            playerCamera.SetBool("isWalking", true);
+
             if (speedAccel > 0)
             {
                 speedAccel = speedAccel * -1;
@@ -92,12 +110,15 @@ public class PlayerMovement : MonoBehaviour {
             sideVel = -sideSpeed + speedAccel;
             if (sideVel > -speedCap)
             {
+                playerCamera.speed += 0.001f;
                 speedAccel -= increaseAccel;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            playerCamera.SetBool("isWalking", true);
+
             if (inAirCheck.inAir == false)
             {
                 //jumpVel = jumpHeight;
@@ -106,7 +127,12 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         MovePlayer();
-        MoveReset();
+
+        if(!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        {
+            MoveReset();
+        }
+        
     }
 
     void MovePlayer()
@@ -123,6 +149,9 @@ public class PlayerMovement : MonoBehaviour {
 
     void MoveReset()
     {
+        playerCamera.SetBool("isWalking", false);
+
+        playerCamera.speed = 1;
         frontVel = 0;
         sideVel = 0;
         jumpVel = 0;

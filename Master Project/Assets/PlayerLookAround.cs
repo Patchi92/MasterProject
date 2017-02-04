@@ -18,6 +18,7 @@ public class PlayerLookAround : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Cursor.visible = false;
         originalRotation = transform.localRotation;
         xRotation = 0;
         yRotation = 0;
