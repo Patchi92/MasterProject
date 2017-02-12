@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
     float jumpVel;
 
     JumpCheck inAirCheck;
+    public bool movementLock;
 
 
     // Animation
@@ -40,95 +41,99 @@ public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        movementLock = false;
         speedAccel = 0;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        
-
-        if (Input.GetKey(KeyCode.W))
+        if (!movementLock)
         {
 
-            playerCamera.SetBool("isWalking", true);
-
-            if (speedAccel < 0)
+            if (Input.GetKey(KeyCode.W))
             {
-                speedAccel = speedAccel * -1;
+
+                playerCamera.SetBool("isWalking", true);
+
+                if (speedAccel < 0)
+                {
+                    speedAccel = speedAccel * -1;
+                }
+
+                frontVel = frontSpeed + speedAccel;
+                if (frontVel < speedCap)
+                {
+                    playerCamera.speed += 0.001f;
+                    speedAccel += increaseAccel;
+                }
+
+
             }
 
-            frontVel = frontSpeed + speedAccel;
-            if (frontVel < speedCap)
+
+
+
+            if (Input.GetKey(KeyCode.S))
             {
-                playerCamera.speed += 0.001f;
-                speedAccel += increaseAccel;
+                playerCamera.speed = 1;
+                playerCamera.SetBool("isWalking", true);
+                frontVel = -frontSpeed;
+
             }
 
-            
-        }
 
-        
-
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            playerCamera.speed = 1;
-            playerCamera.SetBool("isWalking", true);
-            frontVel = -frontSpeed;
-
-        }
-
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            playerCamera.SetBool("isWalking", true);
-
-            if (speedAccel < 0)
+            if (Input.GetKey(KeyCode.D))
             {
-                speedAccel = speedAccel * -1;
+                playerCamera.SetBool("isWalking", true);
+
+                if (speedAccel < 0)
+                {
+                    speedAccel = speedAccel * -1;
+                }
+
+                sideVel = sideSpeed + speedAccel;
+                if (sideVel < speedCap)
+                {
+                    playerCamera.speed += 0.001f;
+                    speedAccel += increaseAccel;
+                }
             }
 
-            sideVel = sideSpeed + speedAccel;
-            if (sideVel < speedCap)
+
+            if (Input.GetKey(KeyCode.A))
             {
-                playerCamera.speed += 0.001f;
-                speedAccel += increaseAccel;
+                playerCamera.SetBool("isWalking", true);
+
+                if (speedAccel > 0)
+                {
+                    speedAccel = speedAccel * -1;
+                }
+
+                sideVel = -sideSpeed + speedAccel;
+                if (sideVel > -speedCap)
+                {
+                    playerCamera.speed += 0.001f;
+                    speedAccel -= increaseAccel;
+                }
             }
-        }
 
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            playerCamera.SetBool("isWalking", true);
-
-            if (speedAccel > 0)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                speedAccel = speedAccel * -1;
+                playerCamera.SetBool("isWalking", true);
+
+                if (inAirCheck.inAir == false)
+                {
+                    //jumpVel = jumpHeight;
+                    inAirCheck.inAir = true;
+                }
             }
 
-            sideVel = -sideSpeed + speedAccel;
-            if (sideVel > -speedCap)
-            {
-                playerCamera.speed += 0.001f;
-                speedAccel -= increaseAccel;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            playerCamera.SetBool("isWalking", true);
-
-            if (inAirCheck.inAir == false)
-            {
-                //jumpVel = jumpHeight;
-                inAirCheck.inAir = true;
-            }
         }
 
         MovePlayer();
 
-        if(!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        if(!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) || movementLock == true)
         {
             MoveReset();
         }
