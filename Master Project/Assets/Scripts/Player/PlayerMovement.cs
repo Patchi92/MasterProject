@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour {
             {
 
                 playerCamera.SetBool("isWalking", true);
+                sideVel = 0;
 
                 if (speedAccel < 0)
                 {
@@ -76,6 +77,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.S))
             {
+                sideVel = 0;
                 playerCamera.speed = 1;
                 playerCamera.SetBool("isWalking", true);
                 frontVel = -frontSpeed;
@@ -86,6 +88,7 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetKey(KeyCode.D))
             {
                 playerCamera.SetBool("isWalking", true);
+                frontVel = 0;
 
                 if (speedAccel < 0)
                 {
@@ -104,6 +107,7 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetKey(KeyCode.A))
             {
                 playerCamera.SetBool("isWalking", true);
+                frontVel = 0;
 
                 if (speedAccel > 0)
                 {

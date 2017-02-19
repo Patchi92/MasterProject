@@ -116,6 +116,9 @@ public class DialogSelection : MonoBehaviour
         if(d.Choice)
         {
             UI.choice = true;
+        } else
+        {
+            UI.UnlockPlayer();
         }
 
 

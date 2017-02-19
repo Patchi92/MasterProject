@@ -9,17 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
-  m_Name: DialogTest
+  m_Name: Test - Dialog - DogThree
   m_EditorClassIdentifier: 
   DialogLength: 2
   Name:
-  - Player
   - QuestGiver
+  - Player
   Text:
-  - Hello!
-  - Bye!
+  - Hello!.. I AM BIG DOG
+  - Sure why not
   Wait:
-  - 3
+  - 2
   - 2
   Sound: []
-  Choice: 1
+  Choice: 0
