@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ChoiceSelection : MonoBehaviour {
 
+    // Choice
+
     public Choice[] choices;
     UiSystem UI;
     GameObject choiceBox;
@@ -21,6 +23,27 @@ public class ChoiceSelection : MonoBehaviour {
     int selectedOption;
 
 
+    // Response
+
+    GameObject response;
+    string responseName;
+
+    string choiceResponse;
+    string responseOne;
+    string responseTwo;
+    string responseThree;
+    string responseFour;
+
+    float choiceWait;
+    float responseWaitOne;
+    float responseWaitTwo;
+    float responseWaitThree;
+    float responseWaitFour;
+
+
+
+
+
     void Awake()
     {
         UI = transform.parent.gameObject.GetComponent<UiSystem>();
@@ -34,6 +57,8 @@ public class ChoiceSelection : MonoBehaviour {
         choiceOptionTwoText = choiceOptionTwo.transform.FindChild("Text").gameObject;
         choiceOptionThreeText = choiceOptionThree.transform.FindChild("Text").gameObject;
         choiceOptionFourText = choiceOptionFour.transform.FindChild("Text").gameObject;
+
+        response = transform.parent.transform.FindChild("Dialog").transform.FindChild("DialogBox").transform.FindChild("Text").gameObject;
     }
 
     // Use this for initialization
@@ -58,6 +83,9 @@ public class ChoiceSelection : MonoBehaviour {
                 Unselected(choiceOptionTwo);
                 Unselected(choiceOptionThree);
                 Unselected(choiceOptionFour);
+
+                choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
+                choiceWait = responseWaitOne;
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -68,6 +96,9 @@ public class ChoiceSelection : MonoBehaviour {
                 Selected(choiceOptionTwo);
                 Unselected(choiceOptionThree);
                 Unselected(choiceOptionFour);
+
+                choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
+                choiceWait = responseWaitTwo;
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -78,6 +109,9 @@ public class ChoiceSelection : MonoBehaviour {
                 Unselected(choiceOptionTwo);
                 Selected(choiceOptionThree);
                 Unselected(choiceOptionFour);
+
+                choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
+                choiceWait = responseWaitThree;
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -88,14 +122,16 @@ public class ChoiceSelection : MonoBehaviour {
                 Unselected(choiceOptionTwo);
                 Unselected(choiceOptionThree);
                 Selected(choiceOptionFour);
+
+                choiceResponse = responseName + ":" + "\n" + "\n" + responseFour;
+                choiceWait = responseWaitFour;
             }
 
             if(selectedOption == 1 || selectedOption == 2 || selectedOption == 3 || selectedOption == 4)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    UI.choice = false;
-                    UI.GetComponent<UiSystem>().UnlockPlayer();
+                    StartCoroutine("ResponseSystem");
                 }
             }
             
@@ -107,18 +143,44 @@ public class ChoiceSelection : MonoBehaviour {
         }
 
 
-  
+    }
+
+
+    IEnumerator ResponseSystem() {
+
+        UI.choice = false;
+        response.GetComponent<Text>().text = choiceResponse;
+        UI.dialog = true;
+        yield return new WaitForSeconds(choiceWait);
+        UI.dialog = false;
+        UI.GetComponent<UiSystem>().UnlockPlayer();
 
     }
+
+
 
     void ChoiceSystem(int v)
     {
         Choice c = choices[v];
 
-        choiceOptionOneText.GetComponent<Text>().text = c.Text[0];
-        choiceOptionTwoText.GetComponent<Text>().text = c.Text[1];
-        choiceOptionThreeText.GetComponent<Text>().text = c.Text[2];
-        choiceOptionFourText.GetComponent<Text>().text = c.Text[3];
+        responseName = c.name;
+
+        choiceOptionOneText.GetComponent<Text>().text = c.choice[0];
+        choiceOptionTwoText.GetComponent<Text>().text = c.choice[1];
+        choiceOptionThreeText.GetComponent<Text>().text = c.choice[2];
+        choiceOptionFourText.GetComponent<Text>().text = c.choice[3];
+
+        responseOne = c.response[0];
+        responseTwo = c.response[1];
+        responseThree = c.response[2];
+        responseFour = c.response[3];
+
+        responseWaitOne = c.wait[0];
+        responseWaitTwo = c.wait[1];
+        responseWaitThree = c.wait[2];
+        responseWaitFour = c.wait[3];
+
+
     }
 
     void Selected(GameObject o)

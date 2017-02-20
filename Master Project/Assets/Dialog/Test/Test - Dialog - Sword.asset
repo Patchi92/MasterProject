@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
   m_Name: Test - Dialog - Sword
   m_EditorClassIdentifier: 
-  DialogLength: 4
+  DialogLength: 2
   Name:
-  - QuestGiver
+  - Dildo Sword
   - Player
   Text:
   - '*Wink* I''m sharp *Wink*'

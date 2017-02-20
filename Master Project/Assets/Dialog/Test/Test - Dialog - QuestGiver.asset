@@ -13,15 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 4
   Name:
-  - QuestGiver
+  - Quest Giver
   - Player
-  - QuestGiver
+  - Quest Giver
   - Player
   Text:
   - Hello!.. Plz Help
-  - Sure why not
+  - Hmm!.. More info plz
   - Go this way!
-  - OK!
+  - Hmm..
   Wait:
   - 2
   - 2

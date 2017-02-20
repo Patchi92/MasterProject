@@ -11,8 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
   m_Name: Test - Choice - Sword
   m_EditorClassIdentifier: 
-  Text:
-  - Wee a sword!
-  - Wee a dildo!
-  - Wee a dildo sword!
-  - '...'
+  name: Dildo Sword
+  choice:
+  - A Dildo!
+  - A Sword!
+  - A Dildo Sword!
+  - I can't even..
+  response:
+  - Hell yeah!
+  - Sharp and nice! *wink*
+  - Best of both worlds!
+  - But i can even you *wink*
+  wait:
+  - 3
+  - 3
+  - 3
+  - 3

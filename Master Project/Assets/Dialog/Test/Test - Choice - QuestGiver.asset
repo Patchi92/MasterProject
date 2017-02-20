@@ -11,8 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
   m_Name: Test - Choice - QuestGiver
   m_EditorClassIdentifier: 
-  Text:
-  - On my way!
-  - Fuck this shit
-  - Yet another placeholder
+  name: Quest Giver
+  choice:
+  - Help with quest!
+  - Please leave me alone
+  - Zzzz.. PLACEHOLDER!
   - '...'
+  response:
+  - Thanks! <3
+  - Why are you like this! :(
+  - Yes!.. This is a placeholder!
+  - '... ... ...?'
+  wait:
+  - 3
+  - 3
+  - 3
+  - 3

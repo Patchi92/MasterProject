@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 2
   Name:
-  - QuestGiver
+  - Biggest Dog
   - Player
   Text:
   - Hello!.. I AM BIG DOG

@@ -63,49 +63,67 @@ public class DialogSelection : MonoBehaviour
 
 
 
-            if (d.Name[i] == "Player")
+            indexCount = i;
+
+            dialogText.GetComponent<Text>().text = d.Name[i] + ":" + "\n" + "\n" + d.Text[i];
+
+            //Sound and stuff
+
+
+
+            SpeakingTime = d.Wait[i];
+
+            while (!isSkipped && SpeakingTime > 0)
             {
-                indexCount = i;
-
-                dialogText.GetComponent<Text>().text = "Player:" + "\n" + "\n" + d.Text[i];
-                
-                //Sound and stuff
-                
-
-
-                SpeakingTime = d.Wait[i];
-
-                while (!isSkipped && SpeakingTime > 0)
-                {
-                    SpeakingTime -= Time.deltaTime;
-                    yield return new WaitForEndOfFrame();
-                }
-                isSkipped = false;
-
+                SpeakingTime -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
             }
+            isSkipped = false;
 
 
+            //if (d.Name[i] == "Player")
+            //{
+            //    indexCount = i;
 
-            if (d.Name[i] == "QuestGiver")
-            {
-                indexCount = i;
-
-                dialogText.GetComponent<Text>().text = "QuestGiver:" + "\n" + "\n" + d.Text[i];
-
-                //Sound and stuff
+            //    dialogText.GetComponent<Text>().text = "Player:" + "\n" + "\n" + d.Text[i];
+                
+            //    //Sound and stuff
                 
 
 
-                SpeakingTime = d.Wait[i];
+            //    SpeakingTime = d.Wait[i];
 
-                while (!isSkipped && SpeakingTime > 0)
-                {
-                    SpeakingTime -= Time.deltaTime;
-                    yield return new WaitForEndOfFrame();
-                }
-                isSkipped = false;
+            //    while (!isSkipped && SpeakingTime > 0)
+            //    {
+            //        SpeakingTime -= Time.deltaTime;
+            //        yield return new WaitForEndOfFrame();
+            //    }
+            //    isSkipped = false;
 
-            }
+            //}
+
+
+
+            //if (d.Name[i] == "QuestGiver")
+            //{
+            //    indexCount = i;
+
+            //    dialogText.GetComponent<Text>().text = "QuestGiver:" + "\n" + "\n" + d.Text[i];
+
+            //    //Sound and stuff
+                
+
+
+            //    SpeakingTime = d.Wait[i];
+
+            //    while (!isSkipped && SpeakingTime > 0)
+            //    {
+            //        SpeakingTime -= Time.deltaTime;
+            //        yield return new WaitForEndOfFrame();
+            //    }
+            //    isSkipped = false;
+
+            //}
 
 
         }
