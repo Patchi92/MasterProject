@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+
     // Movement/Physics
     Rigidbody rBody;
     public float frontSpeed;
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        gameObject.name = "Player";
         movementLock = false;
         speedAccel = 0;
     }

@@ -131,13 +131,23 @@ public class DialogSelection : MonoBehaviour
         dialogText.GetComponent<Text>().text = "";
         UI.dialog = false;
 
-        if(d.Choice)
+        if(PlayerPrefs.GetString("Version") != "Complex")
         {
-            UI.choice = true;
+            if (d.Choice)
+            {
+                UI.choice = true;
+            }
+            else
+            {
+                UI.UnlockPlayer();
+            }
         } else
         {
             UI.UnlockPlayer();
         }
+
+
+      
 
 
 

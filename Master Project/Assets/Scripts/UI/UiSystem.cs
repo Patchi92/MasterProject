@@ -25,6 +25,11 @@ public class UiSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
 	}
 
     public void LockPlayer()

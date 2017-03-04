@@ -30,6 +30,11 @@ public class EnemyTest : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+
         step = speed * Time.deltaTime;
 
         if (Vector3.Distance(player.transform.position, transform.position) < 10f && Vector3.Distance(player.transform.position, transform.position) > 2f)
