@@ -53,6 +53,17 @@ public class PlayerMovement : MonoBehaviour {
         if (!movementLock)
         {
 
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                speedCap = 100;
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                speedCap = 5;
+            }
+
+
             if (Input.GetKey(KeyCode.W))
             {
 

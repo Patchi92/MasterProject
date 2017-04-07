@@ -3,7 +3,7 @@
 [CreateAssetMenu(fileName = "Choice", menuName = "Choice", order = 2)]
 public class Choice : ScriptableObject
 {
-    public string name;
+    public string Name;
 
     [TextArea(3, 5)]
     public string[] choice;
@@ -13,5 +13,6 @@ public class Choice : ScriptableObject
 
     public float[] wait;
 
+    public bool simpleQuestion;
 
 }

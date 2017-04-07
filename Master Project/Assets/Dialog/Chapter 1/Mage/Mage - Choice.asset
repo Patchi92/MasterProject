@@ -9,21 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
-  m_Name: Test - Choice - Sword
+  m_Name: Mage - Choice
   m_EditorClassIdentifier: 
-  name: Dildo Sword
+  Name: You
   choice:
-  - A Dildo!
-  - A Sword!
-  - A Dildo Sword!
-  - I can't even..
+  - Pick up staff
+  - Leave staff
   response:
-  - Hell yeah!
-  - Sharp and nice! *wink*
-  - Best of both worlds!
-  - But i can even you *wink*
+  - You feel the power!.. UNLIMITED POWER!
+  - You shake and turn away from the staff
   wait:
   - 3
   - 3
-  - 3
-  - 3
+  simpleQuestion: 1

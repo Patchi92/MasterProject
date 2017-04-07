@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
   m_Name: Test - Choice - QuestGiver
   m_EditorClassIdentifier: 
-  name: Quest Giver
+  Name: QuestGiver
   choice:
   - Help with quest!
   - Please leave me alone
@@ -27,3 +27,4 @@ MonoBehaviour:
   - 3
   - 3
   - 3
+  simpleQuestion: 0

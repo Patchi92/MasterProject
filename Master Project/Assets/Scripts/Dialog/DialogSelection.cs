@@ -11,6 +11,9 @@ public class DialogSelection : MonoBehaviour
     GameObject dialogBox;
     GameObject dialogText;
 
+    // Narrative
+    GameObject narrativeSystem;
+
     // Dialog System
 
     int indexCount;
@@ -22,6 +25,8 @@ public class DialogSelection : MonoBehaviour
 
     void Awake()
     {
+        narrativeSystem = GameObject.Find("NarrativeSystem");
+
         UI = transform.parent.gameObject.GetComponent<UiSystem>();
         dialogBox = transform.FindChild("DialogBox").gameObject;
         dialogText = dialogBox.transform.FindChild("Text").gameObject;
@@ -143,6 +148,7 @@ public class DialogSelection : MonoBehaviour
             }
         } else
         {
+            narrativeSystem.GetComponent<NarrativeSystem>().NarrativeFeedback(0);
             UI.UnlockPlayer();
         }
 

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ChoiceSelection : MonoBehaviour {
 
+    // Narrative
+    GameObject narrativeSystem;
+
     // Choice
 
     public Choice[] choices;
@@ -21,6 +24,7 @@ public class ChoiceSelection : MonoBehaviour {
     GameObject choiceOptionFourText;
 
     int selectedOption;
+    bool moreChoices;
 
 
     // Response
@@ -46,6 +50,8 @@ public class ChoiceSelection : MonoBehaviour {
 
     void Awake()
     {
+        narrativeSystem = GameObject.Find("NarrativeSystem");
+
         UI = transform.parent.gameObject.GetComponent<UiSystem>();
         choiceBox = transform.FindChild("ChoiceBox").gameObject;
         choiceOptionOne = choiceBox.transform.FindChild("Option1").gameObject;
@@ -70,6 +76,7 @@ public class ChoiceSelection : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
 
         if (UI.choice)
         {
@@ -103,28 +110,34 @@ public class ChoiceSelection : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                selectedOption = 3;
+                if (moreChoices == true)
+                {
+                    selectedOption = 3;
 
-                Unselected(choiceOptionOne);
-                Unselected(choiceOptionTwo);
-                Selected(choiceOptionThree);
-                Unselected(choiceOptionFour);
+                    Unselected(choiceOptionOne);
+                    Unselected(choiceOptionTwo);
+                    Selected(choiceOptionThree);
+                    Unselected(choiceOptionFour);
 
-                choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
-                choiceWait = responseWaitThree;
+                    choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
+                    choiceWait = responseWaitThree;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                selectedOption = 4;
+                if (moreChoices == true)
+                {
+                    selectedOption = 4;
 
-                Unselected(choiceOptionOne);
-                Unselected(choiceOptionTwo);
-                Unselected(choiceOptionThree);
-                Selected(choiceOptionFour);
+                    Unselected(choiceOptionOne);
+                    Unselected(choiceOptionTwo);
+                    Unselected(choiceOptionThree);
+                    Selected(choiceOptionFour);
 
-                choiceResponse = responseName + ":" + "\n" + "\n" + responseFour;
-                choiceWait = responseWaitFour;
+                    choiceResponse = responseName + ":" + "\n" + "\n" + responseFour;
+                    choiceWait = responseWaitFour;
+                }
             }
 
             if(selectedOption == 1 || selectedOption == 2 || selectedOption == 3 || selectedOption == 4)
@@ -154,6 +167,7 @@ public class ChoiceSelection : MonoBehaviour {
         yield return new WaitForSeconds(choiceWait);
         UI.dialog = false;
         UI.GetComponent<UiSystem>().UnlockPlayer();
+        narrativeSystem.GetComponent<NarrativeSystem>().NarrativeFeedback(selectedOption);
 
     }
 
@@ -163,22 +177,33 @@ public class ChoiceSelection : MonoBehaviour {
     {
         Choice c = choices[v];
 
-        responseName = c.name;
+        responseName = c.Name;
 
         choiceOptionOneText.GetComponent<Text>().text = c.choice[0];
         choiceOptionTwoText.GetComponent<Text>().text = c.choice[1];
-        choiceOptionThreeText.GetComponent<Text>().text = c.choice[2];
-        choiceOptionFourText.GetComponent<Text>().text = c.choice[3];
-
         responseOne = c.response[0];
         responseTwo = c.response[1];
-        responseThree = c.response[2];
-        responseFour = c.response[3];
-
         responseWaitOne = c.wait[0];
         responseWaitTwo = c.wait[1];
-        responseWaitThree = c.wait[2];
-        responseWaitFour = c.wait[3];
+
+        if (c.simpleQuestion == false)
+        {
+            choiceOptionThree.SetActive(true);
+            choiceOptionFour.SetActive(true);
+            moreChoices = true;
+
+            choiceOptionThreeText.GetComponent<Text>().text = c.choice[2];
+            choiceOptionFourText.GetComponent<Text>().text = c.choice[3];
+            responseThree = c.response[2];
+            responseFour = c.response[3];
+            responseWaitThree = c.wait[2];
+            responseWaitFour = c.wait[3];
+        } else
+        {
+            choiceOptionThree.SetActive(false);
+            choiceOptionFour.SetActive(false);
+            moreChoices = false;
+        }
 
 
     }
