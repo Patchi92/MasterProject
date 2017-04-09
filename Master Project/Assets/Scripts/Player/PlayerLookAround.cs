@@ -33,6 +33,7 @@ public class PlayerLookAround : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
         if(!lookLock)
         {
             xRotation += Input.GetAxis("Mouse X") * sensitivityX;
@@ -58,4 +59,6 @@ public class PlayerLookAround : MonoBehaviour {
          angle -= 360F;
         return Mathf.Clamp(angle, min, max);
     }
+
+  
 }

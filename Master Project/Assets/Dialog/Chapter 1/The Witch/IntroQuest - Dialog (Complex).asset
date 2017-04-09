@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
+  m_Name: IntroQuest - Dialog (Complex)
+  m_EditorClassIdentifier: 
+  DialogLength: 0
+  Name:
+  - The Witch
+  - The Witch
+  - The Witch
+  - You
+  - The Witch
+  Text:
+  - Good evening, soldier; you seem to have some skills, a large knapsack, and you
+    are a real soldier; so you shall have as much money as ever you like.
+  - Do you see that cave?
+  - All you need to do is enter and claim your price!
+  - But what am I to give you, you old witch? For, of course, you do not mean to tell
+    me all this for nothing.
+  - I do not ask for a single penny. Only promise to bring me one of the old artifacts,
+    which my old master left behind the last time she went down there.
+  Wait:
+  - 6
+  - 3
+  - 6
+  - 6
+  - 6
+  Sound: []
+  Choice: 0

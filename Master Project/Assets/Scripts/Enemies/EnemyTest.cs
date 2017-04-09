@@ -55,13 +55,13 @@ public class EnemyTest : MonoBehaviour {
         }
 
 
-
+        //Move
         if(move && !reset)
         {
-            Debug.Log("Move!");
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
         }
 
+        //Attack
         if(attack && !reset)
         {
             Debug.Log("Attack!");

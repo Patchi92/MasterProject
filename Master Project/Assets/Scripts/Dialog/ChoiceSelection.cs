@@ -16,12 +16,10 @@ public class ChoiceSelection : MonoBehaviour {
     GameObject choiceOptionOne;
     GameObject choiceOptionTwo;
     GameObject choiceOptionThree;
-    GameObject choiceOptionFour;
 
     GameObject choiceOptionOneText;
     GameObject choiceOptionTwoText;
     GameObject choiceOptionThreeText;
-    GameObject choiceOptionFourText;
 
     int selectedOption;
     bool moreChoices;
@@ -36,13 +34,11 @@ public class ChoiceSelection : MonoBehaviour {
     string responseOne;
     string responseTwo;
     string responseThree;
-    string responseFour;
 
     float choiceWait;
     float responseWaitOne;
     float responseWaitTwo;
     float responseWaitThree;
-    float responseWaitFour;
 
 
 
@@ -57,12 +53,10 @@ public class ChoiceSelection : MonoBehaviour {
         choiceOptionOne = choiceBox.transform.FindChild("Option1").gameObject;
         choiceOptionTwo = choiceBox.transform.FindChild("Option2").gameObject;
         choiceOptionThree = choiceBox.transform.FindChild("Option3").gameObject;
-        choiceOptionFour = choiceBox.transform.FindChild("Option4").gameObject;
 
         choiceOptionOneText = choiceOptionOne.transform.FindChild("Text").gameObject;
         choiceOptionTwoText = choiceOptionTwo.transform.FindChild("Text").gameObject;
         choiceOptionThreeText = choiceOptionThree.transform.FindChild("Text").gameObject;
-        choiceOptionFourText = choiceOptionFour.transform.FindChild("Text").gameObject;
 
         response = transform.parent.transform.FindChild("Dialog").transform.FindChild("DialogBox").transform.FindChild("Text").gameObject;
     }
@@ -82,6 +76,8 @@ public class ChoiceSelection : MonoBehaviour {
         {
             choiceBox.SetActive(true);
 
+
+
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
                 selectedOption = 1;
@@ -89,7 +85,6 @@ public class ChoiceSelection : MonoBehaviour {
                 Selected(choiceOptionOne);
                 Unselected(choiceOptionTwo);
                 Unselected(choiceOptionThree);
-                Unselected(choiceOptionFour);
 
                 choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
                 choiceWait = responseWaitOne;
@@ -102,7 +97,6 @@ public class ChoiceSelection : MonoBehaviour {
                 Unselected(choiceOptionOne);
                 Selected(choiceOptionTwo);
                 Unselected(choiceOptionThree);
-                Unselected(choiceOptionFour);
 
                 choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
                 choiceWait = responseWaitTwo;
@@ -117,30 +111,14 @@ public class ChoiceSelection : MonoBehaviour {
                     Unselected(choiceOptionOne);
                     Unselected(choiceOptionTwo);
                     Selected(choiceOptionThree);
-                    Unselected(choiceOptionFour);
 
                     choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
                     choiceWait = responseWaitThree;
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                if (moreChoices == true)
-                {
-                    selectedOption = 4;
 
-                    Unselected(choiceOptionOne);
-                    Unselected(choiceOptionTwo);
-                    Unselected(choiceOptionThree);
-                    Selected(choiceOptionFour);
-
-                    choiceResponse = responseName + ":" + "\n" + "\n" + responseFour;
-                    choiceWait = responseWaitFour;
-                }
-            }
-
-            if(selectedOption == 1 || selectedOption == 2 || selectedOption == 3 || selectedOption == 4)
+            if(selectedOption == 1 || selectedOption == 2 || selectedOption == 3)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -189,20 +167,23 @@ public class ChoiceSelection : MonoBehaviour {
         if (c.simpleQuestion == false)
         {
             choiceOptionThree.SetActive(true);
-            choiceOptionFour.SetActive(true);
             moreChoices = true;
 
             choiceOptionThreeText.GetComponent<Text>().text = c.choice[2];
-            choiceOptionFourText.GetComponent<Text>().text = c.choice[3];
             responseThree = c.response[2];
-            responseFour = c.response[3];
             responseWaitThree = c.wait[2];
-            responseWaitFour = c.wait[3];
+
+            choiceOptionOne.transform.localPosition = new Vector3(0, -200);
+            choiceOptionTwo.transform.localPosition = new Vector3(-250, -400);
+            choiceOptionThree.transform.localPosition = new Vector3(250, -400);
+
         } else
         {
             choiceOptionThree.SetActive(false);
-            choiceOptionFour.SetActive(false);
             moreChoices = false;
+
+            choiceOptionOne.transform.localPosition = new Vector2(-250, -300);
+            choiceOptionTwo.transform.localPosition = new Vector2(250, -300);
         }
 
 
@@ -230,6 +211,5 @@ public class ChoiceSelection : MonoBehaviour {
         Unselected(choiceOptionOne);
         Unselected(choiceOptionTwo);
         Unselected(choiceOptionThree);
-        Unselected(choiceOptionFour);
     }
 }

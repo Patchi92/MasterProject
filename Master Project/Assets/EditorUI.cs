@@ -19,7 +19,23 @@ public class EditorUI : MonoBehaviour {
         {
             gameObject.SetActive(false);
         } 
-	}
+
+        if (PlayerPrefs.GetString("Version") == "Simple")
+        {
+            version.GetComponent<Text>().text = "Simple";
+        }
+
+        if (PlayerPrefs.GetString("Version") == "Complex")
+        {
+            version.GetComponent<Text>().text = "Complex";
+        }
+
+        if (PlayerPrefs.GetString("Version") == "Mixed")
+        {
+            version.GetComponent<Text>().text = "Mixed";
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,6 +49,27 @@ public class EditorUI : MonoBehaviour {
         else
         {
             Cursor.visible = false;
+        }
+
+        if (Input.GetKey(KeyCode.L))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
+        if (Input.GetKey(KeyCode.K))
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetString("Version", version.GetComponent<Text>().text);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Time.timeScale = 10f;
+        }
+
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            Time.timeScale = 1f;
         }
 
 

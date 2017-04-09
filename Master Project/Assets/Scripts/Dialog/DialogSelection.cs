@@ -8,6 +8,7 @@ public class DialogSelection : MonoBehaviour
 
     public Dialog[] dialogs;
     UiSystem UI;
+    GameObject interactUI;
     GameObject dialogBox;
     GameObject dialogText;
 
@@ -28,6 +29,8 @@ public class DialogSelection : MonoBehaviour
         narrativeSystem = GameObject.Find("NarrativeSystem");
 
         UI = transform.parent.gameObject.GetComponent<UiSystem>();
+        interactUI = transform.parent.transform.FindChild("Interact").gameObject;
+
         dialogBox = transform.FindChild("DialogBox").gameObject;
         dialogText = dialogBox.transform.FindChild("Text").gameObject;
     }
@@ -62,6 +65,8 @@ public class DialogSelection : MonoBehaviour
         Dialog d = dialogs[v];
         d.DialogLength = d.Name.Length;
         UI.dialog = true;
+
+        interactUI.SetActive(false);
 
         for (int i = 0; i < d.DialogLength; i++)
         {
