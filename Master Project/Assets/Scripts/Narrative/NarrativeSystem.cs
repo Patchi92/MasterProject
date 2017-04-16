@@ -48,6 +48,7 @@ public class NarrativeSystem : MonoBehaviour {
             PlayerPrefs.DeleteAll();
         }
 
+        Debug.Log(PlayerPrefs.GetString("Version"));
 
         // Player Behavior
 
@@ -191,6 +192,8 @@ public class NarrativeSystem : MonoBehaviour {
 
     public void NarrativeFeedback(int choice)
     {
+
+        Debug.Log(PlayerPrefs.GetString("PlayerType"));
 
         if (currentNarrative == "WitchIntro_Simple")
         {

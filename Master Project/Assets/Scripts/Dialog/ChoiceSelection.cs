@@ -76,44 +76,112 @@ public class ChoiceSelection : MonoBehaviour {
         {
             choiceBox.SetActive(true);
 
-
-
-            if(Input.GetKeyDown(KeyCode.Alpha1))
+                if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                selectedOption = 1;
 
-                Selected(choiceOptionOne);
-                Unselected(choiceOptionTwo);
-                Unselected(choiceOptionThree);
+                if (PlayerPrefs.GetString("Version") == "Mixed")
+                {
+                    if (PlayerPrefs.GetInt("KillerPoints") < 1)
+                    {
+                        selectedOption = 1;
 
-                choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
-                choiceWait = responseWaitOne;
+                        Selected(choiceOptionOne);
+
+                        if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                        {
+                            Unselected(choiceOptionTwo);
+                        }
+
+                        if (PlayerPrefs.GetInt("HeroPoints") < 5)
+                        {
+                            Unselected(choiceOptionThree);
+                        }
+
+                        choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
+                        choiceWait = responseWaitOne;
+                    }
+                } else {
+                    selectedOption = 1;
+
+                    Selected(choiceOptionOne);
+                    Unselected(choiceOptionTwo);
+                    Unselected(choiceOptionThree);
+
+                    choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
+                    choiceWait = responseWaitOne;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                selectedOption = 2;
+                if (PlayerPrefs.GetString("Version") == "Mixed")
+                {
+                    if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                    {
+                        selectedOption = 2;
 
-                Unselected(choiceOptionOne);
-                Selected(choiceOptionTwo);
-                Unselected(choiceOptionThree);
+                        if (PlayerPrefs.GetInt("KillerPoints") < 1)
+                        {
+                            Unselected(choiceOptionOne);
+                        }
 
-                choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
-                choiceWait = responseWaitTwo;
+                        Selected(choiceOptionTwo);
+
+                        if (PlayerPrefs.GetInt("HeroPoints") < 5)
+                        {
+                            Unselected(choiceOptionThree);
+                        }
+
+                        choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
+                        choiceWait = responseWaitTwo;
+                    }
+                } else {
+                    selectedOption = 2;
+
+                    Unselected(choiceOptionOne);
+                    Selected(choiceOptionTwo);
+                    Unselected(choiceOptionThree);
+
+                    choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
+                    choiceWait = responseWaitTwo;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 if (moreChoices == true)
                 {
-                    selectedOption = 3;
+                    if (PlayerPrefs.GetString("Version") == "Mixed")
+                    {
+                        if (PlayerPrefs.GetInt("HeroPoints") < 5)
+                        {
+                            selectedOption = 3;
 
-                    Unselected(choiceOptionOne);
-                    Unselected(choiceOptionTwo);
-                    Selected(choiceOptionThree);
+                            if (PlayerPrefs.GetInt("KillerPoints") < 1)
+                            {
+                                Unselected(choiceOptionOne);
+                            }
 
-                    choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
-                    choiceWait = responseWaitThree;
+                            if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                            {
+                                Unselected(choiceOptionTwo);
+                            }
+
+                            Selected(choiceOptionThree);
+
+                            choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
+                            choiceWait = responseWaitThree;
+                        }
+                    } else {
+                        selectedOption = 3;
+
+                        Unselected(choiceOptionOne);
+                        Unselected(choiceOptionTwo);
+                        Selected(choiceOptionThree);
+
+                        choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
+                        choiceWait = responseWaitThree;
+                    }
                 }
             }
 
@@ -186,6 +254,43 @@ public class ChoiceSelection : MonoBehaviour {
             choiceOptionTwo.transform.localPosition = new Vector2(250, -300);
         }
 
+        if (PlayerPrefs.GetString("Version") == "Mixed")
+        {
+            if (moreChoices == true)
+            {
+                if (PlayerPrefs.GetInt("KillerPoints") >= 1)
+                {
+                    Unavalible(choiceOptionOne);
+                }
+                else
+                {
+                    Unselected(choiceOptionOne);
+                }
+
+                if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                {
+                    Unselected(choiceOptionTwo);
+                }
+                else
+                {
+                    Unavalible(choiceOptionTwo);
+                }
+
+                if (PlayerPrefs.GetInt("HeroPoints") > 5)
+                {
+                    Unavalible(choiceOptionThree);
+                }
+                else
+                {
+                    Unselected(choiceOptionThree);
+                }
+            }
+            else
+            {
+                Unselected(choiceOptionOne);
+                Unselected(choiceOptionTwo);
+            }
+        }
 
     }
 
