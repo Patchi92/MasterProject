@@ -16,9 +16,15 @@ public class CombatArea : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Enemy")
+
+        if (other.tag == "EnemyMelee")
         {
-            other.GetComponent<EnemyTest>().ResetNPC();
+            other.GetComponent<EnemyMelee>().ResetNPC();
+        }
+
+        if (other.tag == "EnemyRanged")
+        {
+            other.GetComponent<EnemyRanged>().ResetNPC();
         }
     }
 

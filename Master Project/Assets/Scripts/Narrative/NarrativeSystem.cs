@@ -52,11 +52,11 @@ public class NarrativeSystem : MonoBehaviour {
 
         // Player Behavior
 
-        PlayerPrefs.SetInt("Destruction", 4);
-        PlayerPrefs.SetInt("Excitement", 4);
-        PlayerPrefs.SetInt("Competition", 4);
+        PlayerPrefs.SetInt("Destruction", 0);
+        PlayerPrefs.SetInt("Excitement", 0);
+        PlayerPrefs.SetInt("Challenge", 4);
         PlayerPrefs.SetInt("Strategy", 4);
-        PlayerPrefs.SetInt("Completion", 4);
+        PlayerPrefs.SetInt("Completion", 0);
         PlayerPrefs.SetInt("Power", 4);
         PlayerPrefs.SetInt("Fantasy", 4);
         PlayerPrefs.SetInt("Story", 4);
@@ -64,7 +64,7 @@ public class NarrativeSystem : MonoBehaviour {
         PlayerPrefs.SetInt("Discovery", 4);
 
         PlayerPrefs.SetInt("Community", 4);
-        PlayerPrefs.SetInt("Challenge", 4);
+        PlayerPrefs.SetInt("Competition", 4);
 
 
         // Player Tracking
@@ -337,8 +337,10 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (choice == 3)
             {
-                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
+                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
                 Debug.Log(PlayerPrefs.GetInt("Story"));
+
+                GameObject.Find("Witch_Simple").GetComponent<EnemyRanged>().enabled = true;
             }
 
            

@@ -41,7 +41,10 @@ public class ChoiceSelection : MonoBehaviour {
     float responseWaitThree;
 
 
-
+    //Input
+    float mouseX;
+    float mouseY;
+    bool mouseCheck;
 
 
     void Awake()
@@ -64,131 +67,172 @@ public class ChoiceSelection : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        mouseCheck = false;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
         if (UI.choice)
         {
             choiceBox.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (!mouseCheck)
             {
+                mouseX = Input.mousePosition.x;
+                mouseY = Input.mousePosition.y;
+                mouseCheck = true;
+                StartCoroutine("MouseCD");
 
-                if (PlayerPrefs.GetString("Version") == "Mixed")
-                {
-                    if (PlayerPrefs.GetInt("KillerPoints") < 1)
-                    {
-                        selectedOption = 1;
-
-                        Selected(choiceOptionOne);
-
-                        if (PlayerPrefs.GetInt("NPCsKilled") == 0)
-                        {
-                            Unselected(choiceOptionTwo);
-                        }
-
-                        if (PlayerPrefs.GetInt("HeroPoints") < 5)
-                        {
-                            Unselected(choiceOptionThree);
-                        }
-
-                        choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
-                        choiceWait = responseWaitOne;
-                    }
-                } else {
-                    selectedOption = 1;
-
-                    Selected(choiceOptionOne);
-                    Unselected(choiceOptionTwo);
-                    Unselected(choiceOptionThree);
-
-                    choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
-                    choiceWait = responseWaitOne;
-                }
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (moreChoices)
             {
-                if (PlayerPrefs.GetString("Version") == "Mixed")
+
+                if (Input.GetKeyDown(KeyCode.Alpha1) || (mouseY + 50) < Input.mousePosition.y)
                 {
-                    if (PlayerPrefs.GetInt("NPCsKilled") == 0)
-                    {
-                        selectedOption = 2;
 
-                        if (PlayerPrefs.GetInt("KillerPoints") < 1)
-                        {
-                            Unselected(choiceOptionOne);
-                        }
-
-                        Selected(choiceOptionTwo);
-
-                        if (PlayerPrefs.GetInt("HeroPoints") < 5)
-                        {
-                            Unselected(choiceOptionThree);
-                        }
-
-                        choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
-                        choiceWait = responseWaitTwo;
-                    }
-                } else {
-                    selectedOption = 2;
-
-                    Unselected(choiceOptionOne);
-                    Selected(choiceOptionTwo);
-                    Unselected(choiceOptionThree);
-
-                    choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
-                    choiceWait = responseWaitTwo;
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                if (moreChoices == true)
-                {
                     if (PlayerPrefs.GetString("Version") == "Mixed")
                     {
-                        if (PlayerPrefs.GetInt("HeroPoints") < 5)
+                        if (PlayerPrefs.GetInt("KillerPoints") < 1)
                         {
-                            selectedOption = 3;
+                            selectedOption = 1;
 
-                            if (PlayerPrefs.GetInt("KillerPoints") < 1)
-                            {
-                                Unselected(choiceOptionOne);
-                            }
+                            Selected(choiceOptionOne);
 
                             if (PlayerPrefs.GetInt("NPCsKilled") == 0)
                             {
                                 Unselected(choiceOptionTwo);
                             }
 
+                            if (PlayerPrefs.GetInt("HeroPoints") < 5)
+                            {
+                                Unselected(choiceOptionThree);
+                            }
+
+                            choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
+                            choiceWait = responseWaitOne;
+                        }
+                    }
+                    else
+                    {
+                        selectedOption = 1;
+
+                        Selected(choiceOptionOne);
+                        Unselected(choiceOptionTwo);
+                        Unselected(choiceOptionThree);
+
+                        choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
+                        choiceWait = responseWaitOne;
+                    }
+                }
+
+                else if (Input.GetKeyDown(KeyCode.Alpha2) || (mouseX - 50) > Input.mousePosition.x)
+                {
+                    if (PlayerPrefs.GetString("Version") == "Mixed")
+                    {
+                        if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                        {
+                            selectedOption = 2;
+
+                            if (PlayerPrefs.GetInt("KillerPoints") < 1)
+                            {
+                                Unselected(choiceOptionOne);
+                            }
+
+                            Selected(choiceOptionTwo);
+
+                            if (PlayerPrefs.GetInt("HeroPoints") < 5)
+                            {
+                                Unselected(choiceOptionThree);
+                            }
+
+                            choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
+                            choiceWait = responseWaitTwo;
+                        }
+                    }
+                    else
+                    {
+                        selectedOption = 2;
+
+                        Unselected(choiceOptionOne);
+                        Selected(choiceOptionTwo);
+                        Unselected(choiceOptionThree);
+
+                        choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
+                        choiceWait = responseWaitTwo;
+                    }
+                }
+
+                else if (Input.GetKeyDown(KeyCode.Alpha3) || (mouseX + 50) < Input.mousePosition.x)
+                {
+                    if (moreChoices == true)
+                    {
+                        if (PlayerPrefs.GetString("Version") == "Mixed")
+                        {
+                            if (PlayerPrefs.GetInt("HeroPoints") < 5)
+                            {
+                                selectedOption = 3;
+
+                                if (PlayerPrefs.GetInt("KillerPoints") < 1)
+                                {
+                                    Unselected(choiceOptionOne);
+                                }
+
+                                if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                                {
+                                    Unselected(choiceOptionTwo);
+                                }
+
+                                Selected(choiceOptionThree);
+
+                                choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
+                                choiceWait = responseWaitThree;
+                            }
+                        }
+                        else
+                        {
+                            selectedOption = 3;
+
+                            Unselected(choiceOptionOne);
+                            Unselected(choiceOptionTwo);
                             Selected(choiceOptionThree);
 
                             choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
                             choiceWait = responseWaitThree;
                         }
-                    } else {
-                        selectedOption = 3;
-
-                        Unselected(choiceOptionOne);
-                        Unselected(choiceOptionTwo);
-                        Selected(choiceOptionThree);
-
-                        choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
-                        choiceWait = responseWaitThree;
                     }
                 }
+
             }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1) || (mouseX - 50) > Input.mousePosition.x)
+                {
+                    selectedOption = 1;
+                    Selected(choiceOptionOne);
+                    Unselected(choiceOptionTwo);
 
+                    choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
+                    choiceWait = responseWaitOne;
+                }
 
+                if (Input.GetKeyDown(KeyCode.Alpha2) || (mouseX + 50) < Input.mousePosition.x)
+
+                {
+                    selectedOption = 2;
+                    Selected(choiceOptionTwo);
+                    Unselected(choiceOptionOne);
+
+                    choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
+                    choiceWait = responseWaitTwo;
+                }
+
+            }
             if(selectedOption == 1 || selectedOption == 2 || selectedOption == 3)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
                     StartCoroutine("ResponseSystem");
                 }
@@ -241,17 +285,17 @@ public class ChoiceSelection : MonoBehaviour {
             responseThree = c.response[2];
             responseWaitThree = c.wait[2];
 
-            choiceOptionOne.transform.localPosition = new Vector3(0, -200);
-            choiceOptionTwo.transform.localPosition = new Vector3(-250, -400);
-            choiceOptionThree.transform.localPosition = new Vector3(250, -400);
+            choiceOptionOne.transform.localPosition = new Vector3(0, 0);
+            choiceOptionTwo.transform.localPosition = new Vector3(-200, -200);
+            choiceOptionThree.transform.localPosition = new Vector3(200, -200);
 
         } else
         {
             choiceOptionThree.SetActive(false);
             moreChoices = false;
 
-            choiceOptionOne.transform.localPosition = new Vector2(-250, -300);
-            choiceOptionTwo.transform.localPosition = new Vector2(250, -300);
+            choiceOptionOne.transform.localPosition = new Vector2(-200, -200);
+            choiceOptionTwo.transform.localPosition = new Vector2(200, -200);
         }
 
         if (PlayerPrefs.GetString("Version") == "Mixed")
@@ -316,5 +360,11 @@ public class ChoiceSelection : MonoBehaviour {
         Unselected(choiceOptionOne);
         Unselected(choiceOptionTwo);
         Unselected(choiceOptionThree);
+    }
+
+    IEnumerator MouseCD()
+    {
+        yield return new WaitForSeconds(1f);
+        mouseCheck = false;
     }
 }

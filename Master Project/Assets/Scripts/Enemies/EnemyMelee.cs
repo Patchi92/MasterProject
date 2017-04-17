@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTest : MonoBehaviour {
+public class EnemyMelee : MonoBehaviour {
 
     GameObject player;
+    public bool isNPC;
+    public bool isGuard;
 
     public float speed;
     float step;
+
+    int health;
+
+    bool attackCD;
 
     Vector3 resetPos;
 
@@ -23,14 +29,39 @@ public class EnemyTest : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        gameObject.tag = "EnemyMelee";
         reset = false;
         resetPos = transform.position;
-	}
+
+        health = 20;
+        attackCD = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(player == null)
+        if (health <= 0)
+        {
+            if (isNPC)
+            {
+                PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+                PlayerPrefs.SetInt("NPCsKilled", 1);
+            }
+            else if (isGuard)
+            {
+                PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("HeroPoints", PlayerPrefs.GetInt("HeroPoints") + 1);
+            }
+
+            Destroy(gameObject);
+        }
+
+
+        if (player == null)
         {
             player = GameObject.Find("Player");
         }
@@ -64,7 +95,12 @@ public class EnemyTest : MonoBehaviour {
         //Attack
         if(attack && !reset)
         {
-            Debug.Log("Attack!");
+            if (!attackCD)
+            {
+                player.GetComponent<PlayerClass>().DamageTaken(Random.Range(6, 8));
+                attackCD = true;
+                StartCoroutine("AttackCD");
+            }
         }
 
         if(reset)
@@ -78,6 +114,12 @@ public class EnemyTest : MonoBehaviour {
         }
 	}
 
+
+    IEnumerator AttackCD()
+    {
+        yield return new WaitForSeconds(1f);
+        attackCD = false;
+    }
 
     public void ResetNPC()
     {

@@ -1,9 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerClass : MonoBehaviour {
-   
+
+
+    //UI
+    GameObject UI;
+    GameObject HealthUI;
+    Text HealthAmountUI;
+
+    //Player
+    int health;
+    int damageReduction;
+
     //Actions
     bool bashCD;
     bool slashCD;
@@ -29,6 +40,9 @@ public class PlayerClass : MonoBehaviour {
 
     void Awake()
     {
+        UI = GameObject.Find("UI").gameObject;
+        HealthUI = UI.transform.FindChild("HP").gameObject;
+        HealthAmountUI = HealthUI.transform.FindChild("amountHP").gameObject.GetComponent<Text>();
         playerCam = transform.FindChild("Player Camera").GetComponent<Animator>();
     }
 
@@ -36,8 +50,16 @@ public class PlayerClass : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
+        HealthUI.SetActive(true);
+        health = 100;
+        HealthAmountUI.text = "HP: " + health.ToString();
+
         if (PlayerPrefs.GetString("PlayerClass") == "Warrior")
         {
+            damageReduction = 5;
+            
+
             sword.SetActive(true);
             shield.SetActive(true);
             playerShield = transform.FindChild("Shield").GetComponent<Animator>();
@@ -51,11 +73,15 @@ public class PlayerClass : MonoBehaviour {
 
         if (PlayerPrefs.GetString("PlayerClass") == "Mage")
         {
+            damageReduction = 1;
+
             staff.SetActive(true);
         }
 
         if (PlayerPrefs.GetString("PlayerClass") == "Assassin")
         {
+            damageReduction = 2;
+
             dagger.SetActive(true);
             bow.SetActive(true);
         }
@@ -64,7 +90,10 @@ public class PlayerClass : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        if(health <= 0)
+        {
+            Debug.Log("Dead");
+        }
 
         if (PlayerPrefs.GetString("PlayerClass") == "Warrior")
         {
@@ -101,7 +130,8 @@ public class PlayerClass : MonoBehaviour {
                     chargeRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
                     if (Physics.Raycast(chargeRay, out chargeHit))
                     {
-                        if (chargeHit.transform.tag == "Enemy")
+                        Debug.Log(chargeHit.transform.name);
+                        if (chargeHit.transform.tag == "EnemyMelee" || chargeHit.transform.tag == "EnemyRanged")
                         {
                             if (Vector3.Distance(transform.position, chargeHit.transform.position) < 20)
                             {
@@ -131,6 +161,14 @@ public class PlayerClass : MonoBehaviour {
         }
 
     }
+
+
+    public void DamageTaken(int amount)
+    {
+        health = health - (amount - damageReduction);
+        HealthAmountUI.text = "HP: " + health.ToString();
+    }
+
 
     IEnumerator BashCD()
     {
