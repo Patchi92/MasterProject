@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 124119164972765188}
   - component: {fileID: 81051366012572606}
   - component: {fileID: 95088774885008696}
+  - component: {fileID: 114491656208924148}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -264,7 +265,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1907489892429920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3203591, y: 0.00999999, z: -51.340412}
+  m_LocalPosition: {x: 380.08755, y: 83.59964, z: 341.99963}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4683383083789378}
@@ -553,7 +554,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1907489892429920}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -628,7 +629,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338061006635506}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6f836fa5a2a688a42943e2ee45a52c82, type: 2}
   m_CullingMode: 0
@@ -700,9 +701,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74321a37c3712a548b19907c9431304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivityX: 5
+  lookLock: 0
+--- !u!114 &114491656208924148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338061006635506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f42e37a80f04694cb395724d52c7818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   minimumY: -30
   maximumY: 30
-  sensitivityX: 5
   sensitivityY: 5
   lookLock: 0
 --- !u!114 &114579073862943964
@@ -716,12 +729,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5ff781a60748c41b191c8e6292cb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSpeed: 1
-  sideSpeed: 1
+  frontSpeed: 3
+  sideSpeed: 3
   jumpHeight: 10
   speedAccel: 0
   increaseAccel: 0.04
-  speedCap: 5
+  speedCap: 8
   movementLock: 0
 --- !u!114 &114912498891631730
 MonoBehaviour:

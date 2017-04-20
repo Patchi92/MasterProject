@@ -159,10 +159,22 @@ public class PlayerMovement : MonoBehaviour {
 
     void MovePlayer()
     {
-        rBody.velocity = new Vector3(sideVel, -6, frontVel);
+        if(frontVel > 8)
+        {
+            frontVel = 8;
+        }
+
+        if (sideVel > 8)
+        {
+            sideVel = 8;
+        }
+
+        rBody.velocity = new Vector3(sideVel, rBody.velocity.y , frontVel);
         rBody.velocity = transform.TransformDirection(rBody.velocity);
 
-        if(rBody.velocity.x == 0 && rBody.velocity.z == 0)
+        
+
+        if (rBody.velocity.x == 0 && rBody.velocity.z == 0)
         {
             speedAccel = 0;
         }

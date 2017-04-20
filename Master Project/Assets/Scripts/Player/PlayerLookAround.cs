@@ -8,13 +8,9 @@ public class PlayerLookAround : MonoBehaviour {
 
     Quaternion originalRotation;
     float xRotation;
-    float yRotation;
     float minimumX;
     float maximumX;
-    public float minimumY;
-    public float maximumY;
     public float sensitivityX;
-    public float sensitivityY;
 
     public bool lookLock;
 
@@ -24,7 +20,6 @@ public class PlayerLookAround : MonoBehaviour {
         lookLock = false;
         originalRotation = transform.localRotation;
         xRotation = 0;
-        yRotation = 0;
 
         minimumX = -360f;
         maximumX = 360f;
@@ -37,13 +32,10 @@ public class PlayerLookAround : MonoBehaviour {
         if(!lookLock)
         {
             xRotation += Input.GetAxis("Mouse X") * sensitivityX;
-            yRotation += Input.GetAxis("Mouse Y") * sensitivityY;
             xRotation = ClampAngle(xRotation, minimumX, maximumX);
-            yRotation = ClampAngle(yRotation, minimumY, maximumY);
             Quaternion xQuaternion = Quaternion.AngleAxis(xRotation, Vector3.up);
-            Quaternion yQuaternion = Quaternion.AngleAxis(yRotation, -Vector3.right);
 
-            transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+            transform.localRotation = originalRotation * xQuaternion; 
         }
         
         
