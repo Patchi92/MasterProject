@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void MovePlayer()
     {
-        rBody.velocity = new Vector3(sideVel, jumpVel, frontVel);
+        rBody.velocity = new Vector3(sideVel, -6, frontVel);
         rBody.velocity = transform.TransformDirection(rBody.velocity);
 
         if(rBody.velocity.x == 0 && rBody.velocity.z == 0)
