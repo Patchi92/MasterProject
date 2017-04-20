@@ -54,17 +54,17 @@ public class NarrativeSystem : MonoBehaviour {
 
         PlayerPrefs.SetInt("Destruction", 0);
         PlayerPrefs.SetInt("Excitement", 0);
-        PlayerPrefs.SetInt("Challenge", 4);
-        PlayerPrefs.SetInt("Strategy", 4);
+        PlayerPrefs.SetInt("Challenge", 3);
+        PlayerPrefs.SetInt("Strategy", 3);
         PlayerPrefs.SetInt("Completion", 0);
-        PlayerPrefs.SetInt("Power", 4);
-        PlayerPrefs.SetInt("Fantasy", 4);
-        PlayerPrefs.SetInt("Story", 4);
-        PlayerPrefs.SetInt("Design", 4);
-        PlayerPrefs.SetInt("Discovery", 4);
+        PlayerPrefs.SetInt("Power", 3);
+        PlayerPrefs.SetInt("Fantasy", 3);
+        PlayerPrefs.SetInt("Story", 3);
+        PlayerPrefs.SetInt("Design", 3);
+        PlayerPrefs.SetInt("Discovery", 3);
 
-        PlayerPrefs.SetInt("Community", 4);
-        PlayerPrefs.SetInt("Competition", 4);
+        PlayerPrefs.SetInt("Community", 3);
+        PlayerPrefs.SetInt("Competition", 3);
 
 
         // Player Tracking

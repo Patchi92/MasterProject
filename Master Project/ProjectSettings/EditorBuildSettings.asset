@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Scenes/Patchi Playground.unity
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game.unity
