@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1745525562683118}
+  m_RootGameObject: {fileID: 1271800653999526}
   m_IsPrefabParent: 1
---- !u!1 &1745525562683118
+--- !u!1 &1271800653999526
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4739312095919472}
-  - component: {fileID: 33358295720571694}
-  - component: {fileID: 23120161887679496}
+  - component: {fileID: 4472061172981144}
+  - component: {fileID: 33679215445242492}
+  - component: {fileID: 23846786990082254}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Untagged
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4739312095919472
+--- !u!4 &4472061172981144
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1745525562683118}
+  m_GameObject: {fileID: 1271800653999526}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 65.02338, y: 76.076, z: 91.309}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7.9544067, y: 75.69585, z: 176.00601}
+  m_LocalScale: {x: 0.42398882, y: 0.42398882, z: 0.42398882}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23120161887679496
+--- !u!23 &23846786990082254
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1745525562683118}
+  m_GameObject: {fileID: 1271800653999526}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -74,10 +74,10 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33358295720571694
+--- !u!33 &33679215445242492
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1745525562683118}
+  m_GameObject: {fileID: 1271800653999526}
   m_Mesh: {fileID: 4300000, guid: 5c88c49050667024d9e35fa459e5d757, type: 3}
