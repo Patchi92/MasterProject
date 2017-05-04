@@ -13,6 +13,9 @@ using System.Security.Cryptography.X509Certificates;
 public class Questionnaire : MonoBehaviour
 {
 
+    //Player
+    GameObject narrativeSystem;
+
     //System
 
     string path;
@@ -85,10 +88,10 @@ public class Questionnaire : MonoBehaviour
 
     public GameObject thanksPlaying;
 
-    
 
 
 
+  
 
     // Use this for initialization
     void Start()
@@ -100,7 +103,9 @@ public class Questionnaire : MonoBehaviour
         {
             System.IO.Directory.CreateDirectory(path + "/TestData");
         }
-            
+
+
+        narrativeSystem = GameObject.Find("NarrativeSystem");
 
         pageInfo = 1;
         pageLast = false;
@@ -111,13 +116,16 @@ public class Questionnaire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        Cursor.visible = true;
     }
 
     void PageUpdate()
     {
         if (pageInfo == 1)
         {
+
+
             pageLock = true;
             demographicQuestions.SetActive(true);
             questionnaireQuestions.SetActive(false);
@@ -126,6 +134,9 @@ public class Questionnaire : MonoBehaviour
 
         if (pageInfo == 2)
         {
+            narrativeSystem.GetComponent<NarrativeSystem>().ChapterSelect(2);
+            gameObject.SetActive(false);
+
             demographicQuestions.SetActive(false);
             questionnaireQuestions.SetActive(true);
             nextButton.SetActive(true);
@@ -151,6 +162,7 @@ public class Questionnaire : MonoBehaviour
             ToggleOff();
 
             pageLock = true;
+            
 
         }
 

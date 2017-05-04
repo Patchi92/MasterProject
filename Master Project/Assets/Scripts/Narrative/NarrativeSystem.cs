@@ -27,13 +27,19 @@ public class NarrativeSystem : MonoBehaviour {
     GameObject DialogSystem;
     GameObject ChoiceSystem;
 
+    // Chapters
+    public GameObject daySystem;
+    public GameObject ChapterOne;
+    public GameObject ChapterTwo;
+    public GameObject ChapterThree;
+
     string currentNarrative;
 
     void Awake()
     {
         scene = SceneManager.GetActiveScene();
 
-        spawnPoint = transform.FindChild("SpawnPoint").position;
+        spawnPoint = transform.FindChild("SpawnPoint Chapter One").position;
 
         UI = GameObject.Find("UI");
         DialogSystem = UI.transform.FindChild("Dialog").gameObject;
@@ -108,6 +114,27 @@ public class NarrativeSystem : MonoBehaviour {
 
 	}
 
+    public void ChapterSelect(int info)
+    {
+        if(info == 2)
+        {
+            daySystem.GetComponent<DaySystem>().StartCoroutine("DayAndNightSystem");
+            ChapterOne.SetActive(false);
+            ChapterTwo.SetActive(true);
+            player.SetActive(true);
+        }
+
+        if (info == 3)
+        {
+            RenderSettings.ambientIntensity = 0.3f;
+            ChapterTwo.SetActive(false);
+            ChapterThree.SetActive(true);
+            player.SetActive(true);
+        }
+
+    }
+
+
     public void Narrative(string info)
     {
         currentNarrative = info;
@@ -126,6 +153,10 @@ public class NarrativeSystem : MonoBehaviour {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 1);
         }
 
+        if (info == "Cave")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 10);
+        }
 
         if (info == "PacifistIntro")
         {
@@ -342,8 +373,8 @@ public class NarrativeSystem : MonoBehaviour {
 
                 GameObject.Find("Witch_Simple").GetComponent<EnemyRanged>().enabled = true;
             }
-
-           
+            
+            gameObject.transform.FindChild("EndChapterOne").gameObject.SetActive(true);
         }
 
 

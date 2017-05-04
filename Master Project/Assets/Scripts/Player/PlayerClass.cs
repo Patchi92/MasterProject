@@ -16,19 +16,31 @@ public class PlayerClass : MonoBehaviour {
     int damageReduction;
 
     //Actions
-    bool bashCD;
-    bool slashCD;
-    bool chargeCD;
 
-    Ray chargeRay;
-    RaycastHit chargeHit;
-    bool chargeEnemy;
-    public float chargeSpeed;
+    GameObject hitBox;
+    bool globalCD;
+
+    //Warrior
+
+
+    //Mage
+    public GameObject frostbolt;
+    public GameObject mageCastPoint;
+    bool coneOfColdCD;
+
+    //Assassin
+    public GameObject crossbolt;
+    public GameObject assassinCastPoint;
+    bool shootCD;
+
 
     //Animations
     Animator playerCam;
     Animator playerShield;
     Animator playerSword;
+    Animator playerStaff;
+    Animator playerDagger;
+    Animator playerCrossbow;
 
     //Class
     public GameObject sword;
@@ -44,6 +56,7 @@ public class PlayerClass : MonoBehaviour {
         HealthUI = UI.transform.FindChild("HP").gameObject;
         HealthAmountUI = HealthUI.transform.FindChild("amountHP").gameObject.GetComponent<Text>();
         playerCam = transform.FindChild("Player Camera").GetComponent<Animator>();
+        hitBox = gameObject.transform.FindChild("HitArea").gameObject;
     }
 
 
@@ -55,20 +68,20 @@ public class PlayerClass : MonoBehaviour {
         health = 100;
         HealthAmountUI.text = "HP: " + health.ToString();
 
+        globalCD = false;
+
         if (PlayerPrefs.GetString("PlayerClass") == "Warrior")
         {
             damageReduction = 5;
-            
 
             sword.SetActive(true);
             shield.SetActive(true);
-            playerShield = transform.FindChild("Shield").GetComponent<Animator>();
-            playerSword = transform.FindChild("Sword").GetComponent<Animator>();
+            //playerShield = transform.FindChild("Shield").GetComponent<Animator>();
+            //playerSword = transform.FindChild("Sword").GetComponent<Animator>();
+           
+            
+           
 
-            bashCD = false;
-            slashCD = false;
-            chargeCD = false;
-            chargeEnemy = false;
         }
 
         if (PlayerPrefs.GetString("PlayerClass") == "Mage")
@@ -76,6 +89,9 @@ public class PlayerClass : MonoBehaviour {
             damageReduction = 1;
 
             staff.SetActive(true);
+            //playerStaff = transform.FindChild("Shield").GetComponent<Animator>();
+
+            coneOfColdCD = false;
         }
 
         if (PlayerPrefs.GetString("PlayerClass") == "Assassin")
@@ -83,7 +99,11 @@ public class PlayerClass : MonoBehaviour {
             damageReduction = 2;
 
             dagger.SetActive(true);
+            //playerDagger = transform.FindChild("Shield").GetComponent<Animator>();
             bow.SetActive(true);
+            playerCrossbow = bow.GetComponent<Animator>();
+
+            shootCD = false;
         }
     }
 
@@ -95,72 +115,105 @@ public class PlayerClass : MonoBehaviour {
             Debug.Log("Dead");
         }
 
-        if (PlayerPrefs.GetString("PlayerClass") == "Warrior")
+        if (!globalCD)
         {
 
-
-
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (PlayerPrefs.GetString("PlayerClass") == "Warrior")
             {
-                if (!bashCD)
+
+
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    playerShield.SetTrigger("Bash");
-                    bashCD = true;
-                    StartCoroutine("BashCD");
+                    //playerSword.SetTrigger("Bash");
+                    hitBox.SetActive(true);
+                    globalCD = true;
+                    StartCoroutine("GlobalCD");
                 }
+
+
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    //playerShield.SetTrigger("BlockUp");
+                    damageReduction = 8;
+                    globalCD = true;
+                }
+
+                if (Input.GetKeyUp(KeyCode.Mouse1))
+                {
+                    //playerShield.SetTrigger("BlockDown");
+                    damageReduction = 5;
+                    StartCoroutine("GlobalCD");
+                }
+
+
 
             }
 
-
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (PlayerPrefs.GetString("PlayerClass") == "Mage")
             {
-                if (!slashCD)
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    playerSword.SetTrigger("Slash");
-                    slashCD = true;
-                    StartCoroutine("SlashCD");
+                    //playerStaff.SetTrigger("Icebolt");
+                    Instantiate(frostbolt, mageCastPoint.transform.position, mageCastPoint.transform.rotation);
+                    globalCD = true;
+                    StartCoroutine("GlobalCD");
                 }
 
-            }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                if (!chargeCD)
+                if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    chargeRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-                    if (Physics.Raycast(chargeRay, out chargeHit))
+                    if (!coneOfColdCD)
                     {
-                        Debug.Log(chargeHit.transform.name);
-                        if (chargeHit.transform.tag == "EnemyMelee" || chargeHit.transform.tag == "EnemyRanged")
-                        {
-                            if (Vector3.Distance(transform.position, chargeHit.transform.position) < 20)
-                            {
-                                playerCam.SetBool("isCharging", true);
-                                chargeCD = true;
-                                chargeEnemy = true;
-                                StartCoroutine("ChargeCD");
-                            }
-                        }
+                        //playerStaff.SetTrigger("ConeOfCold");
+                        coneOfColdCD = true;
+                        globalCD = true;
+                        StartCoroutine("GlobalCD");
+                        StartCoroutine("ConeOfColdCD");
                     }
+
                 }
 
             }
 
-            if (chargeEnemy)
+            if (PlayerPrefs.GetString("PlayerClass") == "Assassin")
             {
-                float step = chargeSpeed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, chargeHit.transform.position, step);
 
-                if (Vector3.Distance(transform.position, chargeHit.transform.position) < 2)
+
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    playerCam.SetBool("isCharging", false);
-                    chargeEnemy = false;
+                    //playerDagger.SetTrigger("Slash");
+                    hitBox.SetActive(true);
+                    globalCD = true;
+                    StartCoroutine("GlobalCD");
                 }
+
+
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    playerCrossbow.SetTrigger("Shoot");
+                    Instantiate(crossbolt, assassinCastPoint.transform.position, assassinCastPoint.transform.rotation);
+                    globalCD = true;
+                    StartCoroutine("GlobalCD");
+                    StartCoroutine("ShootCD");
+                }
+
+              
+
+
+
             }
 
         }
 
+
     }
+
+
+   
+
 
 
     public void DamageTaken(int amount)
@@ -170,21 +223,23 @@ public class PlayerClass : MonoBehaviour {
     }
 
 
-    IEnumerator BashCD()
+    IEnumerator GlobalCD()
     {
         yield return new WaitForSeconds(1f);
-        bashCD = false;
+        globalCD = false;
     }
 
-    IEnumerator SlashCD()
+    IEnumerator ConeOfColdCD()
     {
-        yield return new WaitForSeconds(1f);
-        slashCD = false;
+        yield return new WaitForSeconds(5f);
+        coneOfColdCD = false;
     }
 
-    IEnumerator ChargeCD()
+    IEnumerator ShootCD()
     {
         yield return new WaitForSeconds(3f);
-        chargeCD = false;
+        shootCD = false;
     }
+
+
 }
