@@ -83,6 +83,7 @@ ModelImporter:
     100150: //RootNode
     100152: Witch
     100154: WitchDress
+    100156: Witch_Reborn1
     400000: Body
     400002: Boot_L
     400004: Boot_R
@@ -161,6 +162,7 @@ ModelImporter:
     400150: //RootNode
     400152: Witch
     400154: WitchDress
+    400156: Witch_Reborn1
     4300000: Boot_L
     4300002: CorsetStrings
     4300004: Corset
@@ -172,6 +174,7 @@ ModelImporter:
     4300016: WitchDress
     4300018: Boot_R
     4300020: Hair
+    4300022: Witch_Reborn1
     7400000: mixamo.com
     9500000: //RootNode
     13700000: Body
@@ -185,6 +188,7 @@ ModelImporter:
     13700016: Eye_R_Lens
     13700018: Hair
     13700020: WitchDress
+    13700022: Witch_Reborn1
   materials:
     importMaterials: 1
     materialName: 1
@@ -196,7 +200,10 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: 'Avatar Rig Configuration mis-match. Bone length in configuration
+      does not match position in animation file
+
+      UpdatedWitch'
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
