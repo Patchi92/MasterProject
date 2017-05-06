@@ -49,6 +49,10 @@ public class NarrativeSystem : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        ChapterOne.SetActive(true);
+        ChapterTwo.SetActive(false);
+        ChapterThree.SetActive(false);
+
         if(Application.isEditor == false)
         {
             PlayerPrefs.DeleteAll();
@@ -65,7 +69,7 @@ public class NarrativeSystem : MonoBehaviour {
         PlayerPrefs.SetInt("Completion", 0);
         PlayerPrefs.SetInt("Power", 3);
         PlayerPrefs.SetInt("Fantasy", 3);
-        PlayerPrefs.SetInt("Story", 3);
+        PlayerPrefs.SetInt("Story", 0);
         PlayerPrefs.SetInt("Design", 3);
         PlayerPrefs.SetInt("Discovery", 3);
 
@@ -126,7 +130,7 @@ public class NarrativeSystem : MonoBehaviour {
 
         if (info == 3)
         {
-            RenderSettings.ambientIntensity = 0.3f;
+            RenderSettings.ambientIntensity = 0.2f;
             ChapterTwo.SetActive(false);
             ChapterThree.SetActive(true);
             player.SetActive(true);
@@ -206,8 +210,18 @@ public class NarrativeSystem : MonoBehaviour {
 
         }
 
+        if (info == "GuardianHit")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 13);
+        }
 
-        if (info == "WitchEnd_Simple")
+        if (info == "WitchHit")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 12);
+        }
+
+
+            if (info == "WitchEnd_Simple")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 8);
             ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 4);
@@ -218,13 +232,99 @@ public class NarrativeSystem : MonoBehaviour {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 9);
         }
 
+        if (info == "Gate")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 11);
+        }
+
+
+        //Chapter Two
+
+        if (info == "ChapterTwoIntroPacifist")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 14);
+        }
+
+        if (info == "ChapterTwoIntroKiller")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 15);
+        }
+
+        if (info == "ChapterTwoIntroHero")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 16);
+        }
+
+        if (info == "GuardDialog")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 17);
+        }
+
+        if (info == "GuardHit")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 18);
+        }
+
+        if (info == "HideQuest")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 19);
+
+            if (PlayerPrefs.GetString("Version") != "Complex")
+            {
+                ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 5);
+            }
+
+        }
+
+        if (info == "HideHit")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 20);
+        }
+
+        if (info == "KillQuest")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 21);
+
+            if (PlayerPrefs.GetString("Version") != "Complex")
+            {
+                ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 6);
+            }
+
+        }
+
+        if (info == "KillHit")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 22);
+        }
+
+
+        if (info == "HeroChange")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 23);
+            ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 7);
+
+        }
+
+        if (info == "KillerChange")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 24);
+            ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 8);
+
+        }
+
+        if (info == "PacifistChange")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 25);
+            ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 9);
+
+        }
+
 
     }
 
     public void NarrativeFeedback(int choice)
     {
 
-        Debug.Log(PlayerPrefs.GetString("PlayerType"));
 
         if (currentNarrative == "WitchIntro_Simple")
         {
@@ -354,29 +454,85 @@ public class NarrativeSystem : MonoBehaviour {
 
         if (currentNarrative == "WitchEnd_Simple")
         {
+            if(choice == 0)
+            {
+                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
+            }
+
             if (choice == 1)
             {
                 PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
-                Debug.Log(PlayerPrefs.GetInt("Story"));
             }
 
             if (choice == 2)
             {
-                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
-                Debug.Log(PlayerPrefs.GetInt("Story"));
+
             }
 
             if (choice == 3)
             {
-                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
-                Debug.Log(PlayerPrefs.GetInt("Story"));
-
                 GameObject.Find("Witch_Simple").GetComponent<EnemyRanged>().enabled = true;
             }
-            
-            gameObject.transform.FindChild("EndChapterOne").gameObject.SetActive(true);
+
+            gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
         }
 
+        if (currentNarrative == "HeroChange" || currentNarrative == "KillerChange" || currentNarrative == "PacifistChange")
+        {
+            if (choice == 1)
+            {
+                PlayerPrefs.SetString("PlayerClass", "Warrior");
+            }
+
+            if (choice == 2)
+            {
+                PlayerPrefs.SetString("PlayerClass", "Mage");
+            }
+
+            if (choice == 3)
+            {
+                PlayerPrefs.SetString("PlayerClass", "Assassin");
+            }
+
+            player.GetComponent<PlayerClass>().PickClass();
+        }
+
+        if (currentNarrative == "HideQuest")
+        {
+            if(choice == 1)
+            {
+                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
+            }
+
+            if (choice == 2)
+            {
+
+            }
+
+            if (choice == 3)
+            {
+                GameObject.Find("Peasent - Find Quest").GetComponent<EnemyMelee>().enabled = true;
+            }
+
+        }
+
+        if (currentNarrative == "KillQuest")
+        {
+            if (choice == 1)
+            {
+                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
+            }
+
+            if (choice == 2)
+            {
+
+            }
+
+            if (choice == 3)
+            {
+                GameObject.Find("Peasent - Kill Quest").GetComponent<EnemyMelee>().enabled = true;
+            }
+        }
 
     }
    

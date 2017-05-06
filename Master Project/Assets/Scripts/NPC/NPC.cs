@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour {
 
     NarrativeSystem narrative;
     public string dialog;
+    public string hitDialog;
 
     Ray chargeRay;
     RaycastHit chargeHit;
@@ -17,28 +18,34 @@ public class NPC : MonoBehaviour {
     GameObject title;
     public bool ableSpeak;
 
+    Animator aniObject;
+
+    int hitByPlayer;
 
     private void Awake()
     {
         UI = GameObject.Find("UI");
         narrative = GameObject.Find("NarrativeSystem").GetComponent<NarrativeSystem>();
-        title = gameObject.transform.GetChild(1).gameObject;
+
+        if(gameObject.GetComponent<Animator>() != null)
+        {
+            aniObject = gameObject.GetComponent<Animator>();
+        }
+        
 
     }
 
     // Use this for initialization
     void Start () {
         ableSpeak = false;
-        title.SetActive(false);
-        title.GetComponent<TextMesh>().text = gameObject.name;
-	}
+        hitByPlayer = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
         if(ableSpeak)
         {
-            //title.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -48,6 +55,10 @@ public class NPC : MonoBehaviour {
                 {
                     if (chargeHit.transform.tag == "NPC")
                     {
+                        if (gameObject.GetComponent<Animator>() != null)
+                        {
+                            aniObject.SetTrigger("Talk");
+                        }
                         narrative.Narrative(dialog);
    
                         if(!repeatDialog)
@@ -63,10 +74,46 @@ public class NPC : MonoBehaviour {
 
                
             }
-        } else
-        {
-            title.SetActive(false);
-        }
+        } 
 
 	}
+
+    public void npcHit()
+    {
+        ++hitByPlayer;
+
+        if(hitByPlayer == 1)
+        {
+            narrative.Narrative(hitDialog);
+        }
+
+        if (hitByPlayer == 2)
+        {
+            if (gameObject.name == "Witch_Simple" || gameObject.name == "Witch_Simple")
+            {
+                gameObject.GetComponent<EnemyRanged>().enabled = true;
+                GameObject.Find("NarrativeSystem").transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
+
+            }
+
+            if (gameObject.name == "Guard")
+            {
+                gameObject.GetComponent<EnemyMelee>().enabled = true;
+            }
+
+            if (gameObject.name == "Peasent - Kill Quest")
+            {
+                gameObject.GetComponent<EnemyMelee>().enabled = true;
+            }
+
+            if (gameObject.name == "Peasent - Find Quest")
+            {
+                gameObject.GetComponent<EnemyMelee>().enabled = true;
+            }
+
+            gameObject.transform.FindChild("SpeakArea").gameObject.SetActive(false);
+            gameObject.GetComponent<NPC>().enabled = false;
+        }
+    }
+
 }

@@ -25,7 +25,10 @@ public class EnemyRanged : MonoBehaviour {
     bool stateAI;
     bool move;
     bool attack;
+    bool run;
     public bool reset;
+
+    int runDirection;
 
     void Awake()
     {
@@ -43,7 +46,6 @@ public class EnemyRanged : MonoBehaviour {
         reset = false;
         resetPos = transform.position;
 
-        health = 10;
         attackCD = false;
     }
 
@@ -72,7 +74,7 @@ public class EnemyRanged : MonoBehaviour {
                 PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Excitement") + 1);
             }
 
-            //Destroy(gameObject, 5f);
+            
         }
 
         if (player == null)
@@ -82,7 +84,7 @@ public class EnemyRanged : MonoBehaviour {
 
         step = speed * Time.deltaTime;
 
-        if (Vector3.Distance(player.transform.position, transform.position) < 10f && Vector3.Distance(player.transform.position, transform.position) > 10f)
+        if (Vector3.Distance(player.transform.position, transform.position) > 12f && Vector3.Distance(player.transform.position, transform.position) < 20f)
         {
             move = true;
         }
@@ -92,13 +94,26 @@ public class EnemyRanged : MonoBehaviour {
         }
 
 
-        if (Vector3.Distance(player.transform.position, transform.position) < 10f)
+        if (Vector3.Distance(player.transform.position, transform.position) < 12f && Vector3.Distance(player.transform.position, transform.position) > 4f)
         {
             attack = true;
         }
         else
         {
             attack = false;
+        }
+
+        if (Vector3.Distance(player.transform.position, transform.position) < 4f)
+        {
+            if(run == false)
+            {
+                runDirection = Random.Range(1, 4);
+            }
+            run = true;
+        }
+        else
+        {
+            run = false;
         }
 
         if (stateAI)
@@ -125,6 +140,25 @@ public class EnemyRanged : MonoBehaviour {
                 }
             }
 
+            if(run && !reset)
+            {
+                switch (runDirection)
+                {
+                    case 1:
+                        transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position + Vector3.left, step * 2);
+                        break;
+                    case 2:
+                        transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position - Vector3.left, step * 2);
+                        break;
+                    case 3:
+                        transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position - Vector3.forward, step * 2);
+                        break;
+                    default:
+                        Debug.Log("Something is wrong");
+                        break;
+                }
+            }
+
             if (reset)
             {
                 aniObject.SetBool("Combat", false);
@@ -148,8 +182,9 @@ public class EnemyRanged : MonoBehaviour {
 
     IEnumerator AttackCD()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         attackCD = false;
+        aniObject.SetTrigger("DoneAttack");
     }
 
 
