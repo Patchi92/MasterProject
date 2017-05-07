@@ -8,12 +8,17 @@ public class PlayerClass : MonoBehaviour {
 
     //UI
     GameObject UI;
-    GameObject HealthUI;
+    GameObject InfoUI;
     Text HealthAmountUI;
+    Text LevelAmountUI;
+    Text GoldAmountUI;
 
     //Player
     GameObject player;
     int health;
+    int level;
+    int exp;
+    int gold;
     int damageReduction;
     bool abilityLock;
 
@@ -56,8 +61,11 @@ public class PlayerClass : MonoBehaviour {
     {
         player = gameObject;
         UI = GameObject.Find("UI").gameObject;
-        HealthUI = UI.transform.FindChild("HP").gameObject;
-        HealthAmountUI = HealthUI.transform.FindChild("amountHP").gameObject.GetComponent<Text>();
+        InfoUI = UI.transform.FindChild("PlayerInfo").gameObject;
+        HealthAmountUI = InfoUI.transform.FindChild("amountHP").gameObject.GetComponent<Text>();
+        LevelAmountUI = InfoUI.transform.FindChild("amountLevel").gameObject.GetComponent<Text>();
+        GoldAmountUI = InfoUI.transform.FindChild("amountGold").gameObject.GetComponent<Text>();
+
         playerCam = transform.FindChild("Player Camera").GetComponent<Animator>();
         hitBox = gameObject.transform.FindChild("HitArea").gameObject;
     }
@@ -67,9 +75,13 @@ public class PlayerClass : MonoBehaviour {
     void Start()
     {
         abilityLock = false;
-        HealthUI.SetActive(true);
+        InfoUI.SetActive(true);
         health = 100;
         HealthAmountUI.text = "HP: " + health.ToString();
+        level = 1;
+        LevelAmountUI.text = "Level: " + level.ToString();
+        gold = 0;
+        GoldAmountUI.text = "Gold: " + gold.ToString();
 
         globalCD = false;
 
@@ -81,6 +93,22 @@ public class PlayerClass : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        if(exp >= 100)
+        {
+            if (level < 10)
+            {
+                ++level;
+                exp = exp - 100;
+                LevelAmountUI.text = "Level: " + level.ToString();
+                health = health + 10;
+                if(health > 100)
+                {
+                    health = 100;
+                }
+                HealthAmountUI.text = "HP: " + health.ToString();
+            }
+        }
 
         if (health <= 0)
         {
@@ -248,13 +276,35 @@ public class PlayerClass : MonoBehaviour {
 
             shootCD = false;
         }
+
+        if (PlayerPrefs.GetString("PlayerClass") == "Nothing")
+        {
+
+            sword.SetActive(false);
+            shield.SetActive(false);
+            staff.SetActive(false);
+            dagger.SetActive(false);
+            bow.SetActive(false);
+         
+        }
     }
 
+
+    public void ExpEarned(int amount)
+    {
+        exp = exp + amount;
+    }
 
     public void DamageTaken(int amount)
     {
         health = health - (amount - damageReduction);
         HealthAmountUI.text = "HP: " + health.ToString();
+    }
+
+    public void PickUpGold(int amount)
+    {
+        gold = gold + amount;
+        GoldAmountUI.text = "Gold: " + gold.ToString();
     }
 
 

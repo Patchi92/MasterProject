@@ -25,6 +25,8 @@ public class EnemyMelee : MonoBehaviour {
     bool attack;
     public bool reset;
 
+    bool runOnce;
+
     void Awake()
     {
         player = GameObject.Find("Player");
@@ -42,6 +44,7 @@ public class EnemyMelee : MonoBehaviour {
         health = 20;
         attackCD = false;
 
+        runOnce = true;
     }
 	
 	// Update is called once per frame
@@ -49,25 +52,35 @@ public class EnemyMelee : MonoBehaviour {
 
         if (health <= 0)
         {
-            stateAI = false;
+            if (runOnce)
+            {
+                stateAI = false;
 
-            aniObject.SetTrigger("Death");
+                aniObject.SetTrigger("Death");
 
-            if (isNPC)
-            {
-                PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
-                PlayerPrefs.SetInt("NPCsKilled", 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
-            }
-            else if (isGuard)
-            {
-                PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
-            }
-            else
-            {
-                PlayerPrefs.SetInt("HeroPoints", PlayerPrefs.GetInt("HeroPoints") + 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Excitement") + 1);
+                if (isNPC)
+                {
+                    PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+                    PlayerPrefs.SetInt("NPCsKilled", 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
+
+                    player.GetComponent<PlayerClass>().ExpEarned(200);
+                }
+                else if (isGuard)
+                {
+                    PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
+
+                    player.GetComponent<PlayerClass>().ExpEarned(50);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("HeroPoints", PlayerPrefs.GetInt("HeroPoints") + 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Excitement") + 1);
+                    player.GetComponent<PlayerClass>().ExpEarned(40);
+                }
+
+                runOnce = false;
             }
 
 
@@ -90,7 +103,7 @@ public class EnemyMelee : MonoBehaviour {
         }
 
 
-        if (Vector3.Distance(player.transform.position, transform.position) < 4f)
+        if (Vector3.Distance(player.transform.position, transform.position) <= 3f)
         {
             attack = true;
         }
@@ -144,6 +157,8 @@ public class EnemyMelee : MonoBehaviour {
 
     IEnumerator AttackCD()
     {
+        yield return new WaitForSeconds(1f);
+        player.GetComponent<PlayerClass>().DamageTaken(Random.Range(6, 8));
         yield return new WaitForSeconds(4f);
         attackCD = false;
         aniObject.SetTrigger("DoneAttack");

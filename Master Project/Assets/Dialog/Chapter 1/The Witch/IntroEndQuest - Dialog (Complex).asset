@@ -13,10 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 0
   Name:
-  - ??
+  - The Witch
+  - The Witch
+  - The Witch
   Text:
-  - Placeholder
+  - Ah. I see that you return with the artifact.
+  - To be honest you can keep that thing. All of this was just a test of strength.
+  - Take this blessing and get on your way on your journey.
   Wait:
+  - 2
+  - 3
   - 2
   Sound: []
   Choice: 0

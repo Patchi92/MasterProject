@@ -28,6 +28,8 @@ public class EnemyRanged : MonoBehaviour {
     bool run;
     public bool reset;
 
+    bool runOnce;
+
     int runDirection;
 
     void Awake()
@@ -47,6 +49,7 @@ public class EnemyRanged : MonoBehaviour {
         resetPos = transform.position;
 
         attackCD = false;
+        runOnce = true;
     }
 
     // Update is called once per frame
@@ -55,25 +58,33 @@ public class EnemyRanged : MonoBehaviour {
 
         if (health <= 0)
         {
-            stateAI = false;
+            if (runOnce)
+            {
+                stateAI = false;
 
-            aniObject.SetTrigger("Death");
+                aniObject.SetTrigger("Death");
 
-            if (isNPC)
-            {
-                PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
-                PlayerPrefs.SetInt("NPCsKilled", 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
-            } else if (isGuard)
-            {
-                PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
-            } else
-            {
-                PlayerPrefs.SetInt("HeroPoints", PlayerPrefs.GetInt("HeroPoints") + 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Excitement") + 1);
+                if (isNPC)
+                {
+                    PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+                    PlayerPrefs.SetInt("NPCsKilled", 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
+
+                    player.GetComponent<PlayerClass>().ExpEarned(200);
+                }
+                else if (isGuard)
+                {
+                    PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("HeroPoints", PlayerPrefs.GetInt("HeroPoints") + 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Excitement") + 1);
+                }
+
+                runOnce = false;
             }
-
             
         }
 

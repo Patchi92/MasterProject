@@ -34,6 +34,7 @@ public class NarrativeSystem : MonoBehaviour {
     public GameObject ChapterThree;
 
     string currentNarrative;
+    bool unlockPlayerType; 
 
     void Awake()
     {
@@ -104,16 +105,20 @@ public class NarrativeSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
-        if(PlayerPrefs.GetInt("KillerPoints") == 0 && PlayerPrefs.GetInt("HeroPoints") == 0)
+        if (unlockPlayerType)
         {
-            PlayerPrefs.SetString("PlayerType", "Pacifist");
-        } else if (PlayerPrefs.GetInt("NPCsKilled") == 0 && PlayerPrefs.GetInt("HeroPoints") > PlayerPrefs.GetInt("KillerPoints"))
-        {
-            PlayerPrefs.SetString("PlayerType", "Hero");
-        } else
-        {
-            PlayerPrefs.SetString("PlayerType", "Killer");
+            if (PlayerPrefs.GetInt("KillerPoints") == 0 && PlayerPrefs.GetInt("HeroPoints") == 0)
+            {
+                PlayerPrefs.SetString("PlayerType", "Pacifist");
+            }
+            else if (PlayerPrefs.GetInt("NPCsKilled") == 0 && PlayerPrefs.GetInt("HeroPoints") > PlayerPrefs.GetInt("KillerPoints"))
+            {
+                PlayerPrefs.SetString("PlayerType", "Hero");
+            }
+            else
+            {
+                PlayerPrefs.SetString("PlayerType", "Killer");
+            }
         }
 
 	}
@@ -243,16 +248,19 @@ public class NarrativeSystem : MonoBehaviour {
         if (info == "ChapterTwoIntroPacifist")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 14);
+            unlockPlayerType = true;
         }
 
         if (info == "ChapterTwoIntroKiller")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 15);
+            unlockPlayerType = true;
         }
 
         if (info == "ChapterTwoIntroHero")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 16);
+            unlockPlayerType = true;
         }
 
         if (info == "GuardDialog")
@@ -317,6 +325,16 @@ public class NarrativeSystem : MonoBehaviour {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 25);
             ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 9);
 
+        }
+
+        if (info == "FindCompleted")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 26);
+        }
+
+        if (info == "KillCompleted")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 27);
         }
 
 
@@ -456,21 +474,26 @@ public class NarrativeSystem : MonoBehaviour {
         {
             if(choice == 0)
             {
-                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
+                player.GetComponent<PlayerClass>().ExpEarned(100);
+                PlayerPrefs.SetString("PlayerType", "Hero");
             }
 
             if (choice == 1)
             {
-                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
+                player.GetComponent<PlayerClass>().ExpEarned(100);
+                PlayerPrefs.SetString("PlayerType", "Hero");
             }
 
             if (choice == 2)
             {
-
+                PlayerPrefs.SetString("PlayerType", "Pacifist");
+                PlayerPrefs.SetString("PlayerClass", "Nothing");
+                player.GetComponent<PlayerClass>().PickClass();
             }
 
             if (choice == 3)
             {
+                PlayerPrefs.SetString("PlayerType", "Killer");
                 GameObject.Find("Witch_Simple").GetComponent<EnemyRanged>().enabled = true;
             }
 

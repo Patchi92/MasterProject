@@ -13,15 +13,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: The Witch
   choice:
-  - Very well, i will forfill your wish old witch.
-  - I will enter the cave and claim both the money and artifact.
-  - I refuse your request.
+  - Accept Quest
+  - Refuse Quest
+  - Spit On Witch
   response:
   - Splendid!.. Now enter the cave and claim your price.
-  - 'Do not try to trick me little soldier. I will be keeping an eye on you. '
   - So be it little soldier. If you change your mind. The entrence is right over there.
+  - You little... Get out of my sight and return only if you are worthy to be granted
+    an artifact
   wait:
   - 3
   - 3
   - 3
   simpleQuestion: 0
+  removeSymbol: 0
