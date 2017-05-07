@@ -13,15 +13,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: The Witch
   choice:
-  - Turn in artifact
-  - Keep artifact
-  - Kill
+  - Accept Blessing
+  - Refuse Artifact
+  - Take Artifact and Attack Witch
   response:
-  - 
-  - 
-  - 
+  - Take this blessing with you on your journey. May it help you when it is needed
+    the most.
+  - If that is what you wish. Be careful out there little soldier. Many dangers lurk
+    in the darkness
+  - How dare you!
   wait:
-  - 0
-  - 0
-  - 0
+  - 4
+  - 4
+  - 2
   simpleQuestion: 0
+  removeSymbol: 0

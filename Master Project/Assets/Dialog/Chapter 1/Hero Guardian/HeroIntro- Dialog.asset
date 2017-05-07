@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 0
   Name:
-  - ??
-  - ??
+  - You
+  - Guardian of Heroism
   Text:
-  - Placeholder
-  - Placeholder
+  - Hello! Who are you?
+  - I am the Guardian of Heroism!
   Wait:
   - 2
   - 2

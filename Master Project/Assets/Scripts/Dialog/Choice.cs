@@ -14,5 +14,6 @@ public class Choice : ScriptableObject
     public float[] wait;
 
     public bool simpleQuestion;
+    public bool removeSymbol;
 
 }

@@ -604,7 +604,6 @@ GameObject:
   - component: {fileID: 4648251730123062}
   - component: {fileID: 33432225937433480}
   - component: {fileID: 23328012857721840}
-  - component: {fileID: 64347433180810294}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -1510,7 +1509,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1907489892429920}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -1627,20 +1626,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!64 &64347433180810294
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1921685124124638}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: d9153c5c5c98a374a882daab81635a29, type: 3}
 --- !u!65 &65211351972565992
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1769,12 +1754,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5ff781a60748c41b191c8e6292cb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSpeed: 3
-  sideSpeed: 3
+  frontSpeed: 5
+  sideSpeed: 5
   jumpHeight: 10
   speedAccel: 0
-  increaseAccel: 0.04
-  speedCap: 8
+  increaseAccel: 0.05
+  speedCap: 10
   movementLock: 0
 --- !u!114 &114809627292236976
 MonoBehaviour:

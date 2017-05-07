@@ -287,7 +287,22 @@ public class ChoiceSelection : MonoBehaviour {
 
             choiceOptionOne.transform.localPosition = new Vector3(0, 0);
             choiceOptionTwo.transform.localPosition = new Vector3(-200, -200);
+            choiceOptionTwo.transform.GetChild(0).transform.localPosition = new Vector3(-220, 0);
+            choiceOptionTwo.transform.GetChild(1).transform.localPosition = new Vector3(-220, -30);
+
             choiceOptionThree.transform.localPosition = new Vector3(200, -200);
+
+            if (c.removeSymbol == true)
+            {
+                choiceOptionOne.transform.GetChild(2).gameObject.SetActive(false);
+                choiceOptionTwo.transform.GetChild(2).gameObject.SetActive(false);
+                choiceOptionThree.transform.GetChild(2).gameObject.SetActive(false);
+            } else
+            {
+                choiceOptionOne.transform.GetChild(2).gameObject.SetActive(true);
+                choiceOptionTwo.transform.GetChild(2).gameObject.SetActive(true);
+                choiceOptionThree.transform.GetChild(2).gameObject.SetActive(true);
+            }
 
         } else
         {
@@ -296,6 +311,11 @@ public class ChoiceSelection : MonoBehaviour {
 
             choiceOptionOne.transform.localPosition = new Vector2(-200, -200);
             choiceOptionTwo.transform.localPosition = new Vector2(200, -200);
+            choiceOptionTwo.transform.GetChild(0).transform.localPosition = new Vector3(0, 140);
+            choiceOptionTwo.transform.GetChild(1).transform.localPosition = new Vector3(0, 110);
+
+            choiceOptionOne.transform.GetChild(2).gameObject.SetActive(false);
+            choiceOptionTwo.transform.GetChild(2).gameObject.SetActive(false);
         }
 
         if (PlayerPrefs.GetString("Version") == "Mixed")

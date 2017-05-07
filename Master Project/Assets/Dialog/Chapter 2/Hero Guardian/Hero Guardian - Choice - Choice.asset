@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
+  m_Name: Hero Guardian - Choice - Choice
+  m_EditorClassIdentifier: 
+  Name: Guardian of Heroism
+  choice:
+  - The Sword and Shield of Justice
+  - The Staff of Unlimited Power
+  - The Crossbow and Dagger of Shadows
+  response:
+  - What an excellent choice!
+  - What an excellent choice!
+  - What an excellent choice!
+  wait:
+  - 2
+  - 2
+  - 2
+  simpleQuestion: 0
+  removeSymbol: 1

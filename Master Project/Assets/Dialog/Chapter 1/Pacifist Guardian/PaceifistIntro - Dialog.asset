@@ -15,20 +15,11 @@ MonoBehaviour:
   Name:
   - You
   - Guardian of Peace
-  - You
-  - Guardian of Peace
-  - Guardian of Peace
   Text:
   - Ehm.. Hello. Who are you?
-  - Hello little soldier. I am the guardian of peace. Welcome to our cave.
-  - Do you mind if i enter the door?
-  - Not at all little soldier
-  - Godspeed on your journey!
+  - I am the Guardian of Peace!
   Wait:
   - 3
   - 5
-  - 3
-  - 3
-  - 3
   Sound: []
   Choice: 0

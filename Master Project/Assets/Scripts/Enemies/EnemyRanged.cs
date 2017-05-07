@@ -25,7 +25,12 @@ public class EnemyRanged : MonoBehaviour {
     bool stateAI;
     bool move;
     bool attack;
+    bool run;
     public bool reset;
+
+    bool runOnce;
+
+    int runDirection;
 
     void Awake()
     {
@@ -43,8 +48,8 @@ public class EnemyRanged : MonoBehaviour {
         reset = false;
         resetPos = transform.position;
 
-        health = 10;
         attackCD = false;
+        runOnce = true;
     }
 
     // Update is called once per frame
@@ -53,26 +58,34 @@ public class EnemyRanged : MonoBehaviour {
 
         if (health <= 0)
         {
-            stateAI = false;
+            if (runOnce)
+            {
+                stateAI = false;
 
-            aniObject.SetTrigger("Death");
+                aniObject.SetTrigger("Death");
 
-            if (isNPC)
-            {
-                PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
-                PlayerPrefs.SetInt("NPCsKilled", 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
-            } else if (isGuard)
-            {
-                PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
-            } else
-            {
-                PlayerPrefs.SetInt("HeroPoints", PlayerPrefs.GetInt("HeroPoints") + 1);
-                PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Excitement") + 1);
+                if (isNPC)
+                {
+                    PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+                    PlayerPrefs.SetInt("NPCsKilled", 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
+
+                    player.GetComponent<PlayerClass>().ExpEarned(200);
+                }
+                else if (isGuard)
+                {
+                    PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("HeroPoints", PlayerPrefs.GetInt("HeroPoints") + 1);
+                    PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Excitement") + 1);
+                }
+
+                runOnce = false;
             }
-
-            //Destroy(gameObject, 5f);
+            
         }
 
         if (player == null)
@@ -82,7 +95,7 @@ public class EnemyRanged : MonoBehaviour {
 
         step = speed * Time.deltaTime;
 
-        if (Vector3.Distance(player.transform.position, transform.position) < 10f && Vector3.Distance(player.transform.position, transform.position) > 10f)
+        if (Vector3.Distance(player.transform.position, transform.position) > 12f && Vector3.Distance(player.transform.position, transform.position) < 20f)
         {
             move = true;
         }
@@ -92,13 +105,26 @@ public class EnemyRanged : MonoBehaviour {
         }
 
 
-        if (Vector3.Distance(player.transform.position, transform.position) < 10f)
+        if (Vector3.Distance(player.transform.position, transform.position) < 12f && Vector3.Distance(player.transform.position, transform.position) > 4f)
         {
             attack = true;
         }
         else
         {
             attack = false;
+        }
+
+        if (Vector3.Distance(player.transform.position, transform.position) < 4f)
+        {
+            if(run == false)
+            {
+                runDirection = Random.Range(1, 4);
+            }
+            run = true;
+        }
+        else
+        {
+            run = false;
         }
 
         if (stateAI)
@@ -125,6 +151,25 @@ public class EnemyRanged : MonoBehaviour {
                 }
             }
 
+            if(run && !reset)
+            {
+                switch (runDirection)
+                {
+                    case 1:
+                        transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position + Vector3.left, step * 2);
+                        break;
+                    case 2:
+                        transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position - Vector3.left, step * 2);
+                        break;
+                    case 3:
+                        transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position - Vector3.forward, step * 2);
+                        break;
+                    default:
+                        Debug.Log("Something is wrong");
+                        break;
+                }
+            }
+
             if (reset)
             {
                 aniObject.SetBool("Combat", false);
@@ -148,8 +193,9 @@ public class EnemyRanged : MonoBehaviour {
 
     IEnumerator AttackCD()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         attackCD = false;
+        aniObject.SetTrigger("DoneAttack");
     }
 
 

@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
   m_Name: Cave - Dialog
   m_EditorClassIdentifier: 
-  DialogLength: 0
+  DialogLength: 3
   Name:
-  - Dog 1
+  - Guardians
   - Player
-  - Dog 2
+  - Guardians
   Text:
   - Hello Madsmus
   - Ehm hello?
