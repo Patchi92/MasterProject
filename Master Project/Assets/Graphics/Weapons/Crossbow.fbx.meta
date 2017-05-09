@@ -25,6 +25,7 @@ ModelImporter:
     100034: StringBone
     100036: StringExtra
     100038: StringHandle
+    100040: CrossbowRing1
     400000: Bow_L_IK
     400002: Bow_R_IK
     400004: Crossbow
@@ -45,7 +46,11 @@ ModelImporter:
     400034: StringBone
     400036: StringExtra
     400038: StringHandle
+    400040: CrossbowRing1
+    2300000: CrossbowRing1
+    3300000: CrossbowRing1
     4300000: Crossbow
+    4300002: CrossbowRing1
     7400000: Crossbow
     7400002: Reload
     7400004: Loaded
