@@ -150,7 +150,11 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length
+      in copied configuration does not match position in animation file\nAnabelle@walking\nClip
+      'mixamo.com' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:Spine2'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -596,18 +600,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: AnabelleRigged(Clone)
+    - name: Anabelle(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Anabelle
-      parentName: AnabelleRigged(Clone)
+      parentName: Anabelle(Clone)
       position: {x: -0, y: 0.007604772, z: 0.085403256}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: AnabelleRigged(Clone)
+      parentName: Anabelle(Clone)
       position: {x: -0.000034463632, y: 1.4237143, z: -0.00021689285}
       rotation: {x: 0.000011196258, y: -0.000007901982, z: 0.0002486859, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -949,7 +953,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f127a39038052f047b1ad62ed9f99778,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 5fefbb73293ca0b4b98483bb0cc55dc6,
     type: 3}
   animationType: 3
   humanoidOversampling: 1
