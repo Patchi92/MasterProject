@@ -1808,12 +1808,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5ff781a60748c41b191c8e6292cb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSpeed: 5
-  sideSpeed: 5
+  frontSpeed: 8
+  sideSpeed: 8
   jumpHeight: 10
   speedAccel: 0
   increaseAccel: 0.05
-  speedCap: 10
+  speedCap: 12
   movementLock: 0
 --- !u!114 &114809627292236976
 MonoBehaviour:

@@ -55,6 +55,8 @@ GameObject:
   - component: {fileID: 4087387299935004}
   - component: {fileID: 33614972723869156}
   - component: {fileID: 23708574577789540}
+  - component: {fileID: 65269197634325364}
+  - component: {fileID: 114620022373823890}
   m_Layer: 0
   m_Name: CollectableTreasure
   m_TagString: Untagged
@@ -68,15 +70,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1459278069511130}
-  m_LocalRotation: {x: -0, y: -0.9517478, z: -0, w: -0.3068815}
-  m_LocalPosition: {x: 223.89688, y: 77.88479, z: -107.5333}
-  m_LocalScale: {x: 0.15752977, y: 0.1575298, z: 0.1575298}
+  m_LocalRotation: {x: -0, y: 0.55596894, z: -0, w: 0.8312031}
+  m_LocalPosition: {x: 273.4155, y: -2.6734924, z: 3.8696098}
+  m_LocalScale: {x: 0.15752979, y: 0.1575298, z: 0.1575298}
   m_Children:
   - {fileID: 4335513897497580}
   - {fileID: 4553186720995596}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -215.743, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 67.555, z: 0}
 --- !u!4 &4335513897497580
 Transform:
   m_ObjectHideFlags: 1
@@ -221,3 +223,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1351102151712268}
   m_Mesh: {fileID: 4300000, guid: 9b3466c27a1db6449aad3f03717499ee, type: 3}
+--- !u!65 &65269197634325364
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1459278069511130}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30, y: 10, z: 30}
+  m_Center: {x: 0.000061035156, y: 0.62100095, z: 0}
+--- !u!114 &114620022373823890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1459278069511130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5f831ab34481547abd8c00bf233bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

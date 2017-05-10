@@ -70,6 +70,7 @@ public class EnemyMelee : MonoBehaviour {
 
                 if (isNPC)
                 {
+                    PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
                     PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
                     PlayerPrefs.SetInt("NPCsKilled", 1);
                     PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);

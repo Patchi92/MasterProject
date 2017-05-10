@@ -83,15 +83,42 @@ public class Questionnaire : MonoBehaviour
     string questionFour;
 
 
+
     public GameObject nextButton;
     public GameObject nextButtonText;
 
     public GameObject thanksPlaying;
 
+    // Temp Data
+
+    
 
 
+    // Data Part 1
 
-  
+    int oneCDQuestionOne;
+    int oneCDQuestionTwo;
+    int oneCDQuestionThree;
+    int oneCDQuestionFour;
+
+    int oneCDQuestionFive;
+    int oneCDQuestionSix;
+    int oneCDQuestionSeven;
+    int oneCDQuestionEight;
+
+    int oneCDQuestionNine;
+    int oneCDQuestionTen;
+    int oneCDQuestionEleven;
+    int oneCDQuestionTwelve;
+
+    int oneCDQuestionThirteen;
+    int oneCDQuestionFourteen;
+    int oneCDQuestionFifthteen;
+    int oneCDQuestionSixteen;
+
+    // Data Part 2
+
+
 
     // Use this for initialization
     void Start()
@@ -134,17 +161,17 @@ public class Questionnaire : MonoBehaviour
 
         if (pageInfo == 2)
         {
-            narrativeSystem.GetComponent<NarrativeSystem>().ChapterSelect(2);
+            narrativeSystem.GetComponent<NarrativeSystem>().ChapterSelect(1);
             gameObject.SetActive(false);
 
             demographicQuestions.SetActive(false);
             questionnaireQuestions.SetActive(true);
             nextButton.SetActive(true);
 
-            questionOneText.GetComponent<Text>().text = "Placeholder!";
-            questionTwoText.GetComponent<Text>().text = "Placeholder!";
-            questionThreeText.GetComponent<Text>().text = "Placeholder!";
-            questionFourText.GetComponent<Text>().text = "Placeholder!";
+            questionOneText.GetComponent<Text>().text = "While playing, I lost track of time.";
+            questionTwoText.GetComponent<Text>().text = "I was able to concentrate on the game during play.";
+            questionThreeText.GetComponent<Text>().text = "During play, I sometimes found my mind wandering / found I was thinking of other things.";
+            questionFourText.GetComponent<Text>().text = "During play, I noticed a lot of small details about the game.";
 
             ToggleOff();
 
@@ -154,10 +181,10 @@ public class Questionnaire : MonoBehaviour
 
         if (pageInfo == 3)
         {
-            questionOneText.GetComponent<Text>().text = "Placeholder!";
-            questionTwoText.GetComponent<Text>().text = "Placeholder!";
-            questionThreeText.GetComponent<Text>().text = "Placeholder!";
-            questionFourText.GetComponent<Text>().text = "Placeholder!";
+            questionOneText.GetComponent<Text>().text = "During the game, I found myself paying more attention to my real-world surroundings, rather than the story of the game.";
+            questionTwoText.GetComponent<Text>().text = "During play, I felt like part of the story.";
+            questionThreeText.GetComponent<Text>().text = "During play, I was eager to find out what would happen next.";
+            questionFourText.GetComponent<Text>().text = "During the game, I felt like the narrative had created a world that I, as a player, was living in, while playing.";
 
             ToggleOff();
 
@@ -168,10 +195,27 @@ public class Questionnaire : MonoBehaviour
 
         if (pageInfo == 4)
         {
-            questionOneText.GetComponent<Text>().text = "Placeholder!";
-            questionTwoText.GetComponent<Text>().text = "Placeholder!";
-            questionThreeText.GetComponent<Text>().text = "Placeholder!";
-            questionFourText.GetComponent<Text>().text = "Placeholder!";
+            questionOneText.GetComponent<Text>().text = "I tried to explore the world, as much as possible.";
+            questionTwoText.GetComponent<Text>().text = "I didn’t really feel like the choices I made, during the game, had a noticeable effect on the story.";
+            questionThreeText.GetComponent<Text>().text = "I tried to find alternative ways to complete the game.";
+            questionFourText.GetComponent<Text>().text = "I felt that the game was very linear, leaving little to no room for exploration and experimentation.";
+
+            ToggleOff();
+
+            pageLock = true;
+            pageLast = true;
+
+        }
+
+        if (pageInfo == 4)
+        {
+            narrativeSystem.GetComponent<NarrativeSystem>().ChapterSelect(2);
+            gameObject.SetActive(false);
+
+            questionOneText.GetComponent<Text>().text = "I tried to explore the world, as much as possible.";
+            questionTwoText.GetComponent<Text>().text = "I didn’t really feel like the choices I made, during the game, had a noticeable effect on the story.";
+            questionThreeText.GetComponent<Text>().text = "I tried to find alternative ways to complete the game.";
+            questionFourText.GetComponent<Text>().text = "I felt that the game was very linear, leaving little to no room for exploration and experimentation.";
 
             ToggleOff();
 
@@ -260,22 +304,30 @@ public class Questionnaire : MonoBehaviour
 
 
                     // Demographic
+                    sw.Write("Demographic");
                     sw.Write(ageInfo + " ;; " + genderInfo + " ;; " + gameHourInfo + " ;; " + favoriteGameOneInfo + " ;; " + favoriteGameTwoInfo + " ;; " + favoriteGameThreeInfo + " ;; ");
+                    sw.Write("");
 
                     // Narrative Path
+                    sw.Write("Narrative Path");
                     sw.Write(PlayerPrefs.GetString("PlayerType").ToString() + " ;; ");
+                    sw.Write("");
 
                     // Player Behavior
+                    sw.Write("Player Behavior");
                     sw.Write(PlayerPrefs.GetInt("Destruction").ToString() + " ;; " + PlayerPrefs.GetInt("Excitement").ToString() + " ;; " + PlayerPrefs.GetInt("Challenge").ToString() + " ;; " + PlayerPrefs.GetInt("Strategy").ToString() + " ;; " + PlayerPrefs.GetInt("Completion").ToString() + " ;; " + PlayerPrefs.GetInt("Power").ToString() + " ;; " + PlayerPrefs.GetInt("Fantasy").ToString() + " ;; " + PlayerPrefs.GetInt("Story").ToString() + " ;; " + PlayerPrefs.GetInt("Design").ToString() + " ;; " + PlayerPrefs.GetInt("Discovery").ToString() + " ;; ");
+                    sw.Write("");
 
-                    // Player Engagement: Round 1
+                    // CD Questions: Round 1
+                    sw.Write("CD Questions: Round 1");
                     sw.Write("test");
+                    sw.Write("");
 
-                    // Player Engagement: Round 2
+                    // CD Questions: Round 2
+                    sw.Write("CD Questions: Round 2");
                     sw.Write("test");
+                    sw.Write("");
 
-                    // Immersion
-                    sw.Write("test");
 
 
                     //SendMail();
@@ -326,41 +378,32 @@ public class Questionnaire : MonoBehaviour
 
         if (questionOneA.GetComponent<Toggle>().isOn == true)
         {
-            if(pageInfo == 1)
-            {
-
-            }
+            
         }
 
         if (questionOneB.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            
         }
 
         if (questionOneC.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+           
         }
 
         if (questionOneD.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            
         }
 
         if (questionOneE.GetComponent<Toggle>().isOn == true)
         {
             if (pageInfo == 1)
             {
-
+                oneCDQuestionOne = 5;
+                oneCDQuestionFour = 5;
+                oneCDQuestionEight = 5;
+                oneCDQuestionTwelve = 5;
             }
         }
 
@@ -370,7 +413,10 @@ public class Questionnaire : MonoBehaviour
         {
             if (pageInfo == 1)
             {
-
+                oneCDQuestionTwo = 1;
+                oneCDQuestionFive = 1;
+                oneCDQuestionNine = 1;
+                oneCDQuestionThirteen = 1;
             }
         }
 
@@ -378,7 +424,10 @@ public class Questionnaire : MonoBehaviour
         {
             if (pageInfo == 1)
             {
-
+                oneCDQuestionTwo = 2;
+                oneCDQuestionFive = 2;
+                oneCDQuestionNine = 2;
+                oneCDQuestionThirteen = 2;
             }
         }
 
@@ -386,7 +435,10 @@ public class Questionnaire : MonoBehaviour
         {
             if (pageInfo == 1)
             {
-
+                oneCDQuestionTwo = 1;
+                oneCDQuestionFive = 1;
+                oneCDQuestionNine = 1;
+                oneCDQuestionThirteen = 1;
             }
         }
 
@@ -394,6 +446,10 @@ public class Questionnaire : MonoBehaviour
         {
             if (pageInfo == 1)
             {
+                oneCDQuestionTwo = 1;
+                oneCDQuestionFive = 1;
+                oneCDQuestionNine = 1;
+                oneCDQuestionThirteen = 1;
 
             }
         }
@@ -402,7 +458,10 @@ public class Questionnaire : MonoBehaviour
         {
             if (pageInfo == 1)
             {
-
+                oneCDQuestionTwo = 1;
+                oneCDQuestionFive = 1;
+                oneCDQuestionNine = 1;
+                oneCDQuestionThirteen = 1;
             }
         }
 

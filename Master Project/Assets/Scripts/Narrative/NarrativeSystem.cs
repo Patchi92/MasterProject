@@ -72,9 +72,18 @@ public class NarrativeSystem : MonoBehaviour {
         PlayerPrefs.SetInt("Completion", 0);
         PlayerPrefs.SetInt("Power", 0);
         PlayerPrefs.SetInt("Fantasy", 0);
-        PlayerPrefs.SetInt("Story", 0);
+
+        if(PlayerPrefs.GetString("Version") == "Complex")
+        {
+            PlayerPrefs.SetInt("Story", 5);
+        } else
+        {
+            PlayerPrefs.SetInt("Story", 3);
+        }
+        
+
         PlayerPrefs.SetInt("Design", 0);
-        PlayerPrefs.SetInt("Discovery", 3);
+        PlayerPrefs.SetInt("Discovery", 0);
 
         //PlayerPrefs.SetInt("Community", 3);
         //PlayerPrefs.SetInt("Competition", 3);
@@ -102,19 +111,9 @@ public class NarrativeSystem : MonoBehaviour {
 
 
 
-        if (PlayerPrefs.GetInt("VR") == 0)
-        {
-            player = Instantiate(playerNormal, spawnPoint, Quaternion.identity);
-        } else
-        {
-            player = Instantiate(playerVR, spawnPoint, Quaternion.identity);
-        }
-       
-        if(scene.name == "Game")
-        {
-            player.transform.rotation = new Quaternion(0, 180, 0, 0);
-        }
-	}
+        questionnaire.SetActive(true);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -239,6 +238,8 @@ public class NarrativeSystem : MonoBehaviour {
         }
 
 
+
+
         // Design
 
         PlayerPrefs.SetInt("Design", PlayerPrefs.GetInt("PlayerClassChanges") - 1);
@@ -257,8 +258,27 @@ public class NarrativeSystem : MonoBehaviour {
 
     public void ChapterSelect(int info)
     {
+
+        if(info == 1)
+        {
+            if (PlayerPrefs.GetInt("VR") == 0)
+            {
+                player = Instantiate(playerNormal, spawnPoint, Quaternion.identity);
+            }
+            else
+            {
+                player = Instantiate(playerVR, spawnPoint, Quaternion.identity);
+            }
+
+            if (scene.name == "Game")
+            {
+                player.transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
+        }
+
         if(info == 2)
         {
+            Cursor.visible = false;
             PlayerPrefs.SetInt("CurrentChapter", 2);
             questionnaire.SetActive(false);
             daySystem.GetComponent<DaySystem>().StartCoroutine("DayAndNightSystem");
@@ -269,6 +289,7 @@ public class NarrativeSystem : MonoBehaviour {
 
         if (info == 3)
         {
+            Cursor.visible = false;
             PlayerPrefs.SetInt("CurrentChapter", 3);
             questionnaire.SetActive(false);
             RenderSettings.ambientIntensity = 0.2f;
@@ -533,7 +554,7 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (choice == 2)
             {
-                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") + 1);
+               
                 Debug.Log(PlayerPrefs.GetInt("Story"));
             }
 
@@ -713,6 +734,7 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (choice == 3)
             {
+                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
                 GameObject.Find("Peasent - Find Quest").GetComponent<EnemyMelee>().enabled = true;
             }
 
@@ -732,6 +754,7 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (choice == 3)
             {
+                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
                 GameObject.Find("Peasent - Kill Quest").GetComponent<EnemyMelee>().enabled = true;
             }
         }
