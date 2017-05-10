@@ -89,6 +89,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1897380191142432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4667979807664712}
+  - component: {fileID: 114738382084514334}
+  m_Layer: 0
+  m_Name: DayNightSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4024937505487656
 Transform:
   m_ObjectHideFlags: 1
@@ -122,11 +138,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797519672384752}
   m_LocalRotation: {x: -0, y: 0.09128601, z: -0, w: 0.99582475}
-  m_LocalPosition: {x: 445.56, y: 76.43, z: 142.42}
+  m_LocalPosition: {x: 464.07, y: 81.583, z: 205.4}
   m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 4403477718513090}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 10.475, z: 0}
 --- !u!4 &4330941580742880
 Transform:
@@ -154,9 +170,23 @@ Transform:
   - {fileID: 4024937505487656}
   - {fileID: 4164614795309892}
   - {fileID: 4330941580742880}
+  - {fileID: 4667979807664712}
   - {fileID: 4209355057924398}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4667979807664712
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897380191142432}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4403477718513090}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &65673411223312756
 BoxCollider:
@@ -183,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: {fileID: 0}
   nextPos: {fileID: 1583271264409536}
+  exitChapter: 0
 --- !u!114 &114480132251599022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +228,20 @@ MonoBehaviour:
   playerNormal: {fileID: 1907489892429920, guid: 798a6bf6f671e0f47bd9036f0b752b27,
     type: 2}
   playerVR: {fileID: 1907489892429920, guid: 798a6bf6f671e0f47bd9036f0b752b27, type: 2}
-  daySystem: {fileID: 0}
+  daySystem: {fileID: 1897380191142432}
   ChapterOne: {fileID: 0}
   ChapterTwo: {fileID: 0}
   ChapterThree: {fileID: 0}
+--- !u!114 &114738382084514334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897380191142432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6b59d585e75af4e9a1a5ac95d5e5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: {fileID: 0}
+  nextPos: {fileID: 1797519672384752}

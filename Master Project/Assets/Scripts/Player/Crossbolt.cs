@@ -27,7 +27,7 @@ public class Crossbolt : MonoBehaviour {
 
         if (other.tag == "EnemyMelee")
         {
-            other.GetComponent<EnemyMelee>().health = other.GetComponent<EnemyRanged>().health - 5;
+            other.GetComponent<EnemyMelee>().health = other.GetComponent<EnemyMelee>().health - 5;
             Destroy(gameObject);
         }
 

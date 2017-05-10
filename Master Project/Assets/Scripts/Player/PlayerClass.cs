@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class PlayerClass : MonoBehaviour {
 
 
+    //System
+    GameObject narrativeSystem;
+    GameObject spawnOne;
+    GameObject spawnTwo;
+    GameObject spawnThree;
+
     //UI
     GameObject UI;
     GameObject InfoUI;
@@ -36,6 +42,7 @@ public class PlayerClass : MonoBehaviour {
     bool coneOfColdCD;
 
     //Assassin
+    public GameObject placeBolt;
     public GameObject crossbolt;
     public GameObject assassinCastPoint;
     bool shootCD;
@@ -52,6 +59,8 @@ public class PlayerClass : MonoBehaviour {
     //Class
     public GameObject sword;
     public GameObject shield;
+    bool shieldUp;
+    bool shieldDown;
     public GameObject staff;
     public GameObject dagger;
     public GameObject bow;
@@ -68,6 +77,11 @@ public class PlayerClass : MonoBehaviour {
 
         playerCam = transform.FindChild("Player Camera").GetComponent<Animator>();
         hitBox = gameObject.transform.FindChild("HitArea").gameObject;
+
+        narrativeSystem = GameObject.Find("NarrativeSystem").gameObject;
+        spawnOne = narrativeSystem.transform.FindChild("SpawnPoint Chapter One").gameObject;
+        spawnTwo = narrativeSystem.transform.FindChild("SpawnPoint Chapter Two").gameObject;
+        spawnThree = narrativeSystem.transform.FindChild("SpawnPoint Chapter Three").gameObject;
     }
 
 
@@ -101,6 +115,7 @@ public class PlayerClass : MonoBehaviour {
                 ++level;
                 exp = exp - 100;
                 LevelAmountUI.text = "Level: " + level.ToString();
+                PlayerPrefs.SetInt("PlayerLevel", level);
                 health = health + 10;
                 if(health > 100)
                 {
@@ -112,7 +127,23 @@ public class PlayerClass : MonoBehaviour {
 
         if (health <= 0)
         {
-            Debug.Log("Dead");
+            PlayerPrefs.SetInt("PlayerDeath", PlayerPrefs.GetInt("PlayerDeath") + 1);
+
+            if (PlayerPrefs.GetInt("CurrentChapter") == 1)
+            {
+                gameObject.transform.position = spawnOne.transform.position;
+            }
+
+            if (PlayerPrefs.GetInt("CurrentChapter") == 2)
+            {
+                gameObject.transform.position = spawnTwo.transform.position;
+            }
+
+            if (PlayerPrefs.GetInt("CurrentChapter") == 3)
+            {
+                gameObject.transform.position = spawnThree.transform.position;
+            }
+
         }
 
 
@@ -131,25 +162,38 @@ public class PlayerClass : MonoBehaviour {
 
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        //playerSword.SetTrigger("Bash");
-                        hitBox.SetActive(true);
-                        globalCD = true;
-                        StartCoroutine("GlobalCD");
+                        if (shieldDown)
+                        {
+                            playerSword.SetTrigger("Bash");
+                            hitBox.SetActive(true);
+                            globalCD = true;
+                            StartCoroutine("GlobalCD");
+                        }
                     }
 
 
                     if (Input.GetKeyDown(KeyCode.Mouse1))
                     {
-                        //playerShield.SetTrigger("BlockUp");
-                        damageReduction = 8;
-                        globalCD = true;
+                        if (shieldDown)
+                        {
+                            playerShield.SetTrigger("BlockUp");
+                            damageReduction = 8;
+                            shieldDown = false;
+                        } else
+                        {
+                            playerShield.SetTrigger("BlockDown");
+                            damageReduction = 5;
+                            StartCoroutine("GlobalCD");
+                            globalCD = true;
+                            shieldDown = true;
+                        }
+
                     }
 
+                    
                     if (Input.GetKeyUp(KeyCode.Mouse1))
                     {
-                        //playerShield.SetTrigger("BlockDown");
-                        damageReduction = 5;
-                        StartCoroutine("GlobalCD");
+                        
                     }
 
 
@@ -190,7 +234,7 @@ public class PlayerClass : MonoBehaviour {
 
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        //playerDagger.SetTrigger("Slash");
+                        playerDagger.SetTrigger("Slash");
                         hitBox.SetActive(true);
                         globalCD = true;
                         StartCoroutine("GlobalCD");
@@ -203,6 +247,7 @@ public class PlayerClass : MonoBehaviour {
                         {
                             coneOfColdCD = true;
                             playerCrossbow.SetTrigger("Shoot");
+                            placeBolt.SetActive(false);
                             Instantiate(crossbolt, assassinCastPoint.transform.position, assassinCastPoint.transform.rotation);
                             globalCD = true;
                             StartCoroutine("GlobalCD");
@@ -226,9 +271,13 @@ public class PlayerClass : MonoBehaviour {
    
     public void PickClass()
     {
+        PlayerPrefs.SetInt("PlayerClassChanges", PlayerPrefs.GetInt("PlayerClassChanges") + 1);
+
         if (PlayerPrefs.GetString("PlayerClass") == "Warrior")
         {
             damageReduction = 5;
+            shieldUp = false;
+            shieldDown = true;
 
             staff.SetActive(false);
             dagger.SetActive(false);
@@ -236,8 +285,8 @@ public class PlayerClass : MonoBehaviour {
 
             sword.SetActive(true);
             shield.SetActive(true);
-            //playerShield = transform.FindChild("Shield").GetComponent<Animator>();
-            //playerSword = transform.FindChild("Sword").GetComponent<Animator>();
+            playerShield = shield.GetComponent<Animator>();
+            playerSword = sword.GetComponent<Animator>();
 
 
 
@@ -255,7 +304,7 @@ public class PlayerClass : MonoBehaviour {
 
 
             staff.SetActive(true);
-            //playerStaff = transform.FindChild("Shield").GetComponent<Animator>();
+            playerStaff = staff.GetComponent<Animator>();
 
             coneOfColdCD = false;
         }
@@ -270,7 +319,7 @@ public class PlayerClass : MonoBehaviour {
             staff.SetActive(false);
 
             dagger.SetActive(true);
-            //playerDagger = transform.FindChild("Shield").GetComponent<Animator>();
+            playerDagger = dagger.GetComponent<Animator>();
             bow.SetActive(true);
             playerCrossbow = bow.GetComponent<Animator>();
 
@@ -297,20 +346,28 @@ public class PlayerClass : MonoBehaviour {
 
     public void DamageTaken(int amount)
     {
+        PlayerPrefs.SetInt("PlayerDamageTaken", PlayerPrefs.GetInt("PlayerDamageTaken") + amount);
+
         health = health - (amount - damageReduction);
+        if(health > 100)
+        {
+            health = 100;
+        }
         HealthAmountUI.text = "HP: " + health.ToString();
+        PlayerPrefs.SetInt("PlayerHP", health);
     }
 
     public void PickUpGold(int amount)
     {
         gold = gold + amount;
         GoldAmountUI.text = "Gold: " + gold.ToString();
+        PlayerPrefs.SetInt("PlayerGold", gold);
     }
 
 
     IEnumerator GlobalCD()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         globalCD = false;
     }
 
@@ -322,7 +379,8 @@ public class PlayerClass : MonoBehaviour {
 
     IEnumerator ShootCD()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.2f);
+        placeBolt.SetActive(true);
         shootCD = false;
     }
 

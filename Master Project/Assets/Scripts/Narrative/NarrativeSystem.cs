@@ -27,6 +27,8 @@ public class NarrativeSystem : MonoBehaviour {
     GameObject DialogSystem;
     GameObject ChoiceSystem;
 
+    public GameObject questionnaire;
+
     // Chapters
     public GameObject daySystem;
     public GameObject ChapterOne;
@@ -65,17 +67,17 @@ public class NarrativeSystem : MonoBehaviour {
 
         PlayerPrefs.SetInt("Destruction", 0);
         PlayerPrefs.SetInt("Excitement", 0);
-        PlayerPrefs.SetInt("Challenge", 3);
-        PlayerPrefs.SetInt("Strategy", 3);
+        PlayerPrefs.SetInt("Challenge", 0);
+        PlayerPrefs.SetInt("Strategy", 0);
         PlayerPrefs.SetInt("Completion", 0);
-        PlayerPrefs.SetInt("Power", 3);
-        PlayerPrefs.SetInt("Fantasy", 3);
+        PlayerPrefs.SetInt("Power", 0);
+        PlayerPrefs.SetInt("Fantasy", 0);
         PlayerPrefs.SetInt("Story", 0);
-        PlayerPrefs.SetInt("Design", 3);
+        PlayerPrefs.SetInt("Design", 0);
         PlayerPrefs.SetInt("Discovery", 3);
 
-        PlayerPrefs.SetInt("Community", 3);
-        PlayerPrefs.SetInt("Competition", 3);
+        //PlayerPrefs.SetInt("Community", 3);
+        //PlayerPrefs.SetInt("Competition", 3);
 
 
         // Player Tracking
@@ -86,6 +88,18 @@ public class NarrativeSystem : MonoBehaviour {
         PlayerPrefs.SetInt("KillerPoints", 0);
         PlayerPrefs.SetInt("PacifistPoints", 0);
         PlayerPrefs.SetInt("NPCsKilled", 0);
+        PlayerPrefs.SetInt("Quests", 0);
+
+        PlayerPrefs.SetInt("CurrentChapter", 1);
+        PlayerPrefs.SetInt("PlayerGold", 0);
+        PlayerPrefs.SetInt("PlayerHP", 0);
+        PlayerPrefs.SetInt("PlayerDeath", 0);
+        PlayerPrefs.SetInt("PlayerDamageTaken", 0);
+        PlayerPrefs.SetInt("PlayerLevel", 0);
+        PlayerPrefs.SetInt("PlayerClassChanges", 0);
+        PlayerPrefs.SetInt("PlayerDiscoveryPoints", 0);
+
+
 
 
         if (PlayerPrefs.GetInt("VR") == 0)
@@ -123,10 +137,130 @@ public class NarrativeSystem : MonoBehaviour {
 
 	}
 
+    public void GameEnd()
+    {
+
+        // Destruction
+
+        PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("NPCsKilled"));
+
+        if(PlayerPrefs.GetInt("Destruction") > 5) 
+        {
+            PlayerPrefs.SetInt("Destruction", 5);
+        }
+
+
+        // Excitement
+
+        PlayerPrefs.SetInt("Excitement", PlayerPrefs.GetInt("HeroPoints"));
+
+        if (PlayerPrefs.GetInt("Excitement") > 5)
+        {
+            PlayerPrefs.SetInt("Excitement", 5);
+        }
+
+
+        // Challenge + Strategy
+
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 50)
+        {
+            PlayerPrefs.SetInt("Challenge", 1);
+            PlayerPrefs.SetInt("Strategy", 1);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 40)
+        {
+            PlayerPrefs.SetInt("Challenge", 2);
+            PlayerPrefs.SetInt("Strategy", 2);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 30)
+        {
+            PlayerPrefs.SetInt("Challenge", 3);
+            PlayerPrefs.SetInt("Strategy", 3);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 20)
+        {
+            PlayerPrefs.SetInt("Challenge", 4);
+            PlayerPrefs.SetInt("Strategy", 4);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 10)
+        {
+            PlayerPrefs.SetInt("Challenge", 5);
+            PlayerPrefs.SetInt("Strategy", 5);
+        }
+
+        PlayerPrefs.SetInt("Challenge", PlayerPrefs.GetInt("Challenge") - PlayerPrefs.GetInt("PlayerDeath"));
+
+        // Completion
+
+        if (PlayerPrefs.GetInt("PlayerGold") < 100)
+        {
+            PlayerPrefs.SetInt("Completion", PlayerPrefs.GetInt("Quests") + 1);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerGold") < 200)
+        {
+            PlayerPrefs.SetInt("Completion", PlayerPrefs.GetInt("Quests") + 2);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerGold") < 300)
+        {
+            PlayerPrefs.SetInt("Completion", PlayerPrefs.GetInt("Quests") + 3);
+        }
+
+
+        // Power
+
+        if (PlayerPrefs.GetInt("PlayerLevel") == 10)
+        {
+            PlayerPrefs.SetInt("Power", 5);
+        }
+        if (PlayerPrefs.GetInt("PlayerLevel") == 8)
+        {
+            PlayerPrefs.SetInt("Power", 4);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerLevel") == 6)
+        {
+            PlayerPrefs.SetInt("Power", 3);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerLevel") == 4)
+        {
+            PlayerPrefs.SetInt("Power", 2);
+        }
+
+        if (PlayerPrefs.GetInt("PlayerLevel") == 2)
+        {
+            PlayerPrefs.SetInt("Power", 1);
+        }
+
+
+        // Design
+
+        PlayerPrefs.SetInt("Design", PlayerPrefs.GetInt("PlayerClassChanges") - 1);
+
+
+        // Discovery
+
+        PlayerPrefs.SetInt("Discovery", PlayerPrefs.GetInt("PlayerDiscoveryPoints"));
+
+
+        questionnaire.SetActive(true);
+
+
+    }
+
+
     public void ChapterSelect(int info)
     {
         if(info == 2)
         {
+            PlayerPrefs.SetInt("CurrentChapter", 2);
+            questionnaire.SetActive(false);
             daySystem.GetComponent<DaySystem>().StartCoroutine("DayAndNightSystem");
             ChapterOne.SetActive(false);
             ChapterTwo.SetActive(true);
@@ -135,6 +269,8 @@ public class NarrativeSystem : MonoBehaviour {
 
         if (info == 3)
         {
+            PlayerPrefs.SetInt("CurrentChapter", 3);
+            questionnaire.SetActive(false);
             RenderSettings.ambientIntensity = 0.2f;
             ChapterTwo.SetActive(false);
             ChapterThree.SetActive(true);
@@ -329,12 +465,55 @@ public class NarrativeSystem : MonoBehaviour {
 
         if (info == "FindCompleted")
         {
+            player.GetComponent<PlayerClass>().ExpEarned(200);
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 26);
         }
 
         if (info == "KillCompleted")
         {
+            player.GetComponent<PlayerClass>().ExpEarned(200);
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 27);
+        }
+
+
+
+        //Chapter Three
+
+        if (info == "ChapterThreeIntroPacifist")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 28);
+            unlockPlayerType = true;
+        }
+
+        if (info == "ChapterThreeIntroKiller")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 29);
+            unlockPlayerType = true;
+        }
+
+        if (info == "ChapterThreeIntroHero")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 30);
+            unlockPlayerType = true;
+        }
+
+
+        if (info == "EndGamePacifist")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 31);
+            Invoke("GameEnd", 10f);
+        }
+
+        if (info == "EndGameKiller")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 32);
+            Invoke("GameEnd", 10f);
+        }
+
+        if (info == "EndGameHero")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 33);
+            Invoke("GameEnd", 10f);
         }
 
 

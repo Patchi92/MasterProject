@@ -14,6 +14,7 @@ public class EnemyMelee : MonoBehaviour {
     float step;
 
     public int health;
+    int lastKnownHealth;
 
     bool attackCD;
 
@@ -36,7 +37,6 @@ public class EnemyMelee : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        aniObject.SetBool("Combat", true);
         gameObject.tag = "EnemyMelee";
         reset = false;
         resetPos = transform.position;
@@ -44,11 +44,21 @@ public class EnemyMelee : MonoBehaviour {
         health = 20;
         attackCD = false;
 
+        stateAI = true; 
         runOnce = true;
+
+        lastKnownHealth = health;
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (health != lastKnownHealth)
+        {
+            aniObject.SetTrigger("Hit");
+            lastKnownHealth = health;
+        }
+
 
         if (health <= 0)
         {
@@ -80,6 +90,7 @@ public class EnemyMelee : MonoBehaviour {
                     player.GetComponent<PlayerClass>().ExpEarned(40);
                 }
 
+                Destroy(gameObject, 8f);
                 runOnce = false;
             }
 
@@ -93,29 +104,34 @@ public class EnemyMelee : MonoBehaviour {
 
         step = speed * Time.deltaTime;
 
-        if (Vector3.Distance(player.transform.position, transform.position) > 3f && Vector3.Distance(player.transform.position, transform.position) < 20f)
+        if (stateAI)
         {
-            move = true;
-        }
-        else
-        {
-            move = false;
-        }
+
+            if (Vector3.Distance(player.transform.position, transform.position) > 3f && Vector3.Distance(player.transform.position, transform.position) < 30f)
+            {
+                aniObject.SetBool("Combat", true);
+                aniObject.SetBool("Move", true);
+                move = true;
+            }
+            else
+            {
+                aniObject.SetBool("Move", false);
+                move = false;
+            }
 
 
-        if (Vector3.Distance(player.transform.position, transform.position) <= 3f)
-        {
-            attack = true;
-        }
-        else
-        {
-            attack = false;
-        }
+            if (Vector3.Distance(player.transform.position, transform.position) <= 3f)
+            {
+                attack = true;
+            }
+            else
+            {
+                attack = false;
+            }
 
         
 
-        if (stateAI)
-        {
+        
 
             //Move
             if (move && !reset)
@@ -128,7 +144,7 @@ public class EnemyMelee : MonoBehaviour {
             if (attack && !reset)
             {
                 transform.LookAt(player.transform);
-                transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y + 50, transform.rotation.z));
+                //transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y + 50, transform.rotation.z));
                 if (!attackCD)
                 {
                     aniObject.SetTrigger("Attack");
@@ -161,7 +177,6 @@ public class EnemyMelee : MonoBehaviour {
         player.GetComponent<PlayerClass>().DamageTaken(Random.Range(6, 8));
         yield return new WaitForSeconds(4f);
         attackCD = false;
-        aniObject.SetTrigger("DoneAttack");
     }
 
 

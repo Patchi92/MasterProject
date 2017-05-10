@@ -25,6 +25,7 @@ public class KillQuest : MonoBehaviour {
         {
             gameObject.GetComponent<NPC>().dialog = "KillCompleted";
             gameObject.transform.FindChild("SpeakArea").gameObject.SetActive(true);
+            PlayerPrefs.SetInt("Quests", PlayerPrefs.GetInt("Quests") + 1);
         }
     }
 }

@@ -89,9 +89,10 @@ public class NPC : MonoBehaviour {
 
         if (hitByPlayer == 2)
         {
-            if (gameObject.name == "Witch_Simple" || gameObject.name == "Witch_Simple")
+            if (gameObject.name == "Witch_Simple" || gameObject.name == "Witch_Complex")
             {
                 gameObject.GetComponent<EnemyRanged>().enabled = true;
+                PlayerPrefs.SetString("PlayerType", "Killer");
                 GameObject.Find("NarrativeSystem").transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
 
             }
@@ -111,6 +112,7 @@ public class NPC : MonoBehaviour {
                 gameObject.GetComponent<EnemyMelee>().enabled = true;
             }
 
+            GameObject.Find("Interact").SetActive(false);
             gameObject.transform.FindChild("SpeakArea").gameObject.SetActive(false);
             gameObject.GetComponent<NPC>().enabled = false;
         }

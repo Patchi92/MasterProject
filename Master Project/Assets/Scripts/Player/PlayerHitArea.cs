@@ -25,7 +25,7 @@ public class PlayerHitArea : MonoBehaviour {
 
         if (other.tag == "EnemyMelee")
         {
-            other.GetComponent<EnemyRanged>().health = other.GetComponent<EnemyRanged>().health - damage;
+            other.GetComponent<EnemyMelee>().health = other.GetComponent<EnemyMelee>().health - damage;
         }
     }
 

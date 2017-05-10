@@ -41,7 +41,10 @@ public class DaySystem : MonoBehaviour {
 
         //question.SetActive(true);
         player.transform.position = nextPos.transform.position;
-        //player.SetActive(false);
+        // player.SetActive(false);
+
+        //TEMP
+        GameObject.Find("NarrativeSystem").GetComponent<NarrativeSystem>().ChapterSelect(3);
 
 
     }

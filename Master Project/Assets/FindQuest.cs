@@ -16,6 +16,7 @@ public class FindQuest : MonoBehaviour {
 
     public void FindQuestTracker()
     {
+        PlayerPrefs.SetInt("Quests", PlayerPrefs.GetInt("Quests") + 1);
         gameObject.GetComponent<NPC>().dialog = "FindCompleted";
         gameObject.transform.FindChild("SpeakArea").gameObject.SetActive(true);
     }

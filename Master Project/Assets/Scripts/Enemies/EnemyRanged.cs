@@ -16,6 +16,7 @@ public class EnemyRanged : MonoBehaviour {
     float step;
 
     public int health;
+    int lastKnownHealth;
 
     bool attackCD;
 
@@ -50,11 +51,19 @@ public class EnemyRanged : MonoBehaviour {
 
         attackCD = false;
         runOnce = true;
+
+        lastKnownHealth = health;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(health != lastKnownHealth)
+        {
+            aniObject.SetTrigger("Hit");
+            lastKnownHealth = health;
+        }
 
         if (health <= 0)
         {
@@ -83,6 +92,7 @@ public class EnemyRanged : MonoBehaviour {
                     PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Excitement") + 1);
                 }
 
+                Destroy(gameObject, 8f);
                 runOnce = false;
             }
             
@@ -95,40 +105,44 @@ public class EnemyRanged : MonoBehaviour {
 
         step = speed * Time.deltaTime;
 
-        if (Vector3.Distance(player.transform.position, transform.position) > 12f && Vector3.Distance(player.transform.position, transform.position) < 20f)
-        {
-            move = true;
-        }
-        else
-        {
-            move = false;
-        }
-
-
-        if (Vector3.Distance(player.transform.position, transform.position) < 12f && Vector3.Distance(player.transform.position, transform.position) > 4f)
-        {
-            attack = true;
-        }
-        else
-        {
-            attack = false;
-        }
-
-        if (Vector3.Distance(player.transform.position, transform.position) < 4f)
-        {
-            if(run == false)
-            {
-                runDirection = Random.Range(1, 4);
-            }
-            run = true;
-        }
-        else
-        {
-            run = false;
-        }
-
         if (stateAI)
         {
+
+            if (Vector3.Distance(player.transform.position, transform.position) > 12f && Vector3.Distance(player.transform.position, transform.position) < 20f)
+            {
+                aniObject.SetBool("Move", true);
+                move = true;
+            }
+            else
+            {
+                aniObject.SetBool("Move", false);
+                move = false;
+            }
+
+
+            if (Vector3.Distance(player.transform.position, transform.position) < 12f && Vector3.Distance(player.transform.position, transform.position) > 4f)
+            {
+                attack = true;
+            }
+            else
+            {
+                attack = false;
+            }
+
+            if (Vector3.Distance(player.transform.position, transform.position) < 4f)
+            {
+                if(run == false)
+                {
+                    runDirection = Random.Range(1, 4);
+                }
+                run = true;
+            }
+            else
+            {
+                run = false;
+            }
+
+       
 
             //Move
             if (move && !reset)
@@ -141,10 +155,9 @@ public class EnemyRanged : MonoBehaviour {
             if (attack && !reset)
             {
                 transform.LookAt(player.transform);
-                transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y + 50, transform.rotation.z));
+                //transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y + 50, transform.rotation.z));
                 if (!attackCD)
                 {
-                    aniObject.SetTrigger("Attack");
                     StartCoroutine("AttackCast");
                     attackCD = true;
                     StartCoroutine("AttackCD");
@@ -153,6 +166,7 @@ public class EnemyRanged : MonoBehaviour {
 
             if(run && !reset)
             {
+                aniObject.SetBool("Move", true);
                 switch (runDirection)
                 {
                     case 1:
@@ -186,8 +200,17 @@ public class EnemyRanged : MonoBehaviour {
 
     IEnumerator AttackCast()
     {
-        yield return new WaitForSeconds(1f);
-        Instantiate(castObject, castPoint.transform.position, castPoint.transform.rotation);
+        aniObject.SetTrigger("Attack");
+        if (gameObject.name == "Witch_Simple" || gameObject.name == "Witch_Complex")
+        {
+            yield return new WaitForSeconds(1f);
+            Instantiate(castObject, castPoint.transform.position, castPoint.transform.rotation);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.8f);
+            Instantiate(castObject, castPoint.transform.position, castPoint.transform.rotation);
+        }
     }
 
 
