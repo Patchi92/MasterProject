@@ -14,9 +14,20 @@ MonoBehaviour:
   DialogLength: 0
   Name:
   - Guardian of Death
+  - Guardian of Death
+  - Guardian of Death
+  - Guardian of Death
   Text:
-  - Test
+  - Here you are again mighty champion!
+  - It is time for you to be judged!
+  - Destruction and mayhem seems to be your call, champion! You are more than worthy
+    to be my champion.
+  - 'Perhaps you have proven yourself to be a threat to me. Your journey ends here
+    and so will your life. '
   Wait:
-  - 2
+  - 3
+  - 3
+  - 8
+  - 8
   Sound: []
   Choice: 0

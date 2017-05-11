@@ -41,6 +41,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1035992713918150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4339139716915854}
+  - component: {fileID: 65506897582878834}
+  - component: {fileID: 114752722629957330}
+  m_Layer: 0
+  m_Name: SpeakArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1058694440046996
 GameObject:
   m_ObjectHideFlags: 1
@@ -260,9 +277,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4109345321734314}
   - component: {fileID: 95029890630305844}
+  - component: {fileID: 114509643141551412}
+  - component: {fileID: 136613336141745262}
+  - component: {fileID: 54757675860569248}
   m_Layer: 0
   m_Name: Guardian of Peace
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,17 +507,18 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1611194460910572}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 294.28, y: 75.81969, z: -49.551468}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.8459206, z: -0, w: 0.5333089}
+  m_LocalPosition: {x: -689.88, y: -20.410002, z: -290.72}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
+  - {fileID: 4339139716915854}
   - {fileID: 4382743455747404}
   - {fileID: 4816299050195846}
   - {fileID: 4205244959821582}
   - {fileID: 4434073161590176}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 115.54101, z: 0}
 --- !u!4 &4123750072474218
 Transform:
   m_ObjectHideFlags: 1
@@ -547,11 +568,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937691136890204}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.248, z: 0}
+  m_LocalPosition: {x: 0, y: -1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4109345321734314}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4287185353298718
 Transform:
@@ -609,6 +630,19 @@ Transform:
   m_Father: {fileID: 4904199372208956}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4339139716915854
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035992713918150}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -1.8099976, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4109345321734314}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4382743455747404
 Transform:
   m_ObjectHideFlags: 1
@@ -620,7 +654,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4109345321734314}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4434073161590176
 Transform:
@@ -633,7 +667,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4109345321734314}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4439758415064086
 Transform:
@@ -786,7 +820,7 @@ Transform:
   - {fileID: 4732400070011242}
   - {fileID: 4123750072474218}
   m_Father: {fileID: 4109345321734314}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4845560418449070
 Transform:
@@ -856,6 +890,33 @@ Transform:
   m_Father: {fileID: 4034072425588426}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54757675860569248
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611194460910572}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &65506897582878834
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035992713918150}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8, y: 2, z: 8}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95029890630305844
 Animator:
   serializedVersion: 3
@@ -865,7 +926,7 @@ Animator:
   m_GameObject: {fileID: 1611194460910572}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 60d7325897c36864b8cd77ffccc136fa, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 53714936fad1df84d973bc8fecefac3b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -907,6 +968,45 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114509643141551412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611194460910572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318fb25b66bdd634488b165e13bc9789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repeatDialog: 0
+  dialog: PacifistIntro
+  hitDialog: GuardianHit
+  ableSpeak: 0
+--- !u!114 &114752722629957330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035992713918150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82d7a17e4fb1ac48a8c94bca10b6cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &136613336141745262
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611194460910572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!137 &137535854111964652
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

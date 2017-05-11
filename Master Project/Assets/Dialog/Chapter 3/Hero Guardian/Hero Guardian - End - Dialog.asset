@@ -14,9 +14,22 @@ MonoBehaviour:
   DialogLength: 0
   Name:
   - Guardian of Heroism
+  - Guardian of Heroism
+  - Guardian of Heroism
+  - Guardian of Heroism
+  - Guardian of Heroism
   Text:
-  - Test
+  - Here you are again mighty champion!
+  - It is time for you to be judged!
+  - Well done, champion! Your resolve to rid the world of violence is shown in your
+    action.
+  - 'You have proven yourself worthy of not only the treasures in this room. '
+  - But also granted the opportunity to join me and fight evil in this world.
   Wait:
-  - 2
+  - 3
+  - 3
+  - 7
+  - 4
+  - 4
   Sound: []
   Choice: 0

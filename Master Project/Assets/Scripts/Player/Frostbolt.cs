@@ -19,6 +19,7 @@ public class Frostbolt : MonoBehaviour {
         if (other.tag == "NPC")
         {
             other.GetComponent<NPC>().npcHit();
+            Destroy(gameObject);
         }
 
 

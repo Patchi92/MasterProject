@@ -14,9 +14,20 @@ MonoBehaviour:
   DialogLength: 0
   Name:
   - Guardian of Peace
+  - Guardian of Peace
+  - Guardian of Peace
+  - Guardian of Peace
   Text:
-  - Test
+  - Here you are again mighty champion!
+  - It is time for you to be judged!
+  - I applause your peaceful approach, champion! I can only admire how you have handled
+    the events you have been through.
+  - You have proven yourself worthy of not only the treasures in this room, but also
+    of my blessing!
   Wait:
-  - 2
+  - 3
+  - 3
+  - 8
+  - 8
   Sound: []
   Choice: 0

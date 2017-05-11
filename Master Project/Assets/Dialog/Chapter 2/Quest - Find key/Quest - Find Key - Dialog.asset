@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 2
   Name:
-  - Peasant
-  - Peasant
+  - Girl
+  - Girl
   Text:
-  - Hey Soldier! Can i have you attention?
-  - When the undead attack the city i lost my key to my house. Could you please help
+  - Hey soldier!
+  - When the undead attack the city i lost the key to my house. Could you please help
     me find it?
   Wait:
   - 3

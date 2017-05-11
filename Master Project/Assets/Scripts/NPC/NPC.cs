@@ -124,7 +124,7 @@ public class NPC : MonoBehaviour {
 
             if (gameObject.name == "Peasent - Find Quest")
             {
-                gameObject.GetComponent<EnemyMelee>().enabled = true;
+                Girl();
             }
 
             if(GameObject.Find("Interact") != null)
@@ -135,6 +135,19 @@ public class NPC : MonoBehaviour {
             gameObject.transform.FindChild("SpeakArea").gameObject.SetActive(false);
             gameObject.GetComponent<NPC>().enabled = false;
         }
+    }
+
+    public void Girl()
+    {
+        PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
+        PlayerPrefs.SetInt("KillerPoints", PlayerPrefs.GetInt("KillerPoints") + 1);
+        PlayerPrefs.SetInt("NPCsKilled", 1);
+        PlayerPrefs.SetInt("Destruction", PlayerPrefs.GetInt("Destruction") + 1);
+
+        GameObject.Find("Player").GetComponent<PlayerClass>().ExpEarned(200);
+
+        aniObject.SetTrigger("Death");
+        Destroy(gameObject, 7);
     }
 
 }

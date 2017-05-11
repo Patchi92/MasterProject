@@ -11,14 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
   m_Name: Quest - Find Key - Choice
   m_EditorClassIdentifier: 
-  Name: Peasant
+  Name: Girl
   choice:
   - Help find the key.
-  - Refuse to help the peasant.
-  - Make him pay with blood.
+  - Refuse to help the girl.
+  - Make her pay with blood.
   response:
   - Thank you soldier! Return to be me when you have the key.
-  - As you wish soldier.
+  - How can you be so cruel?
   - No.. Please forgive me!
   wait:
   - 5

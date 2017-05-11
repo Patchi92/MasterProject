@@ -24,17 +24,22 @@ public class ChapterTwoIntro : MonoBehaviour
             if (PlayerPrefs.GetString("PlayerType") == "Hero")
             {
                 GameObject.Find("NarrativeSystem").GetComponent<NarrativeSystem>().Narrative("ChapterTwoIntroHero");
+                GameObject.Find("NarrativeSystem").GetComponent<NarrativeSystem>().unlockPlayerType = true;
             }
 
             if (PlayerPrefs.GetString("PlayerType") == "Killer")
             {
                 GameObject.Find("NarrativeSystem").GetComponent<NarrativeSystem>().Narrative("ChapterTwoIntroKiller");
+                GameObject.Find("NarrativeSystem").GetComponent<NarrativeSystem>().unlockPlayerType = true;
             }
 
             if (PlayerPrefs.GetString("PlayerType") == "Pacifist")
             {
                 GameObject.Find("NarrativeSystem").GetComponent<NarrativeSystem>().Narrative("ChapterTwoIntroPacifist");
+                GameObject.Find("NarrativeSystem").GetComponent<NarrativeSystem>().unlockPlayerType = true;
             }
+
+           
 
             Destroy(gameObject);
         }

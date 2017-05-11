@@ -36,7 +36,7 @@ public class NarrativeSystem : MonoBehaviour {
     public GameObject ChapterThree;
 
     string currentNarrative;
-    bool unlockPlayerType; 
+    public bool unlockPlayerType; 
 
     void Awake()
     {
@@ -371,7 +371,7 @@ public class NarrativeSystem : MonoBehaviour {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 7);
             ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 3);
 
-            if (PlayerPrefs.GetString("Version") != "Complex")
+            if (PlayerPrefs.GetString("Version") == "Complex")
             {
                 PlayerPrefs.SetString("PlayerType", "Hero");
                 gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
@@ -413,19 +413,16 @@ public class NarrativeSystem : MonoBehaviour {
         if (info == "ChapterTwoIntroPacifist")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 14);
-            unlockPlayerType = true;
         }
 
         if (info == "ChapterTwoIntroKiller")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 15);
-            unlockPlayerType = true;
         }
 
         if (info == "ChapterTwoIntroHero")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 16);
-            unlockPlayerType = true;
         }
 
         if (info == "GuardDialog")
@@ -505,6 +502,7 @@ public class NarrativeSystem : MonoBehaviour {
 
         if (info == "FindCompleted")
         {
+            GameObject.Find("Peasent - Find Quest").GetComponent<Animator>().SetTrigger("Happy");
             player.GetComponent<PlayerClass>().ExpEarned(200);
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 26);
         }
@@ -541,19 +539,19 @@ public class NarrativeSystem : MonoBehaviour {
         if (info == "EndGamePacifist")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 31);
-            Invoke("GameEnd", 10f);
+            Invoke("GameEnd", 22f);
         }
 
         if (info == "EndGameKiller")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 32);
-            Invoke("GameEnd", 10f);
+            Invoke("GameEnd", 22f);
         }
 
         if (info == "EndGameHero")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 33);
-            Invoke("GameEnd", 10f);
+            Invoke("GameEnd", 22f);
         }
 
 
@@ -773,8 +771,7 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (choice == 3)
             {
-                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
-                GameObject.Find("Peasent - Kill Quest").GetComponent<EnemyMelee>().enabled = true;
+                GameObject.Find("Peasent - Find Quest").GetComponent<NPC>().Girl();
             }
         }
 

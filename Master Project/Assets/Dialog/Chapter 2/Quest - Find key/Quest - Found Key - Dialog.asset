@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 2
   Name:
-  - Peasant
-  - Peasant
+  - Girl
+  - Girl
   Text:
   - My Key!
-  - Thank you might soldier. Your heroic deeds will be noted!
+  - Thank you so much. Now i can get some to safety!
   Wait:
   - 3
   - 4
