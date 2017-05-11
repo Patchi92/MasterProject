@@ -82,6 +82,15 @@ public class Questionnaire : MonoBehaviour
     string questionThree;
     string questionFour;
 
+    // Narrative Feedback
+
+    public GameObject narrativeFeedback;
+
+    public GameObject story;
+    public GameObject behavior;
+    public GameObject actions;
+    public GameObject feedback;
+
 
 
     public GameObject nextButton;
@@ -91,7 +100,11 @@ public class Questionnaire : MonoBehaviour
 
     // Temp Data
 
-    
+    int tempDataOne;
+    int tempDataTwo;
+    int tempDataThree;
+    int tempDataFour;
+
 
 
     // Data Part 1
@@ -117,6 +130,56 @@ public class Questionnaire : MonoBehaviour
     int oneCDQuestionSixteen;
 
     // Data Part 2
+
+    int twoCDQuestionOne;
+    int twoCDQuestionTwo;
+    int twoCDQuestionThree;
+    int twoCDQuestionFour;
+
+    int twoCDQuestionFive;
+    int twoCDQuestionSix;
+    int twoCDQuestionSeven;
+    int twoCDQuestionEight;
+
+    int twoCDQuestionNine;
+    int twoCDQuestionTen;
+    int twoCDQuestionEleven;
+    int twoCDQuestionTwelve;
+
+    int twoCDQuestionThirteen;
+    int twoCDQuestionFourteen;
+    int twoCDQuestionFifthteen;
+    int twoCDQuestionSixteen;
+
+    int twoCDQuestionSeventeen;
+    int twoCDQuestionEighteen;
+    int twoCDQuestionNineteen;
+    int twoCDQuestionTwenty;
+
+    int twoCDQuestionTwentyOne;
+    int twoCDQuestionTwentyTwo;
+    int twoCDQuestionTwentyThree;
+    int twoCDQuestionTwentyFour;
+
+    int twoCDQuestionTwentyFive;
+    int twoCDQuestionTwentySix;
+    int twoCDQuestionTwentySeven;
+    int twoCDQuestionTwentyEight;
+
+    int twoCDQuestionTwentyNine;
+    int twoCDQuestionThirty;
+    int twoCDQuestionThirtyOne;
+    int twoCDQuestionThirtyTwo;
+
+    int twoCDQuestionThirtyThree;
+    int twoCDQuestionThirtyFour;
+    int twoCDQuestionThirtyFive;
+    int twoCDQuestionThirtySix;
+
+    int twoCDQuestionThirtySeven;
+    int twoCDQuestionThirtyEight;
+    int twoCDQuestionThirtyNine;
+    int twoCDQuestionFourty;
 
 
 
@@ -168,10 +231,10 @@ public class Questionnaire : MonoBehaviour
             questionnaireQuestions.SetActive(true);
             nextButton.SetActive(true);
 
-            questionOneText.GetComponent<Text>().text = "While playing, I lost track of time.";
-            questionTwoText.GetComponent<Text>().text = "I was able to concentrate on the game during play.";
-            questionThreeText.GetComponent<Text>().text = "During play, I sometimes found my mind wandering / found I was thinking of other things.";
-            questionFourText.GetComponent<Text>().text = "During play, I noticed a lot of small details about the game.";
+            questionOneText.GetComponent<Text>().text = "Would you like to continue.";
+            questionTwoText.GetComponent<Text>().text = "While playing, I lost track of time.";
+            questionThreeText.GetComponent<Text>().text = "I was able to concentrate on the game during play.";
+            questionFourText.GetComponent<Text>().text = "During play, I sometimes found my mind wandering / found I was thinking of other things";
 
             ToggleOff();
 
@@ -181,10 +244,16 @@ public class Questionnaire : MonoBehaviour
 
         if (pageInfo == 3)
         {
-            questionOneText.GetComponent<Text>().text = "During the game, I found myself paying more attention to my real-world surroundings, rather than the story of the game.";
-            questionTwoText.GetComponent<Text>().text = "During play, I felt like part of the story.";
-            questionThreeText.GetComponent<Text>().text = "During play, I was eager to find out what would happen next.";
-            questionFourText.GetComponent<Text>().text = "During the game, I felt like the narrative had created a world that I, as a player, was living in, while playing.";
+            oneCDQuestionOne = tempDataOne;
+            oneCDQuestionTwo = tempDataTwo;
+            oneCDQuestionThree = tempDataThree;
+            oneCDQuestionFour = tempDataFour;
+
+
+            questionOneText.GetComponent<Text>().text = "During play, I noticed a lot of small details about the game.";
+            questionTwoText.GetComponent<Text>().text = "During the game, I found myself paying more attention to my real-world surroundings, rather than the story of the game.";
+            questionThreeText.GetComponent<Text>().text = "During play, I felt like part of the story.";
+            questionFourText.GetComponent<Text>().text = "During play, I was eager to find out what would happen next.";
 
             ToggleOff();
 
@@ -195,43 +264,261 @@ public class Questionnaire : MonoBehaviour
 
         if (pageInfo == 4)
         {
-            questionOneText.GetComponent<Text>().text = "I tried to explore the world, as much as possible.";
-            questionTwoText.GetComponent<Text>().text = "I didn’t really feel like the choices I made, during the game, had a noticeable effect on the story.";
-            questionThreeText.GetComponent<Text>().text = "I tried to find alternative ways to complete the game.";
-            questionFourText.GetComponent<Text>().text = "I felt that the game was very linear, leaving little to no room for exploration and experimentation.";
+            oneCDQuestionFive = tempDataOne;
+            oneCDQuestionSix = tempDataTwo;
+            oneCDQuestionSeven = tempDataThree;
+            oneCDQuestionEight = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "During the game, I felt like the narrative had created a world that I, as a player, was living in, while playing.";
+            questionTwoText.GetComponent<Text>().text = "I tried to explore the world, as much as possible.";
+            questionThreeText.GetComponent<Text>().text = "I didn’t really feel like the choices I made, during the game, had a noticeable effect on the story.";
+            questionFourText.GetComponent<Text>().text = "I tried to find alternative ways to complete the game.";
 
             ToggleOff();
 
             pageLock = true;
-            pageLast = true;
 
         }
 
         if (pageInfo == 4)
         {
-            narrativeSystem.GetComponent<NarrativeSystem>().ChapterSelect(2);
-            gameObject.SetActive(false);
+            oneCDQuestionNine = tempDataOne;
+            oneCDQuestionTen = tempDataTwo;
+            oneCDQuestionEleven = tempDataThree;
+            oneCDQuestionTwelve = tempDataFour;
 
-            questionOneText.GetComponent<Text>().text = "I tried to explore the world, as much as possible.";
-            questionTwoText.GetComponent<Text>().text = "I didn’t really feel like the choices I made, during the game, had a noticeable effect on the story.";
-            questionThreeText.GetComponent<Text>().text = "I tried to find alternative ways to complete the game.";
-            questionFourText.GetComponent<Text>().text = "I felt that the game was very linear, leaving little to no room for exploration and experimentation.";
+            questionOneText.GetComponent<Text>().text = "I felt that the game was very linear, leaving little to no room for exploration and experimentation.";
+            questionTwoText.GetComponent<Text>().text = "Parts of the story are formed by me in the course of playing the game.";
+            questionThreeText.GetComponent<Text>().text = "Some tasks or conflicts in the game story are stimulating and suspenseful.";
+            questionFourText.GetComponent<Text>().text = "I feel successful when i overcome the obstacles, tasks or opponents in the game.";
 
             ToggleOff();
 
             pageLock = true;
-            pageLast = true;
 
         }
 
         if (pageInfo == 5)
         {
+            oneCDQuestionThirteen = tempDataOne;
+            oneCDQuestionFourteen = tempDataTwo;
+            oneCDQuestionFifthteen = tempDataThree;
+            oneCDQuestionSixteen = tempDataFour;
 
-            thanksPlaying.SetActive(true);
-            nextButtonText.GetComponent<Text>().text = "Quit";
+            questionOneText.GetComponent<Text>().text = "Would you like to continue.";
+            questionTwoText.GetComponent<Text>().text = "While playing, I lost track of time.";
+            questionThreeText.GetComponent<Text>().text = "I was able to concentrate on the game during play.";
+            questionFourText.GetComponent<Text>().text = "During play, I sometimes found my mind wandering / found I was thinking of other things.";
+
+            ToggleOff();
+
+            pageLock = true;
+
+            narrativeSystem.GetComponent<NarrativeSystem>().ChapterSelect(2);
+            gameObject.SetActive(false);
+
         }
 
+
         if (pageInfo == 6)
+        {
+            twoCDQuestionOne = tempDataOne;
+            twoCDQuestionTwo = tempDataTwo;
+            twoCDQuestionThree = tempDataThree;
+            twoCDQuestionFour = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "During play, I noticed a lot of small details about the game.";
+            questionTwoText.GetComponent<Text>().text = "During the game, I found myself paying more attention to my real-world surroundings, rather than the story of the game.";
+            questionThreeText.GetComponent<Text>().text = "During play, I felt like part of the story.";
+            questionFourText.GetComponent<Text>().text = "During play, I was eager to find out what would happen next.";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 7)
+        {
+            twoCDQuestionFive = tempDataOne;
+            twoCDQuestionSix = tempDataTwo;
+            twoCDQuestionSeven = tempDataThree;
+            twoCDQuestionEight = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "During the game, I felt like the narrative had created a world that I, as a player, was living in, while playing.";
+            questionTwoText.GetComponent<Text>().text = "The story quickly grabs my attention at the beginning.";
+            questionThreeText.GetComponent<Text>().text = "I found the story logical and convincing.";
+            questionFourText.GetComponent<Text>().text = "I felt like I understood why the characters were acting the way they did.";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 8)
+        {
+            twoCDQuestionNine = tempDataOne;
+            twoCDQuestionTen = tempDataTwo;
+            twoCDQuestionEleven = tempDataThree;
+            twoCDQuestionTwelve = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "During the game, I had a feeling that I knew what would happen next.";
+            questionTwoText.GetComponent<Text>().text = "I felt that the plot of the story was very predictable and uninspiring";
+            questionThreeText.GetComponent<Text>().text = "I am not sure that I understand the characters ";
+            questionFourText.GetComponent<Text>().text = "I had an easy time identifying with the characters in the story.";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 9)
+        {
+            twoCDQuestionThirteen = tempDataOne;
+            twoCDQuestionFourteen = tempDataTwo;
+            twoCDQuestionFifthteen = tempDataThree;
+            twoCDQuestionSixteen = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "I felt like I was able to understand the events of the story, in a similar way to how the characters of the game understood them. ";
+            questionTwoText.GetComponent<Text>().text = "I could easily imagine myself being put in the situation of some of the characters.";
+            questionThreeText.GetComponent<Text>().text = "At some points, during the game, I felt an emotional connection with some of the characters.";
+            questionFourText.GetComponent<Text>().text = "The story had no emotional effect on me.";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 10)
+        {
+            twoCDQuestionSeventeen = tempDataOne;
+            twoCDQuestionEighteen = tempDataTwo;
+            twoCDQuestionNineteen = tempDataThree;
+            twoCDQuestionTwenty = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "After finishing the game, it takes a long time for me to return to the real world psychologically and emotionally.";
+            questionTwoText.GetComponent<Text>().text = "I tried to explore the world, as much as possible.";
+            questionThreeText.GetComponent<Text>().text = "If I had the chance, I would have changed some of the choices I made during the game.";
+            questionFourText.GetComponent<Text>().text = "I didn’t really feel like the choices I made, during the game, had a noticeable effect on the story. ";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 11)
+        {
+            twoCDQuestionTwentyOne = tempDataOne;
+            twoCDQuestionTwentyTwo = tempDataTwo;
+            twoCDQuestionTwentyThree = tempDataThree;
+            twoCDQuestionTwentyFour = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "I tried to find alternative ways to complete the game.";
+            questionTwoText.GetComponent<Text>().text = "I felt that the game was very linear, leaving little to no room for exploration and experimentation.";
+            questionThreeText.GetComponent<Text>().text = "I felt like my choices didn’t really matter to the outcome of the story.";
+            questionFourText.GetComponent<Text>().text = "I didn’t understand the goals of the characters.";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 12)
+        {
+            twoCDQuestionTwentyFive = tempDataOne;
+            twoCDQuestionTwentySix = tempDataTwo;
+            twoCDQuestionTwentySeven = tempDataThree;
+            twoCDQuestionTwentyEight = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "I felt that the gameworld was both rich and interesting.";
+            questionTwoText.GetComponent<Text>().text = "I found the story interesting.";
+            questionThreeText.GetComponent<Text>().text = "While playing, I felt a bit too stressed about other things, to really enjoy the game. ";
+            questionFourText.GetComponent<Text>().text = "Parts of the story are formed by me in the course of playing the game.";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 13)
+        {
+            twoCDQuestionTwentyNine = tempDataOne;
+            twoCDQuestionThirty = tempDataTwo;
+            twoCDQuestionThirtyOne = tempDataThree;
+            twoCDQuestionThirtyTwo = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "Some tasks or conflicts in the game story are stimulating and suspenseful.";
+            questionTwoText.GetComponent<Text>().text = "I feel successful when i overcome the obstacles, tasks or opponents in the game.";
+            questionThreeText.GetComponent<Text>().text = "I can control the game interface.";
+            questionFourText.GetComponent<Text>().text = "I can control the character to move according to my arrangement";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 14)
+        {
+            twoCDQuestionThirtyThree = tempDataOne;
+            twoCDQuestionThirtyFour = tempDataTwo;
+            twoCDQuestionThirtyFive = tempDataThree;
+            twoCDQuestionThirtySix = tempDataFour;
+
+            questionOneText.GetComponent<Text>().text = "I am interested in the style of the game interface.";
+            questionTwoText.GetComponent<Text>().text = "I am familiar with the cultural background.";
+            questionThreeText.GetComponent<Text>().text = "I found many events in the game story original.";
+            questionFourText.GetComponent<Text>().text = "I recognise some of story presented in the game.";
+
+            ToggleOff();
+
+            pageLock = true;
+
+        }
+
+        if (pageInfo == 15)
+        {
+            twoCDQuestionThirtySeven = tempDataOne;
+            twoCDQuestionThirtyEight = tempDataTwo;
+            twoCDQuestionThirtyNine = tempDataThree;
+            twoCDQuestionFourty = tempDataFour;
+
+            ToggleOff();
+
+
+            
+
+            // Narrative Questions
+
+            questionnaireQuestions.SetActive(false);
+            narrativeFeedback.SetActive(true);
+
+            pageLast = true;
+            pageLock = false;
+        }
+
+
+
+
+
+        if (pageInfo == 16)
+        {
+            thanksPlaying.SetActive(true);
+            nextButtonText.GetComponent<Text>().text = "Quit";
+
+
+
+
+        }
+
+
+        if (pageInfo == 17)
         {
             Application.Quit();
 
@@ -289,44 +576,58 @@ public class Questionnaire : MonoBehaviour
                 {
                     if(PlayerPrefs.GetString("Version") == "Simple")
                     {
-                        sw.Write("A ;; "); 
+                        sw.WriteLine("A ;; "); 
                     }
 
                     if (PlayerPrefs.GetString("Version") == "Complex")
                     {
-                        sw.Write("B ;; ");
+                        sw.WriteLine("B ;; ");
                     }
 
                     if (PlayerPrefs.GetString("Version") == "Mixed")
                     {
-                        sw.Write("C ;; ");
+                        sw.WriteLine("C ;; ");
                     }
 
 
                     // Demographic
-                    sw.Write("Demographic");
-                    sw.Write(ageInfo + " ;; " + genderInfo + " ;; " + gameHourInfo + " ;; " + favoriteGameOneInfo + " ;; " + favoriteGameTwoInfo + " ;; " + favoriteGameThreeInfo + " ;; ");
-                    sw.Write("");
+                    sw.WriteLine("Demographic");
+                    sw.WriteLine(ageInfo + " ;; " + genderInfo + " ;; " + gameHourInfo + " ;; " + favoriteGameOneInfo + " ;; " + favoriteGameTwoInfo + " ;; " + favoriteGameThreeInfo);
+                    sw.WriteLine("");
 
                     // Narrative Path
-                    sw.Write("Narrative Path");
-                    sw.Write(PlayerPrefs.GetString("PlayerType").ToString() + " ;; ");
-                    sw.Write("");
+                    sw.WriteLine("Narrative Path");
+                    sw.WriteLine(PlayerPrefs.GetString("PlayerType").ToString() + " ;; ");
+                    sw.WriteLine("");
+
+                    // Narrative Feedback
+                    sw.WriteLine("Narrative Feedback");
+                    sw.WriteLine(PlayerPrefs.GetString("PlayerType").ToString());
+                    sw.WriteLine("");
+                    sw.WriteLine(story.GetComponent<InputField>().text);
+                    sw.WriteLine("");
+                    sw.WriteLine(actions.GetComponent<InputField>().text);
+                    sw.WriteLine("");
+                    sw.WriteLine(behavior.GetComponent<InputField>().text);
+                    sw.WriteLine("");
+                    sw.WriteLine(feedback.GetComponent<InputField>().text);
+                    sw.WriteLine("");
+                    sw.WriteLine("");
 
                     // Player Behavior
-                    sw.Write("Player Behavior");
-                    sw.Write(PlayerPrefs.GetInt("Destruction").ToString() + " ;; " + PlayerPrefs.GetInt("Excitement").ToString() + " ;; " + PlayerPrefs.GetInt("Challenge").ToString() + " ;; " + PlayerPrefs.GetInt("Strategy").ToString() + " ;; " + PlayerPrefs.GetInt("Completion").ToString() + " ;; " + PlayerPrefs.GetInt("Power").ToString() + " ;; " + PlayerPrefs.GetInt("Fantasy").ToString() + " ;; " + PlayerPrefs.GetInt("Story").ToString() + " ;; " + PlayerPrefs.GetInt("Design").ToString() + " ;; " + PlayerPrefs.GetInt("Discovery").ToString() + " ;; ");
-                    sw.Write("");
+                    sw.WriteLine("Player Behavior");
+                    sw.WriteLine(PlayerPrefs.GetInt("Destruction").ToString() + " ;; " + PlayerPrefs.GetInt("Excitement").ToString() + " ;; " + PlayerPrefs.GetInt("Challenge").ToString() + " ;; " + PlayerPrefs.GetInt("Strategy").ToString() + " ;; " + PlayerPrefs.GetInt("Completion").ToString() + " ;; " + PlayerPrefs.GetInt("Power").ToString() + " ;; " + PlayerPrefs.GetInt("Fantasy").ToString() + " ;; " + PlayerPrefs.GetInt("Story").ToString() + " ;; " + PlayerPrefs.GetInt("Design").ToString() + " ;; " + PlayerPrefs.GetInt("Discovery").ToString() + " ;; ");
+                    sw.WriteLine("");
 
                     // CD Questions: Round 1
-                    sw.Write("CD Questions: Round 1");
-                    sw.Write("test");
-                    sw.Write("");
+                    sw.WriteLine("CD Questions: Round 1");
+                    sw.WriteLine(oneCDQuestionOne + " ;; " + oneCDQuestionTwo + " ;; " + oneCDQuestionThree + " ;; " + oneCDQuestionFour + " ;; " + oneCDQuestionFive + " ;; " + oneCDQuestionSix + " ;; " + oneCDQuestionSeven + " ;; " + oneCDQuestionEight + " ;; " + oneCDQuestionNine + " ;; " + oneCDQuestionTen + " ;; " + oneCDQuestionEleven + " ;; " + oneCDQuestionTwelve + " ;; " + oneCDQuestionThirteen + " ;; " + oneCDQuestionFourteen + " ;; " + oneCDQuestionFifthteen + " ;; " + oneCDQuestionSixteen);
+                    sw.WriteLine("");
 
                     // CD Questions: Round 2
-                    sw.Write("CD Questions: Round 2");
-                    sw.Write("test");
-                    sw.Write("");
+                    sw.WriteLine("CD Questions: Round 2");
+                    sw.WriteLine(twoCDQuestionOne + " ;; " + twoCDQuestionTwo + " ;; " + twoCDQuestionThree + " ;; " + twoCDQuestionFour + " ;; " + twoCDQuestionFive + " ;; " + twoCDQuestionSix + " ;; " + twoCDQuestionSeven + " ;; " + twoCDQuestionEight + " ;; " + twoCDQuestionNine + " ;; " + twoCDQuestionTen + " ;; " + twoCDQuestionEleven + " ;; " + twoCDQuestionTwelve + " ;; " + twoCDQuestionThirteen + " ;; " + twoCDQuestionFourteen + " ;; " + twoCDQuestionFifthteen + " ;; " + twoCDQuestionSixteen + " ;; " + twoCDQuestionSeventeen + " ;; " + twoCDQuestionEighteen + " ;; " + twoCDQuestionNineteen + " ;; " + twoCDQuestionTwenty + " ;; " + twoCDQuestionTwentyOne + " ;; " + twoCDQuestionTwentyTwo + " ;; " + twoCDQuestionTwentyThree + " ;; " + twoCDQuestionTwentyFour + " ;; " + twoCDQuestionTwentyFive + " ;; " + twoCDQuestionTwentySix + " ;; " + twoCDQuestionTwentySeven + " ;; " + twoCDQuestionTwentyEight + " ;; " + twoCDQuestionTwentyNine + " ;; " + twoCDQuestionThirty + " ;; " + twoCDQuestionThirtyOne + " ;; " + twoCDQuestionThirtyTwo + " ;; " + twoCDQuestionThirtyThree + " ;; " + twoCDQuestionThirtyFour + " ;; " + twoCDQuestionThirtyFive + " ;; " + twoCDQuestionThirtySix + " ;; " + twoCDQuestionThirtySeven + " ;; " + twoCDQuestionThirtyEight + " ;; " + twoCDQuestionThirtyNine + " ;; " + twoCDQuestionFourty);
+                    sw.WriteLine("");
 
 
 
@@ -343,6 +644,10 @@ public class Questionnaire : MonoBehaviour
             PageUpdate();
         }
     }
+
+    
+   
+
 
     void ToggleOff()
     {
@@ -378,91 +683,54 @@ public class Questionnaire : MonoBehaviour
 
         if (questionOneA.GetComponent<Toggle>().isOn == true)
         {
-            
+            tempDataOne = 1;
         }
 
         if (questionOneB.GetComponent<Toggle>().isOn == true)
         {
-            
+            tempDataOne = 2;
         }
 
         if (questionOneC.GetComponent<Toggle>().isOn == true)
         {
-           
+            tempDataOne = 3;
         }
 
         if (questionOneD.GetComponent<Toggle>().isOn == true)
         {
-            
+            tempDataOne = 4;
         }
 
         if (questionOneE.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-                oneCDQuestionOne = 5;
-                oneCDQuestionFour = 5;
-                oneCDQuestionEight = 5;
-                oneCDQuestionTwelve = 5;
-            }
+            tempDataOne = 5;
         }
 
         // Question 2
 
         if (questionTwoA.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-                oneCDQuestionTwo = 1;
-                oneCDQuestionFive = 1;
-                oneCDQuestionNine = 1;
-                oneCDQuestionThirteen = 1;
-            }
+            tempDataTwo = 1;
         }
 
         if (questionTwoB.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-                oneCDQuestionTwo = 2;
-                oneCDQuestionFive = 2;
-                oneCDQuestionNine = 2;
-                oneCDQuestionThirteen = 2;
-            }
+            tempDataTwo = 2;
         }
 
         if (questionTwoC.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-                oneCDQuestionTwo = 1;
-                oneCDQuestionFive = 1;
-                oneCDQuestionNine = 1;
-                oneCDQuestionThirteen = 1;
-            }
+            tempDataTwo = 3;
         }
 
         if (questionTwoD.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-                oneCDQuestionTwo = 1;
-                oneCDQuestionFive = 1;
-                oneCDQuestionNine = 1;
-                oneCDQuestionThirteen = 1;
-
-            }
+            tempDataTwo = 4;
         }
 
         if (questionTwoE.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-                oneCDQuestionTwo = 1;
-                oneCDQuestionFive = 1;
-                oneCDQuestionNine = 1;
-                oneCDQuestionThirteen = 1;
-            }
+            tempDataTwo = 5;
         }
 
 
@@ -470,84 +738,54 @@ public class Questionnaire : MonoBehaviour
 
         if (questionThreeA.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataThree = 1;
         }
 
         if (questionThreeB.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataThree = 2;
         }
 
         if (questionThreeC.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataThree = 3;
         }
 
         if (questionThreeD.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataThree = 4;
         }
 
         if (questionThreeE.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataThree = 5;
         }
 
         // Question 4
 
         if (questionFourA.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataFour = 1;
         }
 
         if (questionFourB.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataFour = 2;
         }
 
         if (questionFourC.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataFour = 3;
         }
 
         if (questionFourD.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataFour = 4;
         }
 
         if (questionFourE.GetComponent<Toggle>().isOn == true)
         {
-            if (pageInfo == 1)
-            {
-
-            }
+            tempDataFour = 5;
         }
 
         #endregion

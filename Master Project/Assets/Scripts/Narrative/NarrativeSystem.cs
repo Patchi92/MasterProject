@@ -296,6 +296,7 @@ public class NarrativeSystem : MonoBehaviour {
             ChapterTwo.SetActive(false);
             ChapterThree.SetActive(true);
             player.SetActive(true);
+            player.transform.rotation = new Quaternion(0, 180, 0, 0);
         }
 
     }
@@ -346,7 +347,10 @@ public class NarrativeSystem : MonoBehaviour {
             if (PlayerPrefs.GetString("Version") != "Complex")
             {
                 ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 1);
-            } 
+            } else
+            {
+                gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
+            }
             
         }
 
@@ -357,6 +361,9 @@ public class NarrativeSystem : MonoBehaviour {
             if (PlayerPrefs.GetString("Version") != "Complex")
             {
                 ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 2);
+            } else
+            {
+                gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
             }
 
         }
@@ -368,6 +375,9 @@ public class NarrativeSystem : MonoBehaviour {
             if (PlayerPrefs.GetString("Version") != "Complex")
             {
                 ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 3);
+            } else
+            {
+                gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
             }
 
         }
