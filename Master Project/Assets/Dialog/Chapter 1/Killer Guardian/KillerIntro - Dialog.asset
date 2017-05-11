@@ -11,17 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
   m_Name: KillerIntro - Dialog
   m_EditorClassIdentifier: 
-  DialogLength: 2
+  DialogLength: 3
   Name:
   - You
   - Guardian of Death
+  - Guardian of Death
   Text:
-  - 'Hello! Who are you?
+  - 'Who are you?
 
 '
   - I am the Guardian of Death!
+  - Fulfill cruel and dreadful deeds and i will be your champion.
   Wait:
-  - 2
-  - 2
+  - 3
+  - 3
+  - 4
   Sound: []
   Choice: 0

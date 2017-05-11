@@ -22,6 +22,7 @@ public class PlayerClass : MonoBehaviour {
     //Player
     GameObject player;
     int health;
+    int tempHealth;
     int level;
     int exp;
     int gold;
@@ -143,7 +144,8 @@ public class PlayerClass : MonoBehaviour {
             {
                 gameObject.transform.position = spawnThree.transform.position;
             }
-
+            health = 100;
+            HealthAmountUI.text = "HP: " + health.ToString();
         }
 
 
@@ -275,7 +277,7 @@ public class PlayerClass : MonoBehaviour {
 
         if (PlayerPrefs.GetString("PlayerClass") == "Warrior")
         {
-            damageReduction = 5;
+            damageReduction = 3;
             shieldUp = false;
             shieldDown = true;
 
@@ -348,7 +350,15 @@ public class PlayerClass : MonoBehaviour {
     {
         PlayerPrefs.SetInt("PlayerDamageTaken", PlayerPrefs.GetInt("PlayerDamageTaken") + amount);
 
+        tempHealth = health;
+
         health = health - (amount - damageReduction);
+
+        if(health > tempHealth)
+        {
+            health = tempHealth;
+        }
+
         if(health > 100)
         {
             health = 100;

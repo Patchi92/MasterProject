@@ -11,20 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
   m_Name: IntroEndQuest - Choice
   m_EditorClassIdentifier: 
-  Name: The Witch
+  Name: Witch
   choice:
   - Accept Blessing
   - Refuse Artifact
-  - Take Artifact and Attack Witch
+  - Attack Witch
   response:
   - Take this blessing with you on your journey. May it help you when it is needed
     the most.
-  - If that is what you wish. Be careful out there little soldier. Many dangers lurk
-    in the darkness
-  - How dare you!
+  - Aha.. A peacekeeper. Be careful out there little soldier. Many dangers lurks in
+    the darkness
+  - How dare you! I offer you power and this is how you repay me?
   wait:
-  - 4
-  - 4
-  - 2
+  - 6
+  - 6
+  - 5
   simpleQuestion: 0
   removeSymbol: 0

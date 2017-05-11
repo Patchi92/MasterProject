@@ -13,16 +13,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 3
   Name:
-  - The Witch
-  - The Witch
-  - The Witch
+  - Witch
+  - Witch
+  - You
+  - Witch
   Text:
   - Ah. I see that you return with the artifact.
-  - To be honest you can keep that thing. All of this was just a test of strength.
-  - Take this blessing and get on your way on your journey.
+  - To be honest you can keep that thing. All i did was just to set things in motion.
+  - Things in motion? What is going to happen?
+  - You will know soon enough little soldier. Take this blessing and get on with your
+    journey.
   Wait:
-  - 2
-  - 3
-  - 2
+  - 4
+  - 5
+  - 4
+  - 6
   Sound: []
   Choice: 1

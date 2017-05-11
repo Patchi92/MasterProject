@@ -11,15 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
   m_Name: PaceifistIntro - Dialog
   m_EditorClassIdentifier: 
-  DialogLength: 5
+  DialogLength: 2
   Name:
   - You
   - Guardian of Peace
+  - Guardian of Peace
   Text:
-  - Ehm.. Hello. Who are you?
+  - Who are you?
   - I am the Guardian of Peace!
+  - Remain passive and peaceful and i will be your champion.
   Wait:
+  - 2
+  - 2
   - 3
-  - 5
   Sound: []
   Choice: 0

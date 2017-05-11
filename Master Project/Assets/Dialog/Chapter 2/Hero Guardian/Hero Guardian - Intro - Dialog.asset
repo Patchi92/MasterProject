@@ -14,9 +14,20 @@ MonoBehaviour:
   DialogLength: 0
   Name:
   - Guardian of Heroism
+  - Guardian of Heroism
+  - Guardian of Heroism
+  - Guardian of Heroism
   Text:
-  - Bla bla Hero
+  - I see you follow the path of heroism!
+  - Keep up the good deeds and you will be rewarded in the end!
+  - This trial will last until midnight. When the time is up go and meet me at the
+    city gate.
+  - In case you want to try out another of the mighty wepons in your arsenal. All
+    you need to do is speak with me.
   Wait:
   - 3
+  - 4
+  - 6
+  - 8
   Sound: []
   Choice: 0

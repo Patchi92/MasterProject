@@ -14,9 +14,12 @@ MonoBehaviour:
   DialogLength: 0
   Name:
   - Guardian of Heroism
+  - Guardian of Heroism
   Text:
-  - Test
+  - The trial is over!
+  - Meet me in the cave where it all began!
   Wait:
-  - 2
+  - 3
+  - 4
   Sound: []
   Choice: 0

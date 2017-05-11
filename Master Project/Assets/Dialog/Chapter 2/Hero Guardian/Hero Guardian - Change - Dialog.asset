@@ -15,8 +15,8 @@ MonoBehaviour:
   Name:
   - Guardian of Heroism
   Text:
-  - What weapon would you like to use little soldier?
+  - What weapon would you like to use champion?
   Wait:
-  - 2
+  - 3
   Sound: []
   Choice: 1

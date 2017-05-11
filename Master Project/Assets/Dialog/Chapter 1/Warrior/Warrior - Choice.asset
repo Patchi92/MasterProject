@@ -13,12 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: You
   choice:
-  - Pick up sword and shield
-  - Leave sword
+  - Pick up The Sword and Shield of Justice
+  - Leave the weapons.
   response:
-  - You feel the might of the warrior!
-  - You shake and turn away from the sword and shield
+  - You pick up The Sword and Shield of Justice. You feel righteous!
+  - You shake and turn away from the weapons.
   wait:
   - 3
   - 3
   simpleQuestion: 1
+  removeSymbol: 0

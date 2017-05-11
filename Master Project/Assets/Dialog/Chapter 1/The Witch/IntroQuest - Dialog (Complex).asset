@@ -13,25 +13,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 0
   Name:
-  - The Witch
-  - The Witch
-  - The Witch
+  - Witch
   - You
-  - The Witch
+  - Witch
+  - You
+  - Witch
   Text:
-  - Good evening, soldier; you seem to have some skills, a large knapsack, and you
-    are a real soldier; so you shall have as much money as ever you like.
-  - Do you see that cave?
-  - All you need to do is enter and claim your price!
-  - But what am I to give you, you old witch? For, of course, you do not mean to tell
-    me all this for nothing.
+  - Good evening little soldier. You seem to have some skills and a large knapsack.
+    Do you want to earn some gold for the road?
+  - You seem awfully friendly considering that you are a being of dark magic.
+  - Now now. No need to be flattering. All you need to do is enter the cave and claim
+    your price!
+  - But what am I to give you. For, of course, you do not mean to grant me all this
+    for nothing.
   - I do not ask for a single penny. Only promise to bring me one of the old artifacts,
     which my old master left behind the last time she went down there.
   Wait:
+  - 7
+  - 5
   - 6
-  - 3
   - 6
-  - 6
-  - 6
+  - 8
   Sound: []
   Choice: 0

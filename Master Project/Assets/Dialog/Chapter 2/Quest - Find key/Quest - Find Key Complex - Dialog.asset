@@ -9,14 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
-  m_Name: Warrior - Dialog
+  m_Name: Quest - Find Key Complex - Dialog
   m_EditorClassIdentifier: 
-  DialogLength: 1
+  DialogLength: 2
   Name:
-  - You
+  - Peasant
+  - Peasant
   Text:
-  - '*The feeling of heroism flows through you*'
+  - Hey Soldier! Can i have you attention?
+  - When the undead attack the city i lost my key to my house. Could you please help
+    me find it?
   Wait:
   - 3
+  - 7
   Sound: []
-  Choice: 1
+  Choice: 0

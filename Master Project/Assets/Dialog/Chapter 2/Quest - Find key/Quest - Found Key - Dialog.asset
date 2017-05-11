@@ -13,13 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 2
   Name:
-  - Peasent
-  - Peasent
+  - Peasant
+  - Peasant
   Text:
   - My Key!
-  - Thank you might soldier. Here is something for you trouble!
+  - Thank you might soldier. Your heroic deeds will be noted!
   Wait:
-  - 2
   - 3
+  - 4
   Sound: []
   Choice: 0

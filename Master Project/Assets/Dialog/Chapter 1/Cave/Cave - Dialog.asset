@@ -11,18 +11,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
   m_Name: Cave - Dialog
   m_EditorClassIdentifier: 
-  DialogLength: 3
+  DialogLength: 6
   Name:
   - Guardians
-  - Player
+  - Guardians
+  - You
+  - Guardians
+  - You
   - Guardians
   Text:
-  - Hello Madsmus
-  - Ehm hello?
-  - Plz take a weapon and fuck off
+  - Hello mighty soldier. Welcome to our cave. We are the guardians of this city!
+  - You might wonder why you are here.
+  - I have heard rumors about an artifact being in this cave.
+  - It seems like you want to participate in the trials of legends. Know that your
+    every move will be judged.
+  - I am here out of curiosity.
+  - Ah.. You have much to learn little soldier. Go take an artifact at the end of
+    the hallway.
   Wait:
-  - 3
-  - 2
-  - 3
+  - 6
+  - 5
+  - 5
+  - 8
+  - 5
+  - 7
   Sound: []
   Choice: 0

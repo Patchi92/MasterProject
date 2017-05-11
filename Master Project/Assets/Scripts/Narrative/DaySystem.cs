@@ -33,8 +33,6 @@ public class DaySystem : MonoBehaviour {
         yield return new WaitForSeconds(45f);
         RenderSettings.ambientIntensity = 0.3f;
         yield return new WaitForSeconds(45f);
-        RenderSettings.ambientIntensity = 0.25f;
-        yield return new WaitForSeconds(45f);
         RenderSettings.ambientIntensity = 0.2f;
 
         player = GameObject.Find("Player");

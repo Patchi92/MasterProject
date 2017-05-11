@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
   m_Name: Mage - Dialog
   m_EditorClassIdentifier: 
-  DialogLength: 0
+  DialogLength: 1
   Name:
-  - Staff
+  - You
   Text:
-  - '*It feels like it wants you to pick it up*'
+  - '*You feel great power radiating from this weapon*'
   Wait:
   - 3
   Sound: []

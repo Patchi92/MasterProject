@@ -151,6 +151,16 @@ public class DialogSelection : MonoBehaviour
             {
                 UI.UnlockPlayer();
             }
+        } else if (v == 5 || v == 6 || v == 7 |v == 23 || v == 24 || v == 25)
+        {
+            if (d.Choice)
+            {
+                UI.choice = true;
+            }
+            else
+            {
+                UI.UnlockPlayer();
+            }
         } else
         {
             narrativeSystem.GetComponent<NarrativeSystem>().NarrativeFeedback(0);

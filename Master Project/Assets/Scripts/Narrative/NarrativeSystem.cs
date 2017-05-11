@@ -161,31 +161,31 @@ public class NarrativeSystem : MonoBehaviour {
 
         // Challenge + Strategy
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 50)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") > 50)
         {
             PlayerPrefs.SetInt("Challenge", 1);
             PlayerPrefs.SetInt("Strategy", 1);
         }
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 40)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 50)
         {
             PlayerPrefs.SetInt("Challenge", 2);
             PlayerPrefs.SetInt("Strategy", 2);
         }
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 30)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 40)
         {
             PlayerPrefs.SetInt("Challenge", 3);
             PlayerPrefs.SetInt("Strategy", 3);
         }
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 20)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 30)
         {
             PlayerPrefs.SetInt("Challenge", 4);
             PlayerPrefs.SetInt("Strategy", 4);
         }
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 10)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 20)
         {
             PlayerPrefs.SetInt("Challenge", 5);
             PlayerPrefs.SetInt("Strategy", 5);
@@ -213,26 +213,26 @@ public class NarrativeSystem : MonoBehaviour {
 
         // Power
 
-        if (PlayerPrefs.GetInt("PlayerLevel") == 10)
+        if (PlayerPrefs.GetInt("PlayerLevel") >= 10)
         {
             PlayerPrefs.SetInt("Power", 5);
         }
-        if (PlayerPrefs.GetInt("PlayerLevel") == 8)
+        if (PlayerPrefs.GetInt("PlayerLevel") >= 8 && PlayerPrefs.GetInt("PlayerLevel") < 10)
         {
             PlayerPrefs.SetInt("Power", 4);
         }
 
-        if (PlayerPrefs.GetInt("PlayerLevel") == 6)
+        if (PlayerPrefs.GetInt("PlayerLevel") >= 6 && PlayerPrefs.GetInt("PlayerLevel") < 8)
         {
             PlayerPrefs.SetInt("Power", 3);
         }
 
-        if (PlayerPrefs.GetInt("PlayerLevel") == 4)
+        if (PlayerPrefs.GetInt("PlayerLevel") >= 4 && PlayerPrefs.GetInt("PlayerLevel") < 6)
         {
             PlayerPrefs.SetInt("Power", 2);
         }
 
-        if (PlayerPrefs.GetInt("PlayerLevel") == 2)
+        if (PlayerPrefs.GetInt("PlayerLevel") >= 2 && PlayerPrefs.GetInt("PlayerLevel") < 4)
         {
             PlayerPrefs.SetInt("Power", 1);
         }
@@ -343,12 +343,11 @@ public class NarrativeSystem : MonoBehaviour {
         if (info == "Warrior")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 5);
+            ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 1);
 
-            if (PlayerPrefs.GetString("Version") != "Complex")
+            if (PlayerPrefs.GetString("Version") == "Complex")
             {
-                ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 1);
-            } else
-            {
+                PlayerPrefs.SetString("PlayerType", "Hero");
                 gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
             }
             
@@ -357,12 +356,11 @@ public class NarrativeSystem : MonoBehaviour {
         if (info == "Mage")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 6);
+            ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 2);
 
-            if (PlayerPrefs.GetString("Version") != "Complex")
+            if (PlayerPrefs.GetString("Version") == "Complex")
             {
-                ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 2);
-            } else
-            {
+                PlayerPrefs.SetString("PlayerType", "Hero");
                 gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
             }
 
@@ -371,12 +369,11 @@ public class NarrativeSystem : MonoBehaviour {
         if (info == "Assassin")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 7);
+            ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 3);
 
             if (PlayerPrefs.GetString("Version") != "Complex")
             {
-                ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 3);
-            } else
-            {
+                PlayerPrefs.SetString("PlayerType", "Hero");
                 gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
             }
 
@@ -402,6 +399,7 @@ public class NarrativeSystem : MonoBehaviour {
         if (info == "WitchEnd_Complex")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 9);
+            player.GetComponent<PlayerClass>().ExpEarned(100);
         }
 
         if (info == "Gate")
@@ -467,13 +465,24 @@ public class NarrativeSystem : MonoBehaviour {
 
         }
 
-        if (info == "KillHit")
+        if (info == "FindQuestComplex")
         {
-            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 22);
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 34);
+        }
+
+        if (info == "KillQuestComplex")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 35);
         }
 
 
-        if (info == "HeroChange")
+        if (info == "HideQuest")
+        {
+
+        }
+
+
+            if (info == "HeroChange")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 23);
             ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 7);

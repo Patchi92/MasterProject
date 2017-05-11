@@ -1,1 +1,28 @@
-A ;; Demographic212 ;; Female ;; 212 ;; 1212 ;; 12 ;; 12Narrative PathPacifist ;; Narrative FeedbackPacifistawdadawdadadadawdadPlayer Behavior0 ;; 0 ;; 5 ;; 5 ;; 3 ;; 1 ;; 0 ;; 3 ;; 0 ;; 0 ;; CD Questions: Round 11 ;; 2 ;; 3 ;; 2 ;; 3 ;; 3 ;; 3 ;; 2 ;; 3 ;; 3 ;; 3 ;; 2 ;; 3 ;; 2 ;; 2 ;; 3CD Questions: Round 22 ;; 3 ;; 4 ;; 4 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3
+A ;; 
+Demographic
+212 ;; Male ;; 212 ;; 1212 ;; 12 ;; 12
+
+Narrative Path
+Killer ;; 
+
+Narrative Feedback
+Killer
+
+dawdawdawd
+
+awdadad
+
+adwadadad
+
+adaddadwad
+
+
+Player Behavior
+1 ;; 5 ;; 0 ;; 0 ;; 4 ;; 0 ;; 0 ;; 4 ;; 1 ;; 0 ;; 
+
+CD Questions: Round 1
+1 ;; 2 ;; 3 ;; 3 ;; 1 ;; 2 ;; 2 ;; 3 ;; 1 ;; 2 ;; 2 ;; 3 ;; 1 ;; 2 ;; 3 ;; 3
+
+CD Questions: Round 2
+1 ;; 2 ;; 2 ;; 2 ;; 1 ;; 3 ;; 2 ;; 2 ;; 3 ;; 3 ;; 2 ;; 3 ;; 3 ;; 3 ;; 2 ;; 3 ;; 3 ;; 3 ;; 2 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 3 ;; 4 ;; 2 ;; 3 ;; 3 ;; 4 ;; 3 ;; 2 ;; 3 ;; 3 ;; 3 ;; 2 ;; 2 ;; 3 ;; 3 ;; 4
+

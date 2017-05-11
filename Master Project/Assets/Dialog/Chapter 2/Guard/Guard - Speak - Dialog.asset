@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
   m_Name: Guard - Speak - Dialog
   m_EditorClassIdentifier: 
-  DialogLength: 0
+  DialogLength: 1
   Name:
   - Guard
   Text:
-  - Please move along.
+  - We are busy dealing with the undead. Please move along.
   Wait:
-  - 2
+  - 4
   Sound: []
   Choice: 0

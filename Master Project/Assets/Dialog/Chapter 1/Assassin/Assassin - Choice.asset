@@ -13,13 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: You
   choice:
-  - Pick up dagger and bow
-  - Leave dagger and bow
+  - Pick up The Crossbow and Dagger of Shadows.
+  - Leave the weapons.
   response:
-  - You pick up the dagger.. Good for you
-  - You shake and turn away from the dagger and bow
+  - You pick up The Crossbow and Dagger of Shadows. You feel slightly more stealthy!
+  - You shake and turn away from the weapons.
   wait:
-  - 3
+  - 4
   - 3
   simpleQuestion: 1
   removeSymbol: 0

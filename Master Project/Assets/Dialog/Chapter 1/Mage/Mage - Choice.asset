@@ -13,12 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: You
   choice:
-  - Pick up staff
-  - Leave staff
+  - Pick up The Staff of Unlimited Power.
+  - Leave the weapon.
   response:
-  - You feel the power!.. UNLIMITED POWER!
-  - You shake and turn away from the staff
+  - You pick up The Staff of Unlimited Power. You feel the power!.. UNLIMITED POWER!
+  - You shake and turn away from the weapon.
   wait:
-  - 3
+  - 4
   - 3
   simpleQuestion: 1
+  removeSymbol: 0

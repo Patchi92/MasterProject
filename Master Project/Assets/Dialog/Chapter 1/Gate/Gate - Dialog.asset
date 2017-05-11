@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 1
   Name:
-  - Player
+  - You
   Text:
   - It is to early for the gate to be open. Perhaps i should enter the cave after
     all.
   Wait:
-  - 3
+  - 6
   Sound: []
   Choice: 0

@@ -39,6 +39,21 @@ public class NPC : MonoBehaviour {
     void Start () {
         ableSpeak = false;
         hitByPlayer = 0;
+
+        if (PlayerPrefs.GetString("Version") == "Complex")
+        {
+
+            if (gameObject.name == "Peasent - Kill Quest")
+            {
+                dialog = "KillQuestComplex";
+            }
+
+            if (gameObject.name == "Peasent - Find Quest")
+            {
+                dialog = "FindQuestComplex";
+            }
+        }
+
     }
 	
 	// Update is called once per frame
@@ -112,7 +127,11 @@ public class NPC : MonoBehaviour {
                 gameObject.GetComponent<EnemyMelee>().enabled = true;
             }
 
-            GameObject.Find("Interact").SetActive(false);
+            if(GameObject.Find("Interact") != null)
+            {
+                GameObject.Find("Interact").SetActive(false);
+            }
+            
             gameObject.transform.FindChild("SpeakArea").gameObject.SetActive(false);
             gameObject.GetComponent<NPC>().enabled = false;
         }

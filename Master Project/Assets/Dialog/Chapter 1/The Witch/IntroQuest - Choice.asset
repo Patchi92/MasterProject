@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
   m_Name: IntroQuest - Choice
   m_EditorClassIdentifier: 
-  Name: The Witch
+  Name: Witch
   choice:
   - Accept Quest
   - Refuse Quest
@@ -22,8 +22,8 @@ MonoBehaviour:
   - You little... Get out of my sight and return only if you are worthy to be granted
     an artifact
   wait:
-  - 3
-  - 3
-  - 3
+  - 4
+  - 5
+  - 5
   simpleQuestion: 0
   removeSymbol: 0

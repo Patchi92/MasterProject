@@ -36,12 +36,19 @@ public class Questionnaire : MonoBehaviour
     public GameObject favoriteGameTwo;
     public GameObject favoriteGameThree;
 
+    public GameObject playSDisagree;
+    public GameObject playDisagree;
+    public GameObject playNeutral;
+    public GameObject playAgree;
+    public GameObject playSAgree;
+
     string ageInfo;
     string genderInfo;
     string gameHourInfo;
     string favoriteGameOneInfo;
     string favoriteGameTwoInfo;
     string favoriteGameThreeInfo;
+    int wannaPlay;
 
 
     // Questionnaire
@@ -453,6 +460,8 @@ public class Questionnaire : MonoBehaviour
             twoCDQuestionThirtyOne = tempDataThree;
             twoCDQuestionThirtyTwo = tempDataFour;
 
+            PlayerPrefs.SetInt("Fantasy", twoCDQuestionTwentyNine);
+
             questionOneText.GetComponent<Text>().text = "Some tasks or conflicts in the game story are stimulating and suspenseful.";
             questionTwoText.GetComponent<Text>().text = "I feel successful when i overcome the obstacles, tasks or opponents in the game.";
             questionThreeText.GetComponent<Text>().text = "I can control the game interface.";
@@ -538,6 +547,25 @@ public class Questionnaire : MonoBehaviour
                 genderInfo = "Female";
             }
 
+            if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            {
+                wannaPlay = 1;
+            } else if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            {
+                wannaPlay = 2;
+            } else if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            {
+                wannaPlay = 3;
+            } else if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            {
+                wannaPlay = 4;
+            } else if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            {
+                wannaPlay = 5;
+            }
+
+
+
             gameHourInfo = gameHour.GetComponent<InputField>().text;
             favoriteGameOneInfo = favoriteGameOne.GetComponent<InputField>().text;
             favoriteGameTwoInfo = favoriteGameTwo.GetComponent<InputField>().text;
@@ -545,11 +573,21 @@ public class Questionnaire : MonoBehaviour
 
             if (age.GetComponent<InputField>().text != "" && gameHour.GetComponent<InputField>().text != "" && favoriteGameOne.GetComponent<InputField>().text != "" && favoriteGameTwo.GetComponent<InputField>().text != "" && favoriteGameThree.GetComponent<InputField>().text != "")
             {
-                if(male.GetComponent<Toggle>().isOn == true || female.GetComponent<Toggle>().isOn == true)
+                if (male.GetComponent<Toggle>().isOn == true || female.GetComponent<Toggle>().isOn == true)
                 {
-                    pageLock = false;
+                    if (playSDisagree.GetComponent<Toggle>().isOn == true || playDisagree.GetComponent<Toggle>().isOn == true || playNeutral.GetComponent<Toggle>().isOn == true || playAgree.GetComponent<Toggle>().isOn == true || playSAgree.GetComponent<Toggle>().isOn == true)
+                    {
+                        pageLock = false;
+                    }
                 }
             }
+        } else if (pageInfo == 15) {
+
+            if (story.GetComponent<InputField>().text != "" && behavior.GetComponent<InputField>().text != "" && actions.GetComponent<InputField>().text != "" && feedback.GetComponent<InputField>().text != "")
+            {
+                pageLock = false;
+            }
+
         } else  {
 
                 ToggleUpdate();
@@ -592,7 +630,7 @@ public class Questionnaire : MonoBehaviour
 
                     // Demographic
                     sw.WriteLine("Demographic");
-                    sw.WriteLine(ageInfo + " ;; " + genderInfo + " ;; " + gameHourInfo + " ;; " + favoriteGameOneInfo + " ;; " + favoriteGameTwoInfo + " ;; " + favoriteGameThreeInfo);
+                    sw.WriteLine(ageInfo + " ;; " + genderInfo + " ;; " + gameHourInfo + " ;; " + favoriteGameOneInfo + " ;; " + favoriteGameTwoInfo + " ;; " + favoriteGameThreeInfo + " ;; " + wannaPlay);
                     sw.WriteLine("");
 
                     // Narrative Path

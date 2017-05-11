@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 0
   Name:
-  - Peasent
+  - Peasant
   Text:
-  - Please!.. Do not hurt me!
+  - Please i am innocent! Do not hurt me!
   Wait:
-  - 2
+  - 4
   Sound: []
   Choice: 0

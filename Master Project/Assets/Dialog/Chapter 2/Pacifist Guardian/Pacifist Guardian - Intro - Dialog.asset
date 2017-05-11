@@ -14,9 +14,20 @@ MonoBehaviour:
   DialogLength: 1
   Name:
   - Guardian of Peace
+  - Guardian of Peace
+  - Guardian of Peace
+  - Guardian of Peace
   Text:
-  - bla bla peace
+  - 'I see no blood on your hands. Only a mind in peace with nature. '
+  - Stay neutral and passive and you will be rewarded in the end!
+  - This trial will last until midnight. When the time is up go and meet me at the
+    city gate.
+  - In case you do want to stray from the path. Talk with me and i shall grant you
+    a weapon.
   Wait:
-  - 3
+  - 4
+  - 4
+  - 6
+  - 6
   Sound: []
   Choice: 0

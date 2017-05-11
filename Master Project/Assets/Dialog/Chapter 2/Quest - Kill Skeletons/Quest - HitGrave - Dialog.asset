@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 1
   Name:
-  - Peasent
+  - Peasant
   Text:
-  - Please!.. Do not hurt me!
+  - Please focus your rage at the dead. Not me!
   Wait:
-  - 2
+  - 3
   Sound: []
   Choice: 0

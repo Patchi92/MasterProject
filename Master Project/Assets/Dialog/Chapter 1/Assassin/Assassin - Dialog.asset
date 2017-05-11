@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogLength: 1
   Name:
-  - Dagger and Bow
+  - You
   Text:
-  - '*It feels like it wants you to pick it up*'
+  - '*Your hear faint whispers from the weapon*'
   Wait:
   - 3
   Sound: []

@@ -15,11 +15,14 @@ MonoBehaviour:
   Name:
   - You
   - Guardian of Heroism
+  - Guardian of Heroism
   Text:
-  - Hello! Who are you?
+  - Who are you?
   - I am the Guardian of Heroism!
+  - Fulfill heroic deeds and i will be your champion.
   Wait:
-  - 2
-  - 2
+  - 3
+  - 3
+  - 4
   Sound: []
   Choice: 0

@@ -17,6 +17,6 @@ MonoBehaviour:
   Text:
   - If you keep up that behavior. There will be consequences!
   Wait:
-  - 2
+  - 3
   Sound: []
   Choice: 0

@@ -11,17 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
   m_Name: Quest - Find Key - Choice
   m_EditorClassIdentifier: 
-  Name: Peasent
+  Name: Peasant
   choice:
-  - I will help you find the key.
-  - I will have nothing to do with your quest.
-  - You are wasting my time. You will pay with blood.
+  - Help find the key.
+  - Refuse to help the peasant.
+  - Make him pay with blood.
   response:
-  - Thank you kind soldier!
-  - As you wish little soldier.
+  - Thank you soldier! Return to be me when you have the key.
+  - As you wish soldier.
   - No.. Please forgive me!
   wait:
-  - 3
+  - 5
   - 3
   - 3
   simpleQuestion: 0
+  removeSymbol: 0

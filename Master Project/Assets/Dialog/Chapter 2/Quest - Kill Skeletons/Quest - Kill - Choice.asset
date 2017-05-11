@@ -11,17 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c0ad4ad7c71b4d873d4ab22a6a59a, type: 3}
   m_Name: Quest - Kill - Choice
   m_EditorClassIdentifier: 
-  Name: Peasent
+  Name: Peasant
   choice:
-  - Let me go and help them find peace.
-  - That is not my problem.
-  - I will put them down. I will take you with them!
+  - Help the dead find peace.
+  - Refuse to help.
+  - Put down the dead and the peasant
   response:
-  - Good luck in there!
+  - Good luck in there! The last one did not make it far.
   - How can you be so cold?
-  - What?!
+  - What?! No not like this.
   wait:
-  - 3
+  - 5
   - 3
   - 3
   simpleQuestion: 0
+  removeSymbol: 0
