@@ -11,10 +11,6 @@ public class DaySystem : MonoBehaviour {
 
     IEnumerator DayAndNightSystem()
     {
-        RenderSettings.ambientIntensity = 0.8f;
-        yield return new WaitForSeconds(45f);
-        RenderSettings.ambientIntensity = 0.75f;
-        yield return new WaitForSeconds(45f);
         RenderSettings.ambientIntensity = 0.7f;
         yield return new WaitForSeconds(45f);
         RenderSettings.ambientIntensity = 0.65f;
@@ -33,7 +29,10 @@ public class DaySystem : MonoBehaviour {
         yield return new WaitForSeconds(45f);
         RenderSettings.ambientIntensity = 0.3f;
         yield return new WaitForSeconds(45f);
+        RenderSettings.ambientIntensity = 0.25f;
+        yield return new WaitForSeconds(45f);
         RenderSettings.ambientIntensity = 0.2f;
+
 
         player = GameObject.Find("Player");
 

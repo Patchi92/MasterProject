@@ -97,6 +97,8 @@ public class NPC : MonoBehaviour {
     {
         ++hitByPlayer;
 
+        Debug.Log("Ouch");
+
         if(hitByPlayer == 1)
         {
             narrative.Narrative(hitDialog);

@@ -56,10 +56,7 @@ public class NarrativeSystem : MonoBehaviour {
         ChapterTwo.SetActive(false);
         ChapterThree.SetActive(false);
 
-        if(Application.isEditor == false)
-        {
-            PlayerPrefs.DeleteAll();
-        }
+        
 
         Debug.Log(PlayerPrefs.GetString("Version"));
 
@@ -148,6 +145,11 @@ public class NarrativeSystem : MonoBehaviour {
             PlayerPrefs.SetInt("Destruction", 5);
         }
 
+        if (PlayerPrefs.GetInt("Destruction") == 0)
+        {
+            PlayerPrefs.SetInt("Destruction", 1);
+        }
+
 
         // Excitement
 
@@ -158,34 +160,39 @@ public class NarrativeSystem : MonoBehaviour {
             PlayerPrefs.SetInt("Excitement", 5);
         }
 
+        if (PlayerPrefs.GetInt("Excitement") == 0)
+        {
+            PlayerPrefs.SetInt("Excitement", 1);
+        }
+
 
         // Challenge + Strategy
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") > 50)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") > 90)
         {
             PlayerPrefs.SetInt("Challenge", 1);
             PlayerPrefs.SetInt("Strategy", 1);
         }
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 50)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 80)
         {
             PlayerPrefs.SetInt("Challenge", 2);
             PlayerPrefs.SetInt("Strategy", 2);
         }
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 40)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 70)
         {
             PlayerPrefs.SetInt("Challenge", 3);
             PlayerPrefs.SetInt("Strategy", 3);
         }
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 30)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 60)
         {
             PlayerPrefs.SetInt("Challenge", 4);
             PlayerPrefs.SetInt("Strategy", 4);
         }
 
-        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 20)
+        if (PlayerPrefs.GetInt("PlayerDamageTaken") < 50)
         {
             PlayerPrefs.SetInt("Challenge", 5);
             PlayerPrefs.SetInt("Strategy", 5);
@@ -208,6 +215,12 @@ public class NarrativeSystem : MonoBehaviour {
         if (PlayerPrefs.GetInt("PlayerGold") < 300)
         {
             PlayerPrefs.SetInt("Completion", PlayerPrefs.GetInt("Quests") + 3);
+        }
+
+
+        if (PlayerPrefs.GetInt("Completion") == 0)
+        {
+            PlayerPrefs.SetInt("Completion", 1);
         }
 
 
@@ -238,12 +251,27 @@ public class NarrativeSystem : MonoBehaviour {
         }
 
 
+        // Story
+
+        if(PlayerPrefs.GetInt("Story") >= 5)
+        {
+            PlayerPrefs.SetInt("Story", 5);
+        }
+
+        if (PlayerPrefs.GetInt("Story") == 0)
+        {
+            PlayerPrefs.SetInt("Story", 1);
+        }
 
 
         // Design
 
-        PlayerPrefs.SetInt("Design", PlayerPrefs.GetInt("PlayerClassChanges") - 1);
+        PlayerPrefs.SetInt("Design", PlayerPrefs.GetInt("PlayerClassChanges"));
 
+        if (PlayerPrefs.GetInt("Story") == 0)
+        {
+            PlayerPrefs.SetInt("Story", 1);
+        }
 
         // Discovery
 
@@ -285,6 +313,12 @@ public class NarrativeSystem : MonoBehaviour {
             ChapterOne.SetActive(false);
             ChapterTwo.SetActive(true);
             player.SetActive(true);
+
+            if (PlayerPrefs.GetString("PlayerType") == "Pacifist")
+            {
+                player.GetComponent<PlayerClass>().RemoveClass();
+            }
+
         }
 
         if (info == 3)
@@ -347,7 +381,7 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (PlayerPrefs.GetString("Version") == "Complex")
             {
-                PlayerPrefs.SetString("PlayerType", "Hero");
+                PlayerPrefs.SetString("PlayerType", "Pacifist");
                 gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
             }
             
@@ -360,7 +394,7 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (PlayerPrefs.GetString("Version") == "Complex")
             {
-                PlayerPrefs.SetString("PlayerType", "Hero");
+                PlayerPrefs.SetString("PlayerType", "Pacifist");
                 gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
             }
 
@@ -373,7 +407,7 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (PlayerPrefs.GetString("Version") == "Complex")
             {
-                PlayerPrefs.SetString("PlayerType", "Hero");
+                PlayerPrefs.SetString("PlayerType", "Pacifist");
                 gameObject.transform.FindChild("EndChapterOne").gameObject.GetComponent<ChapterOneEnd>().exitChapter = true;
             }
 
@@ -398,6 +432,7 @@ public class NarrativeSystem : MonoBehaviour {
 
         if (info == "WitchEnd_Complex")
         {
+            PlayerPrefs.SetString("PlayerType", "Hero");
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 9);
             player.GetComponent<PlayerClass>().ExpEarned(100);
         }
@@ -462,6 +497,12 @@ public class NarrativeSystem : MonoBehaviour {
 
         }
 
+        if (info == "KillHit")
+        {
+            DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 22);
+        }
+
+
         if (info == "FindQuestComplex")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 34);
@@ -473,31 +514,27 @@ public class NarrativeSystem : MonoBehaviour {
         }
 
 
-        if (info == "HideQuest")
-        {
-
-        }
 
 
             if (info == "HeroChange")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 23);
+            ChoiceSystem.GetComponent<ChoiceSelection>().ignoreMixed = true;
             ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 7);
-
         }
 
         if (info == "KillerChange")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 24);
+            ChoiceSystem.GetComponent<ChoiceSelection>().ignoreMixed = true;
             ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 8);
-
         }
 
         if (info == "PacifistChange")
         {
             DialogSystem.GetComponent<DialogSelection>().StartCoroutine("DialogSystem", 25);
+            ChoiceSystem.GetComponent<ChoiceSelection>().ignoreMixed = true;
             ChoiceSystem.GetComponent<ChoiceSelection>().StartCoroutine("ChoiceSystem", 9);
-
         }
 
         if (info == "FindCompleted")
@@ -722,16 +759,19 @@ public class NarrativeSystem : MonoBehaviour {
             if (choice == 1)
             {
                 PlayerPrefs.SetString("PlayerClass", "Warrior");
+                ChoiceSystem.GetComponent<ChoiceSelection>().ignoreMixed = false;
             }
 
             if (choice == 2)
             {
                 PlayerPrefs.SetString("PlayerClass", "Mage");
+                ChoiceSystem.GetComponent<ChoiceSelection>().ignoreMixed = false;
             }
 
             if (choice == 3)
             {
                 PlayerPrefs.SetString("PlayerClass", "Assassin");
+                ChoiceSystem.GetComponent<ChoiceSelection>().ignoreMixed = false;
             }
 
             player.GetComponent<PlayerClass>().PickClass();
@@ -751,8 +791,7 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (choice == 3)
             {
-                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
-                GameObject.Find("Peasent - Find Quest").GetComponent<EnemyMelee>().enabled = true;
+                GameObject.Find("Peasent - Find Quest").GetComponent<NPC>().Girl();
             }
 
         }
@@ -771,7 +810,8 @@ public class NarrativeSystem : MonoBehaviour {
 
             if (choice == 3)
             {
-                GameObject.Find("Peasent - Find Quest").GetComponent<NPC>().Girl();
+                PlayerPrefs.SetInt("Story", PlayerPrefs.GetInt("Story") - 1);
+                GameObject.Find("Peasent - Kill Quest").GetComponent<EnemyMelee>().enabled = true;
             }
         }
 

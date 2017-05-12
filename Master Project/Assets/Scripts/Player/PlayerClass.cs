@@ -270,7 +270,18 @@ public class PlayerClass : MonoBehaviour {
     }
 
 
-   
+    public void RemoveClass()
+    {
+        PlayerPrefs.SetString("PlayerClass", "Nothing");
+
+        sword.SetActive(false);
+        shield.SetActive(false);
+        staff.SetActive(false);
+        dagger.SetActive(false);
+        bow.SetActive(false);
+    }
+
+
     public void PickClass()
     {
         PlayerPrefs.SetInt("PlayerClassChanges", PlayerPrefs.GetInt("PlayerClassChanges") + 1);

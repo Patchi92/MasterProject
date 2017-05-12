@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666efeab764d1e4fb55abea3c239f8a, type: 3}
   m_Name: Killer Guardian - Intro - Dialog
   m_EditorClassIdentifier: 
-  DialogLength: 1
+  DialogLength: 4
   Name:
   - Guardian of Death
   - Guardian of Death
@@ -19,7 +19,7 @@ MonoBehaviour:
   - Guardian of Death
   Text:
   - Mmm.. Is that blood i smell.
-  - Keep up the chaos and myhem and you will be rewarded in the end!
+  - Keep up the chaos and mayhem and you will be rewarded in the end!
   - This trial will last until midnight. When the time is up go and meet me at the
     city gate.
   - Talk to me if you want to change weapons and tools for path of destruction!

@@ -17,7 +17,7 @@ MonoBehaviour:
   - Refuse to help the girl.
   - Make her pay with blood.
   response:
-  - Thank you soldier! Return to be me when you have the key.
+  - Thank you soldier! Return to me when you have the key.
   - How can you be so cruel?
   - No.. Please forgive me!
   wait:

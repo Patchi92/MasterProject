@@ -287,7 +287,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 4)
+        if (pageInfo == 5)
         {
             oneCDQuestionNine = tempDataOne;
             oneCDQuestionTen = tempDataTwo;
@@ -305,7 +305,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 5)
+        if (pageInfo == 6)
         {
             oneCDQuestionThirteen = tempDataOne;
             oneCDQuestionFourteen = tempDataTwo;
@@ -327,7 +327,7 @@ public class Questionnaire : MonoBehaviour
         }
 
 
-        if (pageInfo == 6)
+        if (pageInfo == 7)
         {
             twoCDQuestionOne = tempDataOne;
             twoCDQuestionTwo = tempDataTwo;
@@ -345,7 +345,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 7)
+        if (pageInfo == 8)
         {
             twoCDQuestionFive = tempDataOne;
             twoCDQuestionSix = tempDataTwo;
@@ -363,7 +363,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 8)
+        if (pageInfo == 9)
         {
             twoCDQuestionNine = tempDataOne;
             twoCDQuestionTen = tempDataTwo;
@@ -381,7 +381,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 9)
+        if (pageInfo == 10)
         {
             twoCDQuestionThirteen = tempDataOne;
             twoCDQuestionFourteen = tempDataTwo;
@@ -399,7 +399,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 10)
+        if (pageInfo == 11)
         {
             twoCDQuestionSeventeen = tempDataOne;
             twoCDQuestionEighteen = tempDataTwo;
@@ -417,7 +417,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 11)
+        if (pageInfo == 12)
         {
             twoCDQuestionTwentyOne = tempDataOne;
             twoCDQuestionTwentyTwo = tempDataTwo;
@@ -435,7 +435,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 12)
+        if (pageInfo == 13)
         {
             twoCDQuestionTwentyFive = tempDataOne;
             twoCDQuestionTwentySix = tempDataTwo;
@@ -453,7 +453,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 13)
+        if (pageInfo == 14)
         {
             twoCDQuestionTwentyNine = tempDataOne;
             twoCDQuestionThirty = tempDataTwo;
@@ -473,7 +473,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 14)
+        if (pageInfo == 15)
         {
             twoCDQuestionThirtyThree = tempDataOne;
             twoCDQuestionThirtyFour = tempDataTwo;
@@ -491,7 +491,7 @@ public class Questionnaire : MonoBehaviour
 
         }
 
-        if (pageInfo == 15)
+        if (pageInfo == 16)
         {
             twoCDQuestionThirtySeven = tempDataOne;
             twoCDQuestionThirtyEight = tempDataTwo;
@@ -509,14 +509,14 @@ public class Questionnaire : MonoBehaviour
             narrativeFeedback.SetActive(true);
 
             pageLast = true;
-            pageLock = false;
+            pageLock = true;
         }
 
 
 
 
 
-        if (pageInfo == 16)
+        if (pageInfo == 17)
         {
             thanksPlaying.SetActive(true);
             nextButtonText.GetComponent<Text>().text = "Quit";
@@ -527,7 +527,7 @@ public class Questionnaire : MonoBehaviour
         }
 
 
-        if (pageInfo == 17)
+        if (pageInfo == 18)
         {
             Application.Quit();
 
@@ -550,16 +550,16 @@ public class Questionnaire : MonoBehaviour
             if (playSDisagree.GetComponent<Toggle>().isOn == true)
             {
                 wannaPlay = 1;
-            } else if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            } else if (playDisagree.GetComponent<Toggle>().isOn == true)
             {
                 wannaPlay = 2;
-            } else if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            } else if (playNeutral.GetComponent<Toggle>().isOn == true)
             {
                 wannaPlay = 3;
-            } else if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            } else if (playAgree.GetComponent<Toggle>().isOn == true)
             {
                 wannaPlay = 4;
-            } else if (playSDisagree.GetComponent<Toggle>().isOn == true)
+            } else if (playSAgree.GetComponent<Toggle>().isOn == true)
             {
                 wannaPlay = 5;
             }
@@ -581,7 +581,7 @@ public class Questionnaire : MonoBehaviour
                     }
                 }
             }
-        } else if (pageInfo == 15) {
+        } else if (pageInfo == 16) {
 
             if (story.GetComponent<InputField>().text != "" && behavior.GetComponent<InputField>().text != "" && actions.GetComponent<InputField>().text != "" && feedback.GetComponent<InputField>().text != "")
             {
@@ -614,17 +614,17 @@ public class Questionnaire : MonoBehaviour
                 {
                     if(PlayerPrefs.GetString("Version") == "Simple")
                     {
-                        sw.WriteLine("A ;; "); 
+                        sw.WriteLine("A ;; Simple"); 
                     }
 
                     if (PlayerPrefs.GetString("Version") == "Complex")
                     {
-                        sw.WriteLine("B ;; ");
+                        sw.WriteLine("B ;; Complex");
                     }
 
                     if (PlayerPrefs.GetString("Version") == "Mixed")
                     {
-                        sw.WriteLine("C ;; ");
+                        sw.WriteLine("C ;; Mixed");
                     }
 
 
@@ -633,20 +633,15 @@ public class Questionnaire : MonoBehaviour
                     sw.WriteLine(ageInfo + " ;; " + genderInfo + " ;; " + gameHourInfo + " ;; " + favoriteGameOneInfo + " ;; " + favoriteGameTwoInfo + " ;; " + favoriteGameThreeInfo + " ;; " + wannaPlay);
                     sw.WriteLine("");
 
-                    // Narrative Path
-                    sw.WriteLine("Narrative Path");
-                    sw.WriteLine(PlayerPrefs.GetString("PlayerType").ToString() + " ;; ");
-                    sw.WriteLine("");
-
                     // Narrative Feedback
                     sw.WriteLine("Narrative Feedback");
-                    sw.WriteLine(PlayerPrefs.GetString("PlayerType").ToString());
+                    sw.WriteLine("Narrative Path: " + PlayerPrefs.GetString("PlayerType").ToString());
                     sw.WriteLine("");
                     sw.WriteLine(story.GetComponent<InputField>().text);
                     sw.WriteLine("");
-                    sw.WriteLine(actions.GetComponent<InputField>().text);
-                    sw.WriteLine("");
                     sw.WriteLine(behavior.GetComponent<InputField>().text);
+                    sw.WriteLine("");
+                    sw.WriteLine(actions.GetComponent<InputField>().text);
                     sw.WriteLine("");
                     sw.WriteLine(feedback.GetComponent<InputField>().text);
                     sw.WriteLine("");
@@ -654,7 +649,7 @@ public class Questionnaire : MonoBehaviour
 
                     // Player Behavior
                     sw.WriteLine("Player Behavior");
-                    sw.WriteLine(PlayerPrefs.GetInt("Destruction").ToString() + " ;; " + PlayerPrefs.GetInt("Excitement").ToString() + " ;; " + PlayerPrefs.GetInt("Challenge").ToString() + " ;; " + PlayerPrefs.GetInt("Strategy").ToString() + " ;; " + PlayerPrefs.GetInt("Completion").ToString() + " ;; " + PlayerPrefs.GetInt("Power").ToString() + " ;; " + PlayerPrefs.GetInt("Fantasy").ToString() + " ;; " + PlayerPrefs.GetInt("Story").ToString() + " ;; " + PlayerPrefs.GetInt("Design").ToString() + " ;; " + PlayerPrefs.GetInt("Discovery").ToString() + " ;; ");
+                    sw.WriteLine(PlayerPrefs.GetInt("Destruction").ToString() + " ;; " + PlayerPrefs.GetInt("Excitement").ToString() + " ;; " + PlayerPrefs.GetInt("Challenge").ToString() + " ;; " + PlayerPrefs.GetInt("Strategy").ToString() + " ;; " + PlayerPrefs.GetInt("Completion").ToString() + " ;; " + PlayerPrefs.GetInt("Power").ToString() + " ;; " + PlayerPrefs.GetInt("Fantasy").ToString() + " ;; " + PlayerPrefs.GetInt("Story").ToString() + " ;; " + PlayerPrefs.GetInt("Design").ToString() + " ;; " + PlayerPrefs.GetInt("Discovery").ToString());
                     sw.WriteLine("");
 
                     // CD Questions: Round 1

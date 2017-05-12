@@ -40,6 +40,7 @@ public class ChoiceSelection : MonoBehaviour {
     float responseWaitTwo;
     float responseWaitThree;
 
+    public bool ignoreMixed;
 
     //Input
     float mouseX;
@@ -68,6 +69,7 @@ public class ChoiceSelection : MonoBehaviour {
     void Start()
     {
         mouseCheck = false;
+        ignoreMixed = false;
     }
 
     // Update is called once per frame
@@ -95,13 +97,24 @@ public class ChoiceSelection : MonoBehaviour {
 
                     if (PlayerPrefs.GetString("Version") == "Mixed")
                     {
-                        if (PlayerPrefs.GetInt("KillerPoints") < 1)
+                        if(ignoreMixed)
+                        {
+                            selectedOption = 1;
+
+                            Selected(choiceOptionOne);
+                            Unselected(choiceOptionTwo);
+                            Unselected(choiceOptionThree);
+
+                            choiceResponse = responseName + ":" + "\n" + "\n" + responseOne;
+                            choiceWait = responseWaitOne;
+                        }
+                        else if (PlayerPrefs.GetInt("KillerPoints") < 1)
                         {
                             selectedOption = 1;
 
                             Selected(choiceOptionOne);
 
-                            if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                            if (PlayerPrefs.GetInt("NPCsKilled") == 0 && PlayerPrefs.GetInt("HeroPoints") == 0)
                             {
                                 Unselected(choiceOptionTwo);
                             }
@@ -132,7 +145,19 @@ public class ChoiceSelection : MonoBehaviour {
                 {
                     if (PlayerPrefs.GetString("Version") == "Mixed")
                     {
-                        if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+
+                        if (ignoreMixed)
+                        {
+                            selectedOption = 2;
+
+                            Unselected(choiceOptionOne);
+                            Selected(choiceOptionTwo);
+                            Unselected(choiceOptionThree);
+
+                            choiceResponse = responseName + ":" + "\n" + "\n" + responseTwo;
+                            choiceWait = responseWaitTwo;
+                        }
+                        else if (PlayerPrefs.GetInt("NPCsKilled") == 0 && PlayerPrefs.GetInt("HeroPoints") == 0)
                         {
                             selectedOption = 2;
 
@@ -171,7 +196,18 @@ public class ChoiceSelection : MonoBehaviour {
                     {
                         if (PlayerPrefs.GetString("Version") == "Mixed")
                         {
-                            if (PlayerPrefs.GetInt("HeroPoints") < 5)
+                            if (ignoreMixed)
+                            {
+                                selectedOption = 3;
+
+                                Unselected(choiceOptionOne);
+                                Unselected(choiceOptionTwo);
+                                Selected(choiceOptionThree);
+
+                                choiceResponse = responseName + ":" + "\n" + "\n" + responseThree;
+                                choiceWait = responseWaitThree;
+                            }
+                            else if (PlayerPrefs.GetInt("HeroPoints") < 5)
                             {
                                 selectedOption = 3;
 
@@ -180,7 +216,7 @@ public class ChoiceSelection : MonoBehaviour {
                                     Unselected(choiceOptionOne);
                                 }
 
-                                if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                                if ((PlayerPrefs.GetInt("NPCsKilled") == 0 && PlayerPrefs.GetInt("HeroPoints") == 0))
                                 {
                                     Unselected(choiceOptionTwo);
                                 }
@@ -322,7 +358,11 @@ public class ChoiceSelection : MonoBehaviour {
         {
             if (moreChoices == true)
             {
-                if (PlayerPrefs.GetInt("KillerPoints") >= 1)
+                if(ignoreMixed)
+                {
+                    Unselected(choiceOptionOne);
+                }
+                else if (PlayerPrefs.GetInt("KillerPoints") > 0)
                 {
                     Unavalible(choiceOptionOne);
                 }
@@ -331,7 +371,11 @@ public class ChoiceSelection : MonoBehaviour {
                     Unselected(choiceOptionOne);
                 }
 
-                if (PlayerPrefs.GetInt("NPCsKilled") == 0)
+                if (ignoreMixed)
+                {
+                    Unselected(choiceOptionTwo);
+                }
+                else if (PlayerPrefs.GetInt("NPCsKilled") == 0 && PlayerPrefs.GetInt("HeroPoints") == 0)
                 {
                     Unselected(choiceOptionTwo);
                 }
@@ -340,7 +384,11 @@ public class ChoiceSelection : MonoBehaviour {
                     Unavalible(choiceOptionTwo);
                 }
 
-                if (PlayerPrefs.GetInt("HeroPoints") > 5)
+                if (ignoreMixed)
+                {
+                    Unselected(choiceOptionThree);
+                }
+                else if (PlayerPrefs.GetInt("HeroPoints") > 5)
                 {
                     Unavalible(choiceOptionThree);
                 }
