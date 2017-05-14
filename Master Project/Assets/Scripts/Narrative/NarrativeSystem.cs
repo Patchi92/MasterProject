@@ -277,6 +277,10 @@ public class NarrativeSystem : MonoBehaviour {
 
         PlayerPrefs.SetInt("Discovery", PlayerPrefs.GetInt("PlayerDiscoveryPoints"));
 
+        if (PlayerPrefs.GetInt("Discovery") == 0)
+        {
+            PlayerPrefs.SetInt("Discovery", 1);
+        }
 
         questionnaire.SetActive(true);
 
